@@ -6,6 +6,8 @@ import { RestaurantSearchComponent } from './restaurant-search/restaurant-search
 import { RestaurantHomeComponent } from './restaurant-home/restaurant-home.component';
 import {RestaurantServiceClient} from './services/restaurant.service.client';
 import {FormsModule} from '@angular/forms';
+import {routing} from './app.routing';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import {FormsModule} from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-      FormsModule
+      FormsModule,
+      routing
   ],
   providers: [
       RestaurantServiceClient

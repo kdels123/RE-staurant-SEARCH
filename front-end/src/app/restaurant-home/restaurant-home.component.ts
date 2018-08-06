@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-restaurant-home',
   templateUrl: './restaurant-home.component.html',
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class RestaurantHomeComponent implements OnInit {
 
   constructor() { }
+
 
   ngOnInit() {
   }
