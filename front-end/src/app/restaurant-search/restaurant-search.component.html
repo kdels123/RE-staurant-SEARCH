@@ -1,4 +1,7 @@
-<h2>Restaurant Search</h2>
+<h1>Restaurant Search</h1>
+
+<input [(ngModel)]="restaurantName" placeholder="Restaurant Name"/>
+<button (click)="searchForRestaurant(restaurantName)">Search</button>
 
 <ul>
   <li *ngFor="let restaurant of restaurants">{{restaurant.alias}}</li>
