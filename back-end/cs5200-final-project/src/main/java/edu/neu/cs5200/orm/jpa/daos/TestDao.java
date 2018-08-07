@@ -1,4 +1,4 @@
-package edu.neu.cs5200.orm.jpa.entities.daos;
+package edu.neu.cs5200.orm.jpa.daos;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -9,7 +9,7 @@ import edu.neu.cs5200.orm.jpa.Cs5200FinalProjectApplication;
 @Component
 public class TestDao implements CommandLineRunner{
 	@Autowired
-	RestaurantOwnerDao restaurantOwnerDao;
+	OwnerDao restaurantOwnerDao;
 	
 	public static void main(String[] args) {
 		Cs5200FinalProjectApplication.main(args);
