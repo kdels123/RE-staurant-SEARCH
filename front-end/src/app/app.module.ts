@@ -7,13 +7,17 @@ import { RestaurantHomeComponent } from './restaurant-home/restaurant-home.compo
 import {RestaurantServiceClient} from './services/restaurant.service.client';
 import {FormsModule} from '@angular/forms';
 import {routing} from './app.routing';
+import { RestaurantLoginComponent } from './restaurant-login/restaurant-login.component';
+import { RestaurantRegisterComponent } from './restaurant-register/restaurant-register.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     RestaurantSearchComponent,
-    RestaurantHomeComponent
+    RestaurantHomeComponent,
+    RestaurantLoginComponent,
+    RestaurantRegisterComponent
   ],
   imports: [
     BrowserModule,

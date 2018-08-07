@@ -1,8 +1,20 @@
-<h1>Restaurant Search</h1>
+<div class="container-fluid">
 
-<input [(ngModel)]="restaurantName" placeholder="Restaurant Name"/>
-<button (click)="searchForRestaurant(restaurantName)">Search</button>
+  <h1>Restaurant Search</h1>
 
-<ul>
-  <li *ngFor="let restaurant of restaurants">{{restaurant.alias}}</li>
-</ul>
+  <div class="input-group">
+    <input class="form-control" [(ngModel)]="restaurantName" placeholder="Restaurant Name"/>
+    <button class="btn btn-primary" (click)="searchForRestaurant(restaurantName)">Search</button>
+  </div>
+
+  <div class="container-fluid" class="card-columns">
+    <div *ngFor="let restaurant of restaurants" class="card">
+      <img class="card-img-top" src="{{restaurant.image_url}}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{restaurant.alias}}</h5>
+        <p class="card-text">{{restaurant.location.city}}, {{restaurant.location.state}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
