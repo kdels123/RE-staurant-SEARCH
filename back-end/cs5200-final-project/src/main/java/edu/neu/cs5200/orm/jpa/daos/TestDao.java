@@ -9,7 +9,7 @@ import edu.neu.cs5200.orm.jpa.Cs5200FinalProjectApplication;
 @Component
 public class TestDao implements CommandLineRunner{
 	@Autowired
-	OwnerDao restaurantOwnerDao;
+	OwnerDao ownerDao;
 	
 	public static void main(String[] args) {
 		Cs5200FinalProjectApplication.main(args);
@@ -17,7 +17,7 @@ public class TestDao implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		restaurantOwnerDao.test();
+		ownerDao.test();
 		
 	}
 	
