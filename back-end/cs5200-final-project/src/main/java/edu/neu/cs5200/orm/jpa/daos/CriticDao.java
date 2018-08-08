@@ -40,11 +40,9 @@ public class CriticDao {
 	
 	// CREATE Critic
 	public void createCritic(Critic critic) {
-			
 		if(!existCritic(critic)) {
 			criticRepository.save(critic);
 		}
-			
 	}
 		
 	// DELETE all critics

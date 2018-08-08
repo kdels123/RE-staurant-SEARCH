@@ -12,6 +12,8 @@ public class TestDao implements CommandLineRunner{
 	OwnerDao ownerDao;
 	@Autowired
 	CriticDao criticDao;
+	@Autowired
+	PatronDao patronDao;
 	
 	public static void main(String[] args) {
 		Cs5200FinalProjectApplication.main(args);
@@ -21,6 +23,7 @@ public class TestDao implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		ownerDao.test();
 		criticDao.test();
+		patronDao.test();
 		
 	}
 	

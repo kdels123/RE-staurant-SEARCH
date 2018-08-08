@@ -44,11 +44,9 @@ public class OwnerDao {
 	
 	// CREATE Owner
 	public void createOwner(Owner owner) {
-		
 		if(!existOwner(owner)) {
 			ownerRepository.save(owner);
 		}
-		
 	}
 	
 	// DELETE all owners
