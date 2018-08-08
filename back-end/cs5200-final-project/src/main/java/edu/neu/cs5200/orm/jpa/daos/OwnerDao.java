@@ -26,12 +26,18 @@ public class OwnerDao {
 		owner.setFirstName("Ken");
 		owner.setLastName("Oringer");
 		owner.setPhone("617-536-4300");
+		owner.setUsername("kenO");
 		createOwner(owner);
 		
 		Owner owner2 = new Owner();
 		owner2.setFirstName("Jamie");
 		owner2.setLastName("Bissonnette");
+		owner2.setUsername("jamieB");
 		createOwner(owner2);
+		
+		
+		
+		
 		
 	}
 	
@@ -105,8 +111,7 @@ public class OwnerDao {
 	public boolean existOwner(Owner owner) {
 		List<Owner> owners = findAllOwners();
 		for (Owner o : owners) {
-			if (o.getFirstName().equals(owner.getFirstName()) 
-					&& o.getLastName().equals(owner.getLastName())) {
+			if (o.getUsername().equals(owner.getUsername())) {
 				return true;
 			}
 		}

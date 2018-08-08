@@ -10,6 +10,8 @@ import edu.neu.cs5200.orm.jpa.Cs5200FinalProjectApplication;
 public class TestDao implements CommandLineRunner{
 	@Autowired
 	OwnerDao ownerDao;
+	@Autowired
+	CriticDao criticDao;
 	
 	public static void main(String[] args) {
 		Cs5200FinalProjectApplication.main(args);
@@ -18,6 +20,7 @@ public class TestDao implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		ownerDao.test();
+		criticDao.test();
 		
 	}
 	
