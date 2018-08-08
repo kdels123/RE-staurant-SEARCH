@@ -18,6 +18,10 @@ public class OwnerDao {
 	OwnerRepository ownerRepository;
 	
 	public void test() {
+		//Delete all owners
+		deleteAllOwners();
+		
+		//Create owners
 		Owner owner = new Owner();
 		owner.setFirstName("Ken");
 		owner.setLastName("Oringer");
@@ -35,10 +39,25 @@ public class OwnerDao {
 	// CREATE Owner
 	public void createOwner(Owner owner) {
 		
-//		if(!existOwner(owner)) {
-//			
-//		}
-		ownerRepository.save(owner);
+		if(!existOwner(owner)) {
+			ownerRepository.save(owner);
+		}
+		
+	}
+	
+	// DELETE all owners
+	public void deleteAllOwners() {
+		ownerRepository.deleteAll();
+	}
+	
+	// DELETE Owner
+	public void deleteOwner(Owner owner) {
+		ownerRepository.delete(owner);
+	}
+	
+	// DELETE Owner by ID
+	public void deleteOwnerById(int id) {
+		ownerRepository.deleteById(id);
 	}
 	
 	// FIND ALL Owners
