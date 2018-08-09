@@ -2,6 +2,7 @@ package edu.neu.cs5200.orm.jpa.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
@@ -14,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Critic extends User{
 	private String urlToOtherWork;
 	
-	@OneToMany(mappedBy="critic")
+	@OneToMany(mappedBy="critic", cascade=CascadeType.ALL)
 	private List<Review> reviews;  // 1tomany
 	
 	@ManyToMany

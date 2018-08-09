@@ -3,6 +3,7 @@ package edu.neu.cs5200.orm.jpa.entities;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,8 +28,8 @@ public class Restaurant {
 	private String phone;
 	private Date dateEst;
 	private String hoursOfOpp;
-	private int numberOfVisits;
-	private int price;
+	private Integer numberOfVisits;
+	private Double price;
 	
 	@ManyToOne
 	private Vibe vibe;
@@ -37,7 +38,7 @@ public class Restaurant {
 	@JsonIgnore
 	private Owner owner; //manyto1
 
-	@OneToMany(mappedBy="restaurant")
+	@OneToMany(mappedBy="restaurant", cascade=CascadeType.ALL)
 	@JsonIgnore
 	private List<Review> reviews; //1tomany
 	
@@ -56,7 +57,6 @@ public class Restaurant {
 	@JsonIgnore
 	private List<Event> events; //1tomany
 	
-
 	
 	public int getId() {
 		return id;
@@ -106,48 +106,48 @@ public class Restaurant {
 	public void setHoursOfOpp(String hoursOfOpp) {
 		this.hoursOfOpp = hoursOfOpp;
 	}
-	public int getNumberOfVisits() {
+	public Integer getNumberOfVisits() {
 		return numberOfVisits;
 	}
 	public void setNumberOfVisits(int numberOfVisits) {
 		this.numberOfVisits = numberOfVisits;
 	}
-	public int getPrice() {
+	public Double getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
-//	public Vibe getVibe() {
-//		return vibe;
-//	}
-//	public void setVibe(Vibe vibe) {
-//		this.vibe = vibe;
-//	}
+	public Vibe getVibe() {
+		return vibe;
+	}
+	public void setVibe(Vibe vibe) {
+		this.vibe = vibe;
+	}
 	public Owner getOwner() {
 		return owner;
 	}
 	public void setOwner(Owner owner) {
 		this.owner = owner;
 	}
-//	public List<Review> getReviews() {
-//		return reviews;
-//	}
-//	public void setReviews(List<Review> reviews) {
-//		this.reviews = reviews;
-//	}
-//	public List<Patron> getPatrons() {
-//		return patrons;
-//	}
-//	public void setPatrons(List<Patron> patrons) {
-//		this.patrons = patrons;
-//	}
-//	public List<Event> getEvents() {
-//		return events;
-//	}
-//	public void setEvents(List<Event> events) {
-//		this.events = events;
-//	}
+	public List<Review> getReviews() {
+		return reviews;
+	}
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+	public List<Patron> getPatrons() {
+		return patrons;
+	}
+	public void setPatrons(List<Patron> patrons) {
+		this.patrons = patrons;
+	}
+	public List<Event> getEvents() {
+		return events;
+	}
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
 	
 	
 }

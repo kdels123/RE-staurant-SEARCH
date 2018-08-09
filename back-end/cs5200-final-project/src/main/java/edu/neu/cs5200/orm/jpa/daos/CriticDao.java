@@ -39,10 +39,11 @@ public class CriticDao {
 	}
 	
 	// CREATE Critic
-	public void createCritic(Critic critic) {
+	public Critic createCritic(Critic critic) {
 		if(!existCritic(critic)) {
-			criticRepository.save(critic);
+			return criticRepository.save(critic);
 		}
+		return null;
 	}
 		
 	// DELETE all critics
@@ -70,7 +71,12 @@ public class CriticDao {
 		return criticRepository.findById(id);
 	}
 		
-		// UPDATE Owner
+	// FIND Critic by username
+	public Critic findCriticByUsername(String username) {
+		return criticRepository.findCriticByUsername(username);
+	}
+	
+	// UPDATE Owner
 	public void updateCritic(int id, Critic newCritic) {
 		Optional<Critic> optional = findCriticById(id);
 		if (optional.isPresent()) {
@@ -98,7 +104,8 @@ public class CriticDao {
 			currCritic.setReviews(reviews);
 			currCritic.setFollowers(followers);
 				
-			createCritic(currCritic);
+			//createCritic(currCritic);
+			criticRepository.save(currCritic);
 			
 			
 		}

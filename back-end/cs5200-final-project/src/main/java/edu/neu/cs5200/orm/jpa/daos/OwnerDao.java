@@ -35,8 +35,10 @@ public class OwnerDao {
 		owner2.setUsername("jamieB");
 		createOwner(owner2);
 		
-		
-		
+		// FIND owner by username
+//		Owner o3 = findOwnerByUsername("kenO");
+//		System.out.println("FOUND " + o3.getFirstName() + " " + o3.getLastName());
+//		
 		
 		
 	}
@@ -74,6 +76,11 @@ public class OwnerDao {
 		return ownerRepository.findById(id);
 	}
 	
+	// FIND Owner by Username
+	public Owner findOwnerByUsername(String username) {
+		return ownerRepository.findOwnerByUsername(username);
+	}
+	
 	// UPDATE Owner
 	public void updateOwner(int id, Owner newOwner) {
 		Optional<Owner> optional = findOwnerById(id);
@@ -99,7 +106,8 @@ public class OwnerDao {
 			currOwner.setRestaurants(restaurants);
 			currOwner.setEvents(events);
 			
-			createOwner(currOwner);
+			//createOwner(currOwner);
+			ownerRepository.save(currOwner);
 		
 		
 		}
@@ -109,7 +117,11 @@ public class OwnerDao {
 	public boolean existOwner(Owner owner) {
 		List<Owner> owners = findAllOwners();
 		for (Owner o : owners) {
+			System.out.println("CHECK");
+			System.out.println("Owner " + owner.getUsername());
+			System.out.println("O " + o.getUsername());
 			if (o.getUsername().equals(owner.getUsername())) {
+				System.out.println("inner O " + o.getUsername());
 				return true;
 			}
 		}

@@ -15,7 +15,7 @@ public class Review {
 	private int id;
 	private String title;
 	private String description;
-	private int rating;
+	private Integer rating;
 	
 	@ManyToOne
 	@JsonIgnore
@@ -44,25 +44,25 @@ public class Review {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getRating() {
+	public Integer getRating() {
 		return rating;
 	}
-	public void setRating(int rating) {
+	public void setRating(Integer rating) {
 		this.rating = rating;
 	}
-//	public Critic getCritic() {
-//		return critic;
-//	}
-//	public void setCritic(Critic critic) {
-//		this.critic = critic;
-//	}
-//	public Restaurant getRestaurant() {
-//		return restaurant;
-//	}
-//	public void setRestaurant(Restaurant restaurant) {
-//		this.restaurant = restaurant;
-//	}
-//	
+	public Critic getCritic() {
+		return critic;
+	}
+	public void setCritic(Critic critic) {
+		this.critic = critic;
+	}
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
+	}
+	
 	
 	
 }

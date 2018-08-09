@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import edu.neu.cs5200.orm.jpa.daos.OwnerDao;
 import edu.neu.cs5200.orm.jpa.entities.Owner;
 
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class OwnerService {
 	@Autowired
 	OwnerDao ownerDao;

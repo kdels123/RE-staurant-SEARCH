@@ -70,49 +70,47 @@ public class PatronDao {
 		return patronRepository.findById(id);
 	}
 		
-		// UPDATE Patron
-		public void updatePatron(int id, Patron newPatron) {
-			Optional<Patron> optional = findPatronById(id);
-			if (optional.isPresent()) {
-				Patron currPatron = optional.get();
-				String firstName = newPatron.getFirstName() != null ? newPatron.getFirstName() : currPatron.getFirstName();
-				String lastName = newPatron.getLastName() != null ? newPatron.getLastName() : currPatron.getLastName();
-				String username = newPatron.getUsername() != null ? newPatron.getUsername() : currPatron.getUsername();
-				String password = newPatron.getPassword() != null? newPatron.getPassword(): currPatron.getPassword();
-				String email = newPatron.getEmail() != null ? newPatron.getEmail() : currPatron.getEmail();
-				String phone = newPatron.getPhone() != null ? newPatron.getPhone() : currPatron.getPhone();
-				Date dob = newPatron.getDob() != null ? newPatron.getDob() : currPatron.getDob();
-				
-				List<Restaurant> restaurantsVisited = newPatron.getRestaurantsVisited() != null ? (List<Restaurant>) newPatron.getRestaurantsVisited() : currPatron.getRestaurantsVisited();
-				List<Event> eventsAttended = newPatron.getEventsAttended() != null ? (List<Event>) newPatron.getEventsAttended() : currPatron.getEventsAttended();
-				List<Critic> criticsFollow = newPatron.getCriticsFollow() != null ? (List<Critic>) newPatron.getCriticsFollow() : currPatron.getCriticsFollow();
+	// UPDATE Patron
+	public void updatePatron(int id, Patron newPatron) {
+		Optional<Patron> optional = findPatronById(id);
+		if (optional.isPresent()) {
+			Patron currPatron = optional.get();
+			String firstName = newPatron.getFirstName() != null ? newPatron.getFirstName() : currPatron.getFirstName();
+			String lastName = newPatron.getLastName() != null ? newPatron.getLastName() : currPatron.getLastName();
+			String username = newPatron.getUsername() != null ? newPatron.getUsername() : currPatron.getUsername();
+			String password = newPatron.getPassword() != null? newPatron.getPassword(): currPatron.getPassword();
+			String email = newPatron.getEmail() != null ? newPatron.getEmail() : currPatron.getEmail();
+			String phone = newPatron.getPhone() != null ? newPatron.getPhone() : currPatron.getPhone();
+			Date dob = newPatron.getDob() != null ? newPatron.getDob() : currPatron.getDob();
 			
-				currPatron.setFirstName(firstName);
-				currPatron.setLastName(lastName);
-				currPatron.setUsername(username);
-				currPatron.setPassword(password);
-				currPatron.setEmail(email);
-				currPatron.setPhone(phone);
-				currPatron.setDob(dob);
-				currPatron.setRestaurantsVisited(restaurantsVisited);
-				currPatron.setEventsAttended(eventsAttended);
-				currPatron.setCriticsFollow(criticsFollow);
-				
-				//createPatron(currPatron);
-				patronRepository.save(currPatron);
-			
-			
-			}
-		}
+			List<Restaurant> restaurantsVisited = newPatron.getRestaurantsVisited() != null ? (List<Restaurant>) newPatron.getRestaurantsVisited() : currPatron.getRestaurantsVisited();
+			List<Event> eventsAttended = newPatron.getEventsAttended() != null ? (List<Event>) newPatron.getEventsAttended() : currPatron.getEventsAttended();
+			List<Critic> criticsFollow = newPatron.getCriticsFollow() != null ? (List<Critic>) newPatron.getCriticsFollow() : currPatron.getCriticsFollow();
 		
-		// Check if Patron already exists
-		public boolean existPatron(Patron patron) {
-			List<Patron> patrons = findAllPatrons();
-			for (Patron p : patrons) {
-				if (p.getUsername().equals(patron.getUsername())) {
-					return true;
-				}
-			}
-			return false;
+			currPatron.setFirstName(firstName);
+			currPatron.setLastName(lastName);
+			currPatron.setUsername(username);
+			currPatron.setPassword(password);
+			currPatron.setEmail(email);
+			currPatron.setPhone(phone);
+			currPatron.setDob(dob);
+			currPatron.setRestaurantsVisited(restaurantsVisited);
+			currPatron.setEventsAttended(eventsAttended);
+			currPatron.setCriticsFollow(criticsFollow);
+			
+			//createPatron(currPatron);
+			patronRepository.save(currPatron);
 		}
+	}
+		
+	// Check if Patron already exists
+	public boolean existPatron(Patron patron) {
+		List<Patron> patrons = findAllPatrons();
+		for (Patron p : patrons) {
+			if (p.getUsername().equals(patron.getUsername())) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

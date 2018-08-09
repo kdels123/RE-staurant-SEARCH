@@ -2,18 +2,19 @@ package edu.neu.cs5200.orm.jpa.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 @Entity
 public class Owner extends User{
 	
-	@OneToMany(mappedBy="owner")
+	@OneToMany(mappedBy="owner", cascade=CascadeType.ALL)
 	private List<Restaurant> restaurants; //1tomany
 	
-	@OneToMany(mappedBy="owner")
+	@OneToMany(mappedBy="owner", cascade=CascadeType.ALL)
 	private List<Event> events; //1toMany
-
+	
 	public List<Restaurant> getRestaurants() {
 		return restaurants;
 	}
