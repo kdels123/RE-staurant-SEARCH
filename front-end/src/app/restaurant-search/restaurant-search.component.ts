@@ -18,6 +18,10 @@ export class RestaurantSearchComponent implements OnInit {
           .then(res => this.restaurants = res.businesses);
   }
 
+  visited(restaurant) {
+    this.restaurantService.visited(restaurant);
+  }
+
   ngOnInit() {
       // this.().then(res => this.restaurants = res.businesses);
   }

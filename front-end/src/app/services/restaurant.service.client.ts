@@ -9,4 +9,24 @@ export class RestaurantServiceClient {
             {headers: {'Authorization': this.token}})
             .then(response => response.json());
     }
+
+    visited(restaurant) {
+        const data = {
+            name: restaurant.alias,
+            yelpId: restaurant.id,
+            address: restaurant.location.address1,
+            city: restaurant.location.city,
+            state: restaurant.location.state,
+            phone: restaurant.phone,
+            price: restaurant.price
+        };
+        return fetch('http://localhost:8080/api/restaurant', {
+            method: 'post',
+            body: JSON.stringify(data),
+            headers: {
+                'content-type': 'application/json'
+            }
+        });
+
+    }
 }
