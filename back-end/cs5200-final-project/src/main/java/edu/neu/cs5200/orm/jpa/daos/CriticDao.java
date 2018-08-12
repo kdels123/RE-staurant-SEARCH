@@ -1,5 +1,6 @@
 package edu.neu.cs5200.orm.jpa.daos;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -19,27 +20,49 @@ import edu.neu.cs5200.orm.jpa.repositories.CriticRepository;
 public class CriticDao {
 	@Autowired
 	CriticRepository criticRepository;
+	@Autowired
+	PatronDao patronDao;
 	
 	public void test() {
-		//Delete all owners
+		//Delete all critic
 		deleteAllCritics();
 				
-		//Create owners
+		//Create critic
 		Critic critic = new Critic();
 		critic.setFirstName("Suzy");
 		critic.setLastName("Smith");
 		critic.setUsername("suzyS");
 		createCritic(critic);
 		
+		// add follower (patron)
+		Patron patron = new Patron();
+		patron.setFirstName("Jen");
+		patron.setLastName("Sherman");
+		patron.setUsername("jenO");
+		
+		List<Patron> followers = new ArrayList<Patron>();
+		followers.add(patron);
+	
 		Critic critic2 = new Critic();
 		critic2.setFirstName("Rachel");
 		critic2.setLastName("Harrison");
 		critic2.setUsername("rHarrison");
+		critic2.setFollowers(followers);
 		createCritic(critic2);
 	}
 	
 	// CREATE Critic
 	public Critic createCritic(Critic critic) {
+		if(critic.getFollowers() != null) {
+			List<Patron> followers = new ArrayList<Patron>();
+			for (Patron p : critic.getFollowers()) {
+				patronDao.createPatron(p);
+				p = patronDao.findPatronByUsername(p.getUsername());
+				followers.add(p);
+			}
+			critic.setFollowers(followers);
+		}
+		
 		if(!existCritic(critic)) {
 			return criticRepository.save(critic);
 		}

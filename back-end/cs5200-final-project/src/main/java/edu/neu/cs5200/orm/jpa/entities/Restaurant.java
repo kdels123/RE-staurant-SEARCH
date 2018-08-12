@@ -29,9 +29,11 @@ public class Restaurant {
 	private Date dateEst;
 	private String hoursOfOpp;
 	private Integer numberOfVisits;
-	private Double price;
+	private String price;
+
 	
 	@ManyToOne
+	//@JsonIgnore
 	private Vibe vibe;
 	
 	@ManyToOne
@@ -53,7 +55,7 @@ public class Restaurant {
 	@JsonIgnore
 	private List<Patron> patrons;  //manytomany
 	
-	@OneToMany(mappedBy="restaurant")
+	@OneToMany(mappedBy="restaurant", cascade=CascadeType.ALL)
 	@JsonIgnore
 	private List<Event> events; //1tomany
 	
@@ -112,10 +114,10 @@ public class Restaurant {
 	public void setNumberOfVisits(int numberOfVisits) {
 		this.numberOfVisits = numberOfVisits;
 	}
-	public Double getPrice() {
+	public String getPrice() {
 		return price;
 	}
-	public void setPrice(Double price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 	public Vibe getVibe() {

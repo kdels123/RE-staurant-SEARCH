@@ -44,8 +44,8 @@ public class RestaurantService {
 	
 	//POST: Create Restaurant
 	@PostMapping("/api/restaurant")
-	public void createRestaurant(@RequestBody Restaurant restaurant) {
-		restaurantDao.createRestaurant(restaurant);
+	public Restaurant createRestaurant(@RequestBody Restaurant restaurant) {
+		return restaurantDao.createRestaurant(restaurant);
 	}
 	
 	//PUT: Update restaurant instance whose primary key is rid

@@ -26,7 +26,7 @@ public class CriticService {
 	
 	// GET: List of critics
 	@GetMapping("/api/critic")
-	public List<Critic> findAllCritic() {
+	public List<Critic> findAllCritics() {
 		return criticDao.findAllCritics();
 	}
 	
@@ -41,7 +41,6 @@ public class CriticService {
 	public void deleteCriticById(@PathVariable("cid") int id) {
 		criticDao.deleteCriticById(id);
 	}
-	
 	
 	//POST: Create critic
 	@PostMapping("/api/critic")

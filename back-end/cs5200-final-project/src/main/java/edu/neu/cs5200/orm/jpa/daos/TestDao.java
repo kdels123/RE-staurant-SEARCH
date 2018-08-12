@@ -18,6 +18,11 @@ public class TestDao implements CommandLineRunner{
 	RestaurantDao restaurantDao;
 	@Autowired
 	ReviewDao reviewDao;
+	@Autowired
+	EventDao eventDao;
+	@Autowired
+	VibeDao vibeDao;
+	
 	
 	public static void main(String[] args) {
 		Cs5200FinalProjectApplication.main(args);
@@ -30,6 +35,8 @@ public class TestDao implements CommandLineRunner{
 		patronDao.test();
 		restaurantDao.test();
 		reviewDao.test();
+		eventDao.test();
+		vibeDao.test();
 		
 	}
 	

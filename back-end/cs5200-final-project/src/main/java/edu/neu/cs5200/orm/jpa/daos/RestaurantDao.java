@@ -36,8 +36,7 @@ public class RestaurantDao {
 		r1.setCity("Boston");
 		r1.setState("MA");
 		r1.setPhone("617-536-4300");
-		r1.setNumberOfVisits(2000);
-		r1.setPrice(20.00);
+		r1.setPrice("$$");
 		
 		Owner owner = new Owner();
 		owner.setFirstName("Ken");
@@ -49,14 +48,11 @@ public class RestaurantDao {
 		
 		createRestaurant(r1);
 		
-		List<Restaurant> list = findAllRestaurants();
-		for (Restaurant r : list) {
-			System.out.println(r.getName());
-		}
+	
 	}
 	
 	// CREATE Restaurant
-	public void createRestaurant(Restaurant restaurant) {
+	public Restaurant createRestaurant(Restaurant restaurant) {
 		
 		if(restaurant.getOwner() != null) {
 			ownerDao.createOwner(restaurant.getOwner());
@@ -64,8 +60,10 @@ public class RestaurantDao {
 		}
 		
 		if(!existRestaurant(restaurant)) {
-			restaurantRepository.save(restaurant);
+			return restaurantRepository.save(restaurant);
 		}
+		
+		return null;
 	}
 		
 	// DELETE all Restaurants
@@ -112,7 +110,7 @@ public class RestaurantDao {
 			Date dateEst = newRestaurant.getDateEst() != null ? newRestaurant.getDateEst() : currRestaurant.getDateEst();
 			String hoursOfOpp = newRestaurant.getHoursOfOpp() != null ? newRestaurant.getHoursOfOpp() : currRestaurant.getHoursOfOpp();
 			Integer numberOfVisits = newRestaurant.getNumberOfVisits() != null ? newRestaurant.getNumberOfVisits() : currRestaurant.getNumberOfVisits();
-			Double price = newRestaurant.getPrice() != null ? newRestaurant.getPrice() : currRestaurant.getPrice();
+			String price = newRestaurant.getPrice() != null ? newRestaurant.getPrice() : currRestaurant.getPrice();
 			Vibe vibe = newRestaurant.getVibe() != null ? newRestaurant.getVibe() : currRestaurant.getVibe();
 			Owner owner = newRestaurant.getOwner() != null ? newRestaurant.getOwner() : currRestaurant.getOwner();
 			List<Review> reviews = newRestaurant.getReviews() != null ? newRestaurant.getReviews() : currRestaurant.getReviews();

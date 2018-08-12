@@ -45,8 +45,8 @@ public class ReviewService {
 	
 	//POST: Create Review
 	@PostMapping("/api/review")
-	public void createReview(@RequestBody Review review) {
-		reviewDao.createReview(review);
+	public Review createReview(@RequestBody Review review) {
+		return reviewDao.createReview(review);
 	}
 	
 	//PUT: Update review instance whose primary key is rid

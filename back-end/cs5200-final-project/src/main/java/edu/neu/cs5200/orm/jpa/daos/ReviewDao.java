@@ -46,8 +46,7 @@ public class ReviewDao {
 		r1.setCity("Boston");
 		r1.setState("MA");
 		r1.setPhone("617-536-4300");
-		r1.setNumberOfVisits(2000);
-		r1.setPrice(20.00);
+		r1.setPrice("$$");
 		
 		Owner owner = new Owner();
 		owner.setFirstName("Ken");
@@ -63,7 +62,7 @@ public class ReviewDao {
 	}
 	
 	// CREATE Review
-	public void createReview(Review review) {
+	public Review createReview(Review review) {
 		
 		if(review.getCritic() != null) {
 			criticDao.createCritic(review.getCritic());
@@ -76,8 +75,10 @@ public class ReviewDao {
 		}
 		
 		if(!existReview(review)) {
-			reviewRepository.save(review);
+			return reviewRepository.save(review);
 		}
+		
+		return null;
 	}
 		
 	// DELETE all Reviews
