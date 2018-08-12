@@ -2,6 +2,7 @@ package edu.neu.cs5200.orm.jpa.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,8 +23,15 @@ public class Vibe {
 	private Integer averageAge;
 	
 	@OneToMany(mappedBy="vibe")
-//	@JsonIgnore
+	@JsonIgnore
 	private List<Restaurant> restaurants;
+	
+	public void addRestaurantToList(Restaurant restaurant) {
+		this.restaurants.add(restaurant);
+		if (restaurant.getVibe() != this) {
+			restaurant.setVibe(this);
+		}
+	}
 
 	public int getId() {
 		return id;

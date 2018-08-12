@@ -20,9 +20,10 @@ import edu.neu.cs5200.orm.jpa.repositories.RestaurantRepository;
 public class RestaurantDao {
 	@Autowired
 	RestaurantRepository restaurantRepository;
-	
 	@Autowired
 	OwnerDao ownerDao;
+	@Autowired
+	VibeDao vibeDao;
 	
 	public void test() {
 		// Delete all restaurants
@@ -46,6 +47,12 @@ public class RestaurantDao {
 		
 		r1.setOwner(owner);
 		
+		Vibe vibe = new Vibe();
+		vibe.setCuisine("Spanish");
+		vibe.setAlcoholServed("Yes");
+		r1.setVibe(vibe);
+		System.out.println(r1.getVibe().getCuisine());
+		
 		createRestaurant(r1);
 		
 	
@@ -57,6 +64,15 @@ public class RestaurantDao {
 		if(restaurant.getOwner() != null) {
 			ownerDao.createOwner(restaurant.getOwner());
 			restaurant.setOwner(ownerDao.findOwnerByUsername(restaurant.getOwner().getUsername()));
+		}
+		if(restaurant.getVibe() != null) {
+			System.out.println("CHECK 1");
+			System.out.println(restaurant.getVibe().getCuisine());
+			Vibe newVibe = vibeDao.createVibe(restaurant.getVibe());
+			System.out.println("CHECK 2");
+			System.out.println(newVibe.getCuisine());
+			System.out.println(newVibe.getId());
+			restaurant.setVibe(newVibe);
 		}
 		
 		if(!existRestaurant(restaurant)) {
@@ -100,6 +116,7 @@ public class RestaurantDao {
 	public void updateRestaurant(int id, Restaurant newRestaurant) {
 		Optional<Restaurant> optional = findRestaurantById(id);
 		if (optional.isPresent()) {
+			System.out.println("UPDATE RESTAURNT");
 			Restaurant currRestaurant = optional.get();
 			
 			String name = newRestaurant.getName() != null ? newRestaurant.getName() : currRestaurant.getName();

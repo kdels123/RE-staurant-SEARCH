@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import edu.neu.cs5200.orm.jpa.entities.Owner;
 import edu.neu.cs5200.orm.jpa.entities.Restaurant;
 import edu.neu.cs5200.orm.jpa.entities.Vibe;
+import edu.neu.cs5200.orm.jpa.repositories.RestaurantRepository;
 import edu.neu.cs5200.orm.jpa.repositories.VibeRepository;
 
 @Component
@@ -18,6 +19,8 @@ public class VibeDao {
 	VibeRepository vibeRepository;
 	@Autowired
 	RestaurantDao restaurantDao;
+	@Autowired
+	RestaurantRepository restaurantRepository;
 	
 	public void test() {
 		//Delete vibes
@@ -35,6 +38,7 @@ public class VibeDao {
 		restaurant.setName("Anoush'ella");
 		restaurant.setAddress("35 West Newton Street");
 		restaurant.setCity("Boston");
+		//restaurant.setNumberOfVisits(2000);
 		
 		Owner owner = new Owner();
 		owner.setFirstName("Nina");
@@ -53,33 +57,62 @@ public class VibeDao {
 	}
 	
 	
-	
 	// CREATE Vibe
 	public Vibe createVibe(Vibe vibe) {
+		System.out.println("VibeDAo CHECK 1");
+		vibe = vibeRepository.save(vibe);
 		if(vibe.getRestaurants() != null) {
 			//Restaurant restaurant = new Restaurant();
 			List<Restaurant> restaurantList = new ArrayList<Restaurant>();
 			for (Restaurant r: vibe.getRestaurants()) {
+				//r.setVibe(vibe);
 				restaurantDao.createRestaurant(r);
 				r = restaurantDao.findRestaurantByName(r.getName());
 				restaurantList.add(r);
-				System.out.println("CHECK 0");
-				System.out.println(r.getName());
+				
 			}
 			vibe.setRestaurants(restaurantList);
-		}
-
-		if(!existVibe(vibe)) {
-			System.out.println("CHECK 1");
-			System.out.println(vibe.getRestaurants());
-			return vibeRepository.save(vibe);
+			for (Restaurant r : vibe.getRestaurants()) {
+				System.out.println(r.getId() + " " + r.getName());
+				System.out.println("vibe id " + vibe.getId());
+				Optional<Vibe> optional = findVibeById(vibe.getId());
+				if (optional.isPresent()) {
+					Vibe setVibe = optional.get();
+					r.setVibe(setVibe);
+					restaurantDao.updateRestaurant(r.getId(), r);
+				}
+//				restaurantDao.updateRestaurant(r.getId(), r);
+			}
 		}
 		
-		return null;
+		
+
+//		if(!existVibe(vibe)) {
+//			System.out.println("VibeDAo CHECK 2");
+			return vibeRepository.save(vibe);
+//		}
+		
+//		return null;
 	}
 		
 	// DELETE all Vibes
 	public void deleteAllVibes() {
+		System.out.println("CHECK DELETE ALL");
+//		Restaurant newR = new Restaurant();
+		for (Vibe v : vibeRepository.findAll() ) {
+			System.out.println("CHECK DELETE ALL 2");
+			for(Restaurant r : v.getRestaurants()) {
+				
+				System.out.println("CHECK DELETE ALL 3");
+				System.out.println(r.getName());
+//				newR.setVibe(null);
+				r.setVibe(null);
+				System.out.println(r.getId());
+				//restaurantDao.updateRestaurant(r.getId(), newR);
+				restaurantRepository.save(r);
+				System.out.println("CHECK DELETE ALL 4");
+			}
+		}
 		vibeRepository.deleteAll();
 	}
 		
@@ -90,7 +123,15 @@ public class VibeDao {
 		
 	// DELETE Vibe by ID
 	public void deleteVibeById(int id) {
+		for (Vibe v: vibeRepository.findAll()) {
+			for(Restaurant r : v.getRestaurants()) {
+				if (r.getVibe().getId() == id) {
+					r.setVibe(null);
+				}
+			}
+		}
 		vibeRepository.deleteById(id);
+		
 	}
 		
 	// FIND ALL vibe
@@ -136,9 +177,11 @@ public class VibeDao {
 					&& v.getAlcoholServed().equals(vibe.getAlcoholServed())
 					&& v.getOutdoorSeating().equals(vibe.getOutdoorSeating())
 					&& v.getAverageAge().equals(vibe.getAverageAge())) {
+				System.out.println("VibeDAo EXIST CHECK true");
 				return true;
 			}
 		}
+		System.out.println("VibeDAo EXIST CHECK");
 		return false;
 	}
 
