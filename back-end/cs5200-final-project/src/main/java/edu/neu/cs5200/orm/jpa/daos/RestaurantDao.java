@@ -38,7 +38,6 @@ public class RestaurantDao {
 		r1.setPhone("617-536-4300");
 		r1.setNumberOfVisits(2000);
 		r1.setPrice("$$$");
-		
 		Owner owner = new Owner();
 		owner.setFirstName("Ken");
 		owner.setLastName("Oringer");
@@ -66,7 +65,7 @@ public class RestaurantDao {
 		if(!existRestaurant(restaurant)) {
 			return restaurantRepository.save(restaurant);
 		} else {
-			return restaurant;
+			return null;
 		}
 	}
 		

@@ -35,23 +35,15 @@ public class OwnerDao {
 		owner2.setUsername("jamieB");
 		createOwner(owner2);
 		
-		// FIND owner by username
-//		Owner o3 = findOwnerByUsername("kenO");
-//		System.out.println("FOUND " + o3.getFirstName() + " " + o3.getLastName());
-//		
-		
-		
 	}
 	
 	
 	// CREATE Owner
 	public Owner createOwner(Owner owner) {
 		if(!existOwner(owner)) {
-			Owner newOwner = ownerRepository.save(owner);
-			return newOwner;
-		} else {
-			return owner;
+			return ownerRepository.save(owner);
 		}
+		return null;
 	}
 	
 	// DELETE all owners
@@ -120,11 +112,7 @@ public class OwnerDao {
 	public boolean existOwner(Owner owner) {
 		List<Owner> owners = findAllOwners();
 		for (Owner o : owners) {
-			System.out.println("CHECK");
-			System.out.println("Owner " + owner.getUsername());
-			System.out.println("O " + o.getUsername());
 			if (o.getUsername().equals(owner.getUsername())) {
-				System.out.println("inner O " + o.getUsername());
 				return true;
 			}
 		}

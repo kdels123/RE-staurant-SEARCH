@@ -63,7 +63,7 @@ public class ReviewDao {
 	}
 	
 	// CREATE Review
-	public void createReview(Review review) {
+	public Review createReview(Review review) {
 		
 		if(review.getCritic() != null) {
 			criticDao.createCritic(review.getCritic());
@@ -76,8 +76,10 @@ public class ReviewDao {
 		}
 		
 		if(!existReview(review)) {
-			reviewRepository.save(review);
+			return reviewRepository.save(review);
 		}
+		
+		return null;
 	}
 		
 	// DELETE all Reviews

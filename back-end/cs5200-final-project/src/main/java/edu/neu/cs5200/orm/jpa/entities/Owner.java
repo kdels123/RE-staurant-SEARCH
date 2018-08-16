@@ -6,6 +6,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Owner extends User{
 	
@@ -13,6 +15,7 @@ public class Owner extends User{
 	private List<Restaurant> restaurants; //1tomany
 	
 	@OneToMany(mappedBy="owner", cascade=CascadeType.ALL)
+	//@JsonIgnore
 	private List<Event> events; //1toMany
 	
 	public List<Restaurant> getRestaurants() {

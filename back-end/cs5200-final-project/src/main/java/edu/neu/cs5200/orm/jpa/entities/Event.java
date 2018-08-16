@@ -22,16 +22,18 @@ public class Event {
 	private String title;
 	private String description;
 	private Date dateTime;
-	private String address;
-	private String city;
-	private String state;
+//	private String address;
+//	private String city;
+//	private String state;
 	private Double price;
 	private String attire;
 	
 	@ManyToOne
+	@JsonIgnore
 	private Owner owner; //manyto1
 	
 	@ManyToOne
+	@JsonIgnore
 	private Restaurant restaurant; //manyto1
 	
 	@ManyToMany
@@ -44,9 +46,6 @@ public class Event {
 					referencedColumnName="ID"))
 	@JsonIgnore
 	private List<Patron> attendees; //manytomany
-	
-	
-	
 	
 	public int getId() {
 		return id;
@@ -72,24 +71,24 @@ public class Event {
 	public void setDateTime(Date dateTime) {
 		this.dateTime = dateTime;
 	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
-	}
+//	public String getAddress() {
+//		return address;
+//	}
+//	public void setAddress(String address) {
+//		this.address = address;
+//	}
+//	public String getCity() {
+//		return city;
+//	}
+//	public void setCity(String city) {
+//		this.city = city;
+//	}
+//	public String getState() {
+//		return state;
+//	}
+//	public void setState(String state) {
+//		this.state = state;
+//	}
 	public Double getPrice() {
 		return price;
 	}
@@ -102,18 +101,18 @@ public class Event {
 	public void setAttire(String attire) {
 		this.attire = attire;
 	}
-//	public List<Patron> getAttendees() {
-//		return attendees;
-//	}
-//	public void setAttendees(List<Patron> attendees) {
-//		this.attendees = attendees;
-//	}
-//	public Restaurant getRestaurant() {
-//		return restaurant;
-//	}
-//	public void setRestaurant(Restaurant restaurant) {
-//		this.restaurant = restaurant;
-//	}
+	public List<Patron> getAttendees() {
+		return attendees;
+	}
+	public void setAttendees(List<Patron> attendees) {
+		this.attendees = attendees;
+	}
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
+	}
 	public Owner getOwner() {
 		return owner;
 	}

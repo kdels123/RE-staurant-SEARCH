@@ -35,8 +35,8 @@ public class PatronService {
 	
 	//POST: Create patron
 	@PostMapping("/api/patron")
-	public void createPatron(@RequestBody Patron patron) {
-		patronDao.createPatron(patron);
+	public Patron createPatron(@RequestBody Patron patron) {
+		return patronDao.createPatron(patron);
 	}
 	
 	//PUT: Update patron instance whose primary key is pid

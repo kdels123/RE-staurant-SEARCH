@@ -39,10 +39,11 @@ public class PatronDao {
 	}
 	
 	// CREATE Patron
-	public void createPatron(Patron patron) {
+	public Patron createPatron(Patron patron) {
 		if(!existPatron(patron)) {
-			patronRepository.save(patron);
+			return patronRepository.save(patron);
 		}
+		return null;
 	}
 		
 	// DELETE all patrons
@@ -68,6 +69,11 @@ public class PatronDao {
 	// FIND Patron by ID
 	public Optional<Patron> findPatronById(int id) {
 		return patronRepository.findById(id);
+	}
+	
+	// FIND Patron by username
+	public Patron findPatronByUsername(String username) {
+		return patronRepository.findPatronByUsername(username);
 	}
 		
 	// UPDATE Patron
