@@ -25,6 +25,7 @@ export class RestaurantDetailComponent implements OnInit {
   restaurantHoursOfOpp;
   restaurantNumberOfVisits;
   restaurantPrice;
+  restaurantImage;
 
   loadRestaurant(restaurantId) {
       this.restaurantId = restaurantId;
@@ -42,6 +43,7 @@ export class RestaurantDetailComponent implements OnInit {
       this.restaurantHoursOfOpp = restaurant.hoursOfOpp;
       this.restaurantNumberOfVisits = restaurant.numberOfVisits;
       this.restaurantPrice = restaurant.numberOfVisits;
+      this.restaurantImage = restaurant.imageUrl;
   }
 
   ngOnInit() {

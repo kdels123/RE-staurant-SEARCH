@@ -19,7 +19,8 @@ export class RestaurantServiceClient {
             state: restaurant.location.state,
             phone: restaurant.phone,
             numberOfVisits: restaurant.review_count,
-            price: restaurant.price
+            price: restaurant.price,
+            imageUrl: restaurant.image_url
         };
         return fetch('http://localhost:8080/api/restaurant', {
             method: 'post',

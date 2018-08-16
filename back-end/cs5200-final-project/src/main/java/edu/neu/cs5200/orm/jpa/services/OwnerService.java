@@ -60,7 +60,6 @@ public class OwnerService {
 	
 	//Post: Get Owner instance by credentials (username and password)
 	@PostMapping("/api/owner/login")
-	//@ResponseBody
 	public Owner login(@RequestBody User user) {
 		return ownerDao.findOwnerByCredentials(user.getUsername(), user.getPassword());	
 	}
