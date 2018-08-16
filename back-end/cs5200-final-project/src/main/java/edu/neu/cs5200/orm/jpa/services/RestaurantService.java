@@ -24,7 +24,7 @@ public class RestaurantService {
 	@Autowired
 	RestaurantDao restaurantDao;
 	
-	// GET: List of restaurants
+	//GET: List of restaurants
 	@GetMapping("/api/restaurant")
 	public List<Restaurant> findAllRestaurant() {
 		return restaurantDao.findAllRestaurants();
@@ -35,7 +35,7 @@ public class RestaurantService {
 	public Optional<Restaurant> findRestaurantById (@PathVariable("rid") int id) {
 		return restaurantDao.findRestaurantById(id);
 	}
-	
+		
 	//DELETE: Delete restaurant instance whose primary key is rid
 	@DeleteMapping("/api/restaurant/{rid}")
 	public void deleteRestaurantById(@PathVariable("rid") int id) {
@@ -53,6 +53,12 @@ public class RestaurantService {
 	@Transactional
 	public void updateRestaurant(@PathVariable("rid")int id, @RequestBody Restaurant newRestaurant) {
 		restaurantDao.updateRestaurant(id, newRestaurant);
+	}
+	
+	//POST: get Restaurant by Name
+	@PostMapping("/api/restaurant/name")
+	public Restaurant findRestaurantByName(@RequestBody Restaurant restaurant) {
+		return  restaurantDao.findRestaurantByName(restaurant.getName());
 	}
 	
 }

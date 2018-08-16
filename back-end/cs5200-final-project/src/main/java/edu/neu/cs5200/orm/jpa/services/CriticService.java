@@ -65,4 +65,10 @@ public class CriticService {
 		return criticDao.findCriticByCredentials(user.getUsername(), user.getPassword());	
 	}
 	
+	//Post: Get Critic instance by username
+	@PostMapping("/api/critic/username")
+	public Critic findCriticByUsername(@RequestBody User user) {
+		return criticDao.findCriticByUsername(user.getUsername());
+	}
+	
 }

@@ -46,10 +46,16 @@ public class PatronService {
 		patronDao.updatePatron(id, newPatron);
 	}
 	
-	//Post: Get Owner instance by credentials (username and password)
+	//Post: Get patron instance by credentials (username and password)
 	@PostMapping("/api/patron/login")
 	//@ResponseBody
 	public Patron login(@RequestBody User user) {
 		return patronDao.findPatronByCredentials(user.getUsername(), user.getPassword());	
+	}
+	
+	//Post: Get patron instance by username
+	@PostMapping("/api/patron/username")
+	public Patron findPatronByUsername(@RequestBody User user) {
+		return patronDao.findPatronByUsername(user.getUsername());
 	}
 }

@@ -64,5 +64,11 @@ public class OwnerService {
 		return ownerDao.findOwnerByCredentials(user.getUsername(), user.getPassword());	
 	}
 	
+	//Post: Get Owner instance by username
+	@PostMapping("/api/owner/username")
+	public Owner findOwnerByUsername(@RequestBody User user) {
+		return ownerDao.findOwnerByUsername(user.getUsername());
+	}
+	
 	
 }
