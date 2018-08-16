@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.neu.cs5200.orm.jpa.daos.OwnerDao;
 import edu.neu.cs5200.orm.jpa.entities.Owner;
+import edu.neu.cs5200.orm.jpa.entities.User;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -36,6 +39,8 @@ public class OwnerService {
 		return ownerDao.findOwnerById(id);
 	}
 	
+	
+	
 	//DELETE: Delete owner instance whose primary key is oid
 	@DeleteMapping("/api/owner/{oid}")
 	public void deleteOwnerById(@PathVariable("oid") int id) {
@@ -54,6 +59,13 @@ public class OwnerService {
 	@Transactional
 	public void updateOwner(@PathVariable("oid")int id, @RequestBody Owner newOwner) {
 		ownerDao.updateOwner(id, newOwner);
+	}
+	
+	//Post: Owner instance by credentials (username and password)
+	@PostMapping("/api/owner/login")
+	@ResponseBody
+	public Owner login(@RequestBody User user) {
+		return ownerDao.findOwnerByCredentials(user.getUsername(), user.getPassword());	
 	}
 	
 	
