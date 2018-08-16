@@ -28,7 +28,7 @@ public class Restaurant {
 	private String phone;
 	private Date dateEst;
 	private String hoursOfOpp;
-	private Integer numberOfVisits;
+	private Integer numberOfVisits = 0;
 	private String price;
 
 	

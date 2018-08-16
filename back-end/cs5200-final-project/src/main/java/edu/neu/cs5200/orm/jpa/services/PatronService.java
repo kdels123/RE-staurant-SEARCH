@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.neu.cs5200.orm.jpa.daos.PatronDao;
 import edu.neu.cs5200.orm.jpa.entities.Patron;
+import edu.neu.cs5200.orm.jpa.entities.User;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -43,5 +44,12 @@ public class PatronService {
 	@PutMapping("/api/patron/{pid}")
 	public void updatePatron(@PathVariable("pid") int id, @RequestBody Patron newPatron) {
 		patronDao.updatePatron(id, newPatron);
+	}
+	
+	//Post: Get Owner instance by credentials (username and password)
+	@PostMapping("/api/patron/login")
+	//@ResponseBody
+	public Patron login(@RequestBody User user) {
+		return patronDao.findPatronByCredentials(user.getUsername(), user.getPassword());	
 	}
 }

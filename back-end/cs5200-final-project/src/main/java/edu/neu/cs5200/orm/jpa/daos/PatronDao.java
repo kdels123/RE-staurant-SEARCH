@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import edu.neu.cs5200.orm.jpa.entities.Critic;
 import edu.neu.cs5200.orm.jpa.entities.Event;
-import edu.neu.cs5200.orm.jpa.entities.Owner;
 import edu.neu.cs5200.orm.jpa.entities.Patron;
 import edu.neu.cs5200.orm.jpa.entities.Restaurant;
 import edu.neu.cs5200.orm.jpa.repositories.PatronRepository;
@@ -76,6 +75,11 @@ public class PatronDao {
 	// FIND Patron by username
 	public Patron findPatronByUsername(String username) {
 		return patronRepository.findPatronByUsername(username);
+	}
+	
+	// Find Patron by credentials (username and password)
+	public Patron findPatronByCredentials(String username, String password) {
+		return patronRepository.findPatronByCredentials(username, password);
 	}
 		
 	// UPDATE Patron
