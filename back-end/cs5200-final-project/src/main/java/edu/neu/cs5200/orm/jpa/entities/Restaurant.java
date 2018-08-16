@@ -30,8 +30,18 @@ public class Restaurant {
 	private String hoursOfOpp;
 	private Integer numberOfVisits = 0;
 	private String price;
+	private String imageUrl;
 
 	
+	public String getImageUrl() {
+		return imageUrl;
+	}
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+	public void setNumberOfVisits(Integer numberOfVisits) {
+		this.numberOfVisits = numberOfVisits;
+	}
 	@ManyToOne
 	@JsonIgnore
 	private Vibe vibe;

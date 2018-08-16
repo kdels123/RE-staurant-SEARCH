@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {UserServiceClient} from '../services/user.service.client';
 import {RestaurantServiceClient} from '../services/restaurant.service.client';
 
 @Component({
@@ -13,13 +12,37 @@ export class RestaurantDetailComponent implements OnInit {
   constructor(private service: RestaurantServiceClient,
               private router: Router,
               private route: ActivatedRoute) {
-      this.route.params.subscribe(params => this.loadRestaurant(params['restaurantId']))
+      this.route.params.subscribe(params => this.loadRestaurant(params['restaurantId']));
   }
+
+  restaurantId;
+  restaurantName;
+  restaurantAddress;
+  restaurantCity;
+  restaurantState;
+  restaurantPhone;
+  restaurantDateEst;
+  restaurantHoursOfOpp;
+  restaurantNumberOfVisits;
+  restaurantPrice;
 
   loadRestaurant(restaurantId) {
-    alert(restaurantId);
+      this.restaurantId = restaurantId;
+      this.service.findRestaurantById(restaurantId)
+          .then(restaurant => this.loadRestaurantDetail(restaurant));
   }
 
+  loadRestaurantDetail(restaurant) {
+      this.restaurantName = restaurant.name;
+      this.restaurantAddress = restaurant.address;
+      this.restaurantCity = restaurant.city;
+      this.restaurantState = restaurant.state;
+      this.restaurantPhone = restaurant.phone;
+      this.restaurantDateEst = restaurant.DateEst;
+      this.restaurantHoursOfOpp = restaurant.hoursOfOpp;
+      this.restaurantNumberOfVisits = restaurant.numberOfVisits;
+      this.restaurantPrice = restaurant.numberOfVisits;
+  }
 
   ngOnInit() {
   }
