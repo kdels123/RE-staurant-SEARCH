@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import edu.neu.cs5200.orm.jpa.entities.Critic;
-import edu.neu.cs5200.orm.jpa.entities.Event;
-import edu.neu.cs5200.orm.jpa.entities.Owner;
 import edu.neu.cs5200.orm.jpa.entities.Patron;
-import edu.neu.cs5200.orm.jpa.entities.Restaurant;
 import edu.neu.cs5200.orm.jpa.entities.Review;
 import edu.neu.cs5200.orm.jpa.repositories.CriticRepository;
 
@@ -100,6 +97,11 @@ public class CriticDao {
 	// FIND Critic by username
 	public Critic findCriticByUsername(String username) {
 		return criticRepository.findCriticByUsername(username);
+	}
+	
+	// Find Critic by credentials (username and password)
+	public Critic findCriticByCredentials(String username, String password) {
+		return criticRepository.findCriticByCredentials(username, password);
 	}
 	
 	// UPDATE Owner

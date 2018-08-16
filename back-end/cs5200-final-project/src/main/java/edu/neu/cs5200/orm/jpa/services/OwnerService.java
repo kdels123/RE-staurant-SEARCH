@@ -39,14 +39,11 @@ public class OwnerService {
 		return ownerDao.findOwnerById(id);
 	}
 	
-	
-	
 	//DELETE: Delete owner instance whose primary key is oid
 	@DeleteMapping("/api/owner/{oid}")
 	public void deleteOwnerById(@PathVariable("oid") int id) {
 		ownerDao.deleteOwnerById(id);
 	}
-	
 	
 	//POST: Create Owner
 	@PostMapping("/api/owner")
@@ -61,7 +58,7 @@ public class OwnerService {
 		ownerDao.updateOwner(id, newOwner);
 	}
 	
-	//Post: Owner instance by credentials (username and password)
+	//Post: Get Owner instance by credentials (username and password)
 	@PostMapping("/api/owner/login")
 	public Owner login(@RequestBody User user) {
 		return ownerDao.findOwnerByCredentials(user.getUsername(), user.getPassword());	

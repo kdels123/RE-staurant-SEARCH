@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.neu.cs5200.orm.jpa.daos.CriticDao;
 import edu.neu.cs5200.orm.jpa.entities.Critic;
+import edu.neu.cs5200.orm.jpa.entities.Owner;
+import edu.neu.cs5200.orm.jpa.entities.User;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -53,6 +56,13 @@ public class CriticService {
 	@Transactional
 	public void updateCritic(@PathVariable("cid")int id, @RequestBody Critic newCritic) {
 		criticDao.updateCritic(id, newCritic);
+	}
+	
+	//Post: Get Critic instance by credentials (username and password)
+	@PostMapping("/api/critic/login")
+	//@ResponseBody
+	public Critic login(@RequestBody User user) {
+		return criticDao.findCriticByCredentials(user.getUsername(), user.getPassword());	
 	}
 	
 }
