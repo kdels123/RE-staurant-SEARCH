@@ -47,6 +47,12 @@ public class Patron extends User{
 	public void setCriticsFollow(List<Critic> criticsFollow) {
 		this.criticsFollow = criticsFollow;
 	}
+	public Critic getFavoriteCritic() {
+		return favoriteCritic;
+	}
+	public void setFavoriteCritic(Critic favoriteCritic) {
+		this.favoriteCritic = favoriteCritic;
+	}
 	
 	
 	

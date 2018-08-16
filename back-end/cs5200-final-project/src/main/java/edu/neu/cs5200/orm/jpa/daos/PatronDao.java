@@ -18,6 +18,8 @@ import edu.neu.cs5200.orm.jpa.repositories.PatronRepository;
 public class PatronDao {
 	@Autowired
 	PatronRepository patronRepository;
+	@Autowired
+	CriticDao criticDao;
 	
 	public void test() {
 		//Delete all Patron
@@ -29,6 +31,14 @@ public class PatronDao {
 		patron.setLastName("Sherman");
 		patron.setUsername("jenO");
 		patron.setPassword("jen123");
+		
+		Critic critic = new Critic();
+		critic.setFirstName("Suzy");
+		critic.setLastName("Smith");
+		critic.setUsername("suzyS");
+		critic.setPassword("suzy123");
+		
+		patron.setFavoriteCritic(critic);
 		createPatron(patron);
 				
 		Patron patron2 = new Patron();
@@ -43,6 +53,11 @@ public class PatronDao {
 	
 	// CREATE Patron
 	public Patron createPatron(Patron patron) {
+		if(patron.getFavoriteCritic() != null) {
+			criticDao.createCritic(patron.getFavoriteCritic());
+			Critic c = criticDao.findCriticByUsername(patron.getFavoriteCritic().getUsername());
+			patron.setFavoriteCritic(c);
+		}
 		if(!existPatron(patron)) {
 			return patronRepository.save(patron);
 		}
