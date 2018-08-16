@@ -64,15 +64,15 @@ export class UserServiceClient {
         }).then(response => response.json());
     }
 
-    login(username, password) {
+    loginOwner(username, password) {
         const credentials = {
             username: username,
             password: password
         };
-        return fetch('http://localhost:8080/api/login', {
+        return fetch('http://localhost:8080/api/owner/login', {
             method: 'post',
+            credentials: 'same-origin',
             body: JSON.stringify(credentials),
-            credentials: 'include',
             headers: {
                 'content-type': 'application/json'
             }

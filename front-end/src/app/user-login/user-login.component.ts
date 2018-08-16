@@ -12,12 +12,21 @@ export class UserLoginComponent implements OnInit {
 
   constructor(private router: Router, private service: UserServiceClient) { }
 
+  userId;
   username;
   password;
+  role;
+
+  setRole(role) {
+    this.role = role;
+  }
 
   login(username, password) {
-    this.service.login(username, password)
-        .then(() =>  this.router.navigate(['profile']));
+    if (this.role === 'owner') {
+          this.service.loginOwner(username, password)
+              .then(user => (this.userId = user.id))
+              .then(() => (this.router.navigate(['profile/' + this.userId])));
+      }
   }
 
   goHome() {

@@ -1,6 +1,28 @@
 <div class="container">
+
   <h1>{{restaurantName}}</h1>
+
   <p>{{restaurantAddress}} {{restaurantCity}} {{restaurantState}}</p>
+
+  <img src={{restaurantImage}}>
+
   <h2>Reviews</h2>
-  
+  <h3>Write a Review!</h3>
+
+  <form>
+    <div class="form-group">
+      <label for="FormControlInput1">Username</label>
+      <input type="email" class="form-control" id="FormControlInput1">
+    </div>
+    <div class="form-group">
+     <label for="FormControlTextarea1">Review</label>
+    <textarea class="form-control" id="FormControlTextarea1" rows="3"></textarea>
+    </div>
+    <div>
+    <button (click)="addReview(username, description)" class="btn btn-block btn-primary" type="submit">Add Review</button>
+    </div>
+
+  </form>
+
+
 </div>
