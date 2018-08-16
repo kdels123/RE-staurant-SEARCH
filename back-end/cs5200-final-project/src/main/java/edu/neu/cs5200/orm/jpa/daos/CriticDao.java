@@ -32,6 +32,7 @@ public class CriticDao {
 		critic.setFirstName("Suzy");
 		critic.setLastName("Smith");
 		critic.setUsername("suzyS");
+		critic.setPassword("suzy123");
 		createCritic(critic);
 		
 		// add follower (patron)
@@ -39,6 +40,7 @@ public class CriticDao {
 		patron.setFirstName("Jen");
 		patron.setLastName("Sherman");
 		patron.setUsername("jenO");
+		patron.setPassword("jen123");
 		
 		List<Patron> followers = new ArrayList<Patron>();
 		followers.add(patron);
@@ -46,7 +48,8 @@ public class CriticDao {
 		Critic critic2 = new Critic();
 		critic2.setFirstName("Rachel");
 		critic2.setLastName("Harrison");
-		critic2.setUsername("rHarrison");
+		critic2.setUsername("rachelH");
+		critic2.setPassword("rachel123");
 		critic2.setFollowers(followers);
 		createCritic(critic2);
 	}

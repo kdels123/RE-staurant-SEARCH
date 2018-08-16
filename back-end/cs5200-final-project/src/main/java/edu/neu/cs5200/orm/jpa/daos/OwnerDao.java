@@ -27,12 +27,14 @@ public class OwnerDao {
 		owner.setLastName("Oringer");
 		owner.setPhone("617-536-4300");
 		owner.setUsername("kenO");
+		owner.setPassword("ken123");
 		createOwner(owner);
 		
 		Owner owner2 = new Owner();
 		owner2.setFirstName("Jamie");
 		owner2.setLastName("Bissonnette");
 		owner2.setUsername("jamieB");
+		owner2.setPassword("jamie123");
 		createOwner(owner2);
 		
 	}
@@ -74,6 +76,11 @@ public class OwnerDao {
 	// FIND Owner by Username
 	public Owner findOwnerByUsername(String username) {
 		return ownerRepository.findOwnerByUsername(username);
+	}
+	
+	// Find Owner by credentials (username and password)
+	public Owner findOwnerByCredentials(String username, String password) {
+		return ownerRepository.findOwnerByCredentials(username, password);
 	}
 	
 	// UPDATE Owner
