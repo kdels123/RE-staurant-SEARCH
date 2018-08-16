@@ -15,6 +15,7 @@ export class UserRegisterComponent implements OnInit {
   role;
   passwordI;
   passwordII;
+  userId;
 
   setRole(role) {
     this.role = role;
@@ -28,7 +29,10 @@ export class UserRegisterComponent implements OnInit {
             .then(() => this.router.navigate(['profile']));
     } else if (this.role === 'owner') {
       this.service.createOwner(username, passwordI)
-          .then(() => this.router.navigate(['profile']));
+          .then(user => (
+              this.userId = user.id))
+          .then(() => (
+              this.router.navigate(['profile/' + this.userId])));
     } else if (this.role === 'critic') {
         this.service.createCritic(username, passwordI)
             .then(() => this.router.navigate(['profile']));

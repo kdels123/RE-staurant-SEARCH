@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {UserServiceClient} from '../services/user.service.client';
+import {RestaurantServiceClient} from '../services/restaurant.service.client';
 
 @Component({
   selector: 'app-restaurant-detail',
@@ -7,7 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RestaurantDetailComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: RestaurantServiceClient,
+              private router: Router,
+              private route: ActivatedRoute) {
+      this.route.params.subscribe(params => this.loadRestaurant(params['restaurantId']))
+  }
+
+  loadRestaurant(restaurantId) {
+    alert(restaurantId);
+  }
+
 
   ngOnInit() {
   }

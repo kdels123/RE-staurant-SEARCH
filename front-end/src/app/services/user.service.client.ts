@@ -5,7 +5,7 @@ export class UserServiceClient {
             username: username,
             password: password
         };
-        return fetch('http://localhost8080/api/patron', {
+        return fetch('http://localhost:8080/api/patron', {
             body: JSON.stringify(user),
             credentials: 'include', // include, same-origin, *omit
             method: 'post',
@@ -21,14 +21,17 @@ export class UserServiceClient {
             username: username,
             password: password
         };
-        return fetch('http://localhost8080/api/owner', {
+        return fetch('http://localhost:8080/api/owner', {
             body: JSON.stringify(user),
-            credentials: 'include', // include, same-origin, *omit
             method: 'post',
+            credentials: 'same-origin',
             headers: {
+                'Accept': 'application/json',
                 'content-type': 'application/json'
             }
-        }).then(response => response.json());
+        }).then(response => {
+            return response.json();
+        });
     }
 
     createCritic(username, password) {
@@ -36,7 +39,7 @@ export class UserServiceClient {
             username: username,
             password: password
         };
-        return fetch('http://localhost8080/api/critic', {
+        return fetch('http://localhost:8080/api/critic', {
             body: JSON.stringify(user),
             credentials: 'include', // include, same-origin, *omit
             method: 'post',
@@ -51,7 +54,7 @@ export class UserServiceClient {
             username: username,
             password: password
         };
-        return fetch('http://localhost8080/api/admin', {
+        return fetch('http://localhost:8080/api/admin', {
             body: JSON.stringify(user),
             credentials: 'include', // include, same-origin, *omit
             method: 'post',
@@ -66,7 +69,7 @@ export class UserServiceClient {
             username: username,
             password: password
         };
-        return fetch('http://localhost8080/api/login', {
+        return fetch('http://localhost:8080/api/login', {
             method: 'post',
             body: JSON.stringify(credentials),
             credentials: 'include',
@@ -76,6 +79,25 @@ export class UserServiceClient {
         }).then(response => response.json());
     }
 
+    findUserById(userId) {
+        return fetch('http://localhost:8080/api/owner/' + userId).then(response => response.json());
+    }
 
+    updateUser(firstName, lastName, phone, email, dob, userId) {
+        const user = {
+            firstName: firstName,
+            lastName: lastName,
+            phone: phone,
+            email: email,
+            dob: dob
+        };
+        return fetch('http://localhost:8080/api/owner/' + userId, {
+            body: JSON.stringify(user),
+            method: 'put',
+            headers: {
+                'content-type': 'application/json'
+            }
+        });
+    }
 
 }

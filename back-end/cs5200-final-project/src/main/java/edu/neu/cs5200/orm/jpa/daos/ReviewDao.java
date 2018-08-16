@@ -46,7 +46,8 @@ public class ReviewDao {
 		r1.setCity("Boston");
 		r1.setState("MA");
 		r1.setPhone("617-536-4300");
-		r1.setPrice("$$");
+		r1.setNumberOfVisits(2000);
+		r1.setPrice("$$$");
 		
 		Owner owner = new Owner();
 		owner.setFirstName("Ken");

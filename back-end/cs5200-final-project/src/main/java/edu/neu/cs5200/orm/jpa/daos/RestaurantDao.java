@@ -20,10 +20,9 @@ import edu.neu.cs5200.orm.jpa.repositories.RestaurantRepository;
 public class RestaurantDao {
 	@Autowired
 	RestaurantRepository restaurantRepository;
+	
 	@Autowired
 	OwnerDao ownerDao;
-	@Autowired
-	VibeDao vibeDao;
 	
 	public void test() {
 		// Delete all restaurants
@@ -37,8 +36,8 @@ public class RestaurantDao {
 		r1.setCity("Boston");
 		r1.setState("MA");
 		r1.setPhone("617-536-4300");
-		r1.setPrice("$$");
-		
+		r1.setNumberOfVisits(2000);
+		r1.setPrice("$$$");
 		Owner owner = new Owner();
 		owner.setFirstName("Ken");
 		owner.setLastName("Oringer");
@@ -47,15 +46,12 @@ public class RestaurantDao {
 		
 		r1.setOwner(owner);
 		
-		Vibe vibe = new Vibe();
-		vibe.setCuisine("Spanish");
-		vibe.setAlcoholServed("Yes");
-		r1.setVibe(vibe);
-		System.out.println(r1.getVibe().getCuisine());
-		
 		createRestaurant(r1);
 		
-	
+		List<Restaurant> list = findAllRestaurants();
+		for (Restaurant r : list) {
+			System.out.println(r.getName());
+		}
 	}
 	
 	// CREATE Restaurant
@@ -65,21 +61,12 @@ public class RestaurantDao {
 			ownerDao.createOwner(restaurant.getOwner());
 			restaurant.setOwner(ownerDao.findOwnerByUsername(restaurant.getOwner().getUsername()));
 		}
-		if(restaurant.getVibe() != null) {
-			System.out.println("CHECK 1");
-			System.out.println(restaurant.getVibe().getCuisine());
-			Vibe newVibe = vibeDao.createVibe(restaurant.getVibe());
-			System.out.println("CHECK 2");
-			System.out.println(newVibe.getCuisine());
-			System.out.println(newVibe.getId());
-			restaurant.setVibe(newVibe);
-		}
 		
 		if(!existRestaurant(restaurant)) {
 			return restaurantRepository.save(restaurant);
+		} else {
+			return null;
 		}
-		
-		return null;
 	}
 		
 	// DELETE all Restaurants
@@ -116,7 +103,6 @@ public class RestaurantDao {
 	public void updateRestaurant(int id, Restaurant newRestaurant) {
 		Optional<Restaurant> optional = findRestaurantById(id);
 		if (optional.isPresent()) {
-			System.out.println("UPDATE RESTAURNT");
 			Restaurant currRestaurant = optional.get();
 			
 			String name = newRestaurant.getName() != null ? newRestaurant.getName() : currRestaurant.getName();
