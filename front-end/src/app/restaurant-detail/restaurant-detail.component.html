@@ -1,28 +1,59 @@
 <div class="container">
 
-  <h1>{{restaurantName}}</h1>
+    <h1>{{restaurantName}}</h1>
 
-  <p>{{restaurantAddress}} {{restaurantCity}} {{restaurantState}}</p>
+    <p>{{restaurantAddress}} {{restaurantCity}} {{restaurantState}}</p>
 
-  <img src={{restaurantImage}}>
+    <img src={{restaurantImage}}>
 
-  <h2>Reviews</h2>
-  <h3>Write a Review!</h3>
+    <h2>Reviews</h2>
+    <h3>Write a Review!</h3>
 
-  <form>
-    <div class="form-group">
-      <label for="FormControlInput1">Username</label>
-      <input type="email" class="form-control" id="FormControlInput1">
-    </div>
-    <div class="form-group">
-     <label for="FormControlTextarea1">Review</label>
-    <textarea class="form-control" id="FormControlTextarea1" rows="3"></textarea>
-    </div>
-    <div>
-    <button (click)="addReview(username, description)" class="btn btn-block btn-primary" type="submit">Add Review</button>
-    </div>
+    <form>
+        <div class="form-group">
+            <label for="FormControlInput1">Username</label>
+            <input class="form-control" id="FormControlInput1" [(ngModel)]="criticUsername">
+        </div>
+        <div class="form-group">
+            <label for="FormControlInput2">Review Title</label>
+            <input class="form-control" id="FormControlInput2" [(ngModel)]="reviewTitle">
+        </div>
+        <div class="form-group">
+            <label for="FormControlTextarea1">Review Description</label>
+            <textarea class="form-control" id="FormControlTextarea1" rows="3" [(ngModel)]="reviewDesription"></textarea>
+        </div>
 
-  </form>
+        <div class="form-group">
+            <label>Restaurant Rating</label>
+
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <button type="button" class="btn btn-secondary">1</button>
+                </div>
+                <div class="btn-group mr-2" role="group" aria-label="Second group">
+                    <button type="button" class="btn btn-secondary">2</button>
+                </div>
+                <div class="btn-group mr-2" role="group" aria-label="Third group">
+                    <button type="button" class="btn btn-secondary">3</button>
+                </div>
+                <div class="btn-group mr-2" role="group" aria-label="Fourth group">
+                    <button type="button" class="btn btn-secondary">4</button>
+                </div>
+                <div class="btn-group mr-2" role="group" aria-label="Fifth group">
+                    <button type="button" class="btn btn-secondary">5</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div>
+            <button (click)="addReview(criticUsername, reviewTitle, reviewDesription)"
+                    class="btn btn-block btn-primary" type="submit">Add
+                Review
+            </button>
+        </div>
+
+    </form>
 
 
 </div>

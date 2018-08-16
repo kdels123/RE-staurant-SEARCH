@@ -27,6 +27,13 @@ export class RestaurantDetailComponent implements OnInit {
   restaurantPrice;
   restaurantImage;
 
+  reviews;
+  reviewTitle;
+  reviewDesription;
+
+  criticId;
+  criticUsername;
+
   loadRestaurant(restaurantId) {
       this.restaurantId = restaurantId;
       this.service.findRestaurantById(restaurantId)
@@ -44,6 +51,10 @@ export class RestaurantDetailComponent implements OnInit {
       this.restaurantNumberOfVisits = restaurant.numberOfVisits;
       this.restaurantPrice = restaurant.numberOfVisits;
       this.restaurantImage = restaurant.imageUrl;
+  }
+
+  addReview(reviewTitle, reviewDescription, criticId, restaurantId) {
+
   }
 
   ngOnInit() {
