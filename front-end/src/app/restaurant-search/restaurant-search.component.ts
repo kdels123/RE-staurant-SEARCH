@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RestaurantServiceClient} from '../services/restaurant.service.client';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-restaurant-search',
@@ -10,8 +11,10 @@ export class RestaurantSearchComponent implements OnInit {
 
   restaurants = [];
   restaurantName;
+  restaurantId;
 
-  constructor(private restaurantService: RestaurantServiceClient) { }
+  constructor(private restaurantService: RestaurantServiceClient,
+              private router: Router) { }
 
   searchForRestaurant(restaurantName) {
       this.restaurantService.findRestaurantsByName(restaurantName)
@@ -19,7 +22,14 @@ export class RestaurantSearchComponent implements OnInit {
   }
 
   visited(restaurant) {
-    this.restaurantService.visited(restaurant);
+    this.restaurantService.addRestaurant(restaurant)
+        .then(savedRestaurant => this.restaurantId = savedRestaurant.id);
+  }
+
+  detail(restaurant) {
+      this.restaurantService.addRestaurant(restaurant)
+          .then(savedRestaurant => this.restaurantId = savedRestaurant.id)
+          .then(() => (this.router.navigate(['restaurant/' + this.restaurantId])));
   }
 
   ngOnInit() {

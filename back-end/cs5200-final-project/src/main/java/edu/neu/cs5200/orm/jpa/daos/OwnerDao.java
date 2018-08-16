@@ -45,9 +45,12 @@ public class OwnerDao {
 	
 	
 	// CREATE Owner
-	public void createOwner(Owner owner) {
+	public Owner createOwner(Owner owner) {
 		if(!existOwner(owner)) {
-			ownerRepository.save(owner);
+			Owner newOwner = ownerRepository.save(owner);
+			return newOwner;
+		} else {
+			return owner;
 		}
 	}
 	

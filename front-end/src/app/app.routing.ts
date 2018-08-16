@@ -13,7 +13,7 @@ const appRoutes: Routes = [
     {path: 'restaurant/:restaurantId', component: RestaurantDetailComponent},
     {path: 'login', component: UserLoginComponent},
     {path: 'register', component: UserRegisterComponent},
-    {path: 'profile', component: UserProfileComponent}
+    {path: 'profile/:userId', component: UserProfileComponent}
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

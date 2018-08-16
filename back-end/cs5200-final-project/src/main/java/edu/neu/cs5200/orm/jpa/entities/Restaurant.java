@@ -29,7 +29,7 @@ public class Restaurant {
 	private Date dateEst;
 	private String hoursOfOpp;
 	private Integer numberOfVisits;
-	private Double price;
+	private String price;
 	
 	@ManyToOne
 	private Vibe vibe;
@@ -112,10 +112,10 @@ public class Restaurant {
 	public void setNumberOfVisits(int numberOfVisits) {
 		this.numberOfVisits = numberOfVisits;
 	}
-	public Double getPrice() {
+	public String getPrice() {
 		return price;
 	}
-	public void setPrice(Double price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 	public Vibe getVibe() {

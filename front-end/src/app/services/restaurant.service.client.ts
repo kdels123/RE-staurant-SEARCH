@@ -10,7 +10,7 @@ export class RestaurantServiceClient {
             .then(response => response.json());
     }
 
-    visited(restaurant) {
+    addRestaurant(restaurant) {
         const data = {
             name: restaurant.alias,
             yelpId: restaurant.id,
@@ -18,15 +18,21 @@ export class RestaurantServiceClient {
             city: restaurant.location.city,
             state: restaurant.location.state,
             phone: restaurant.phone,
+            numberOfVisits: restaurant.review_count,
             price: restaurant.price
         };
         return fetch('http://localhost:8080/api/restaurant', {
             method: 'post',
             body: JSON.stringify(data),
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                'Access-Control-Allow-Origin': 'http://localhost:8080'
             }
-        });
+        }).then(response => response.json());
+        }
 
-    }
+        findRestaurantByName() {
+
+        }
+
 }

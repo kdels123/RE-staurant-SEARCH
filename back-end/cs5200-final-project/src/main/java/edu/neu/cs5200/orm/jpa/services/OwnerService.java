@@ -45,8 +45,8 @@ public class OwnerService {
 	
 	//POST: Create Owner
 	@PostMapping("/api/owner")
-	public void createOwner(@RequestBody Owner owner) {
-		ownerDao.createOwner(owner);
+	public Owner createOwner(@RequestBody Owner owner) {
+		return ownerDao.createOwner(owner);
 	}
 	
 	//PUT: Update owner instance whose primary key is oid
