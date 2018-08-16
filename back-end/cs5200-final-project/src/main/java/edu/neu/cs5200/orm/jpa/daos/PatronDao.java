@@ -37,6 +37,8 @@ public class PatronDao {
 		patron2.setUsername("chrisC");
 		patron2.setPassword("chris123");
 		createPatron(patron2);
+		
+		
 	}
 	
 	// CREATE Patron

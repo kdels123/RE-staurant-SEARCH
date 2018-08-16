@@ -33,15 +33,7 @@ public class Restaurant {
 	private String imageUrl;
 
 	
-	public String getImageUrl() {
-		return imageUrl;
-	}
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
-	public void setNumberOfVisits(Integer numberOfVisits) {
-		this.numberOfVisits = numberOfVisits;
-	}
+	
 	@ManyToOne
 	@JsonIgnore
 	private Vibe vibe;
@@ -121,7 +113,7 @@ public class Restaurant {
 	public Integer getNumberOfVisits() {
 		return numberOfVisits;
 	}
-	public void setNumberOfVisits(int numberOfVisits) {
+	public void setNumberOfVisits(Integer numberOfVisits) {
 		this.numberOfVisits = numberOfVisits;
 	}
 	public String getPrice() {
@@ -160,6 +152,13 @@ public class Restaurant {
 	public void setEvents(List<Event> events) {
 		this.events = events;
 	}
+	public String getImageUrl() {
+		return imageUrl;
+	}
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+	
 	
 	
 }

@@ -8,5 +8,5 @@ import edu.neu.cs5200.orm.jpa.entities.Restaurant;
 
 public interface RestaurantRepository extends CrudRepository<Restaurant, Integer>{
 	@Query("SELECT r FROM Restaurant r WHERE r.name=:name")
-	Restaurant findRestaurantByName (@Param("name") String name);
+	public Restaurant findRestaurantByName (@Param("name") String name);
 }

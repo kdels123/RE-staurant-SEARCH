@@ -4,11 +4,17 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Patron extends User{
+	
+	@OneToOne
+	//@MapsId
+	private Critic favoriteCritic;
 	
 	@ManyToMany(mappedBy="patrons")
 	@JsonIgnore
