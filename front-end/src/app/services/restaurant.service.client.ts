@@ -29,10 +29,11 @@ export class RestaurantServiceClient {
                 'Access-Control-Allow-Origin': 'http://localhost:8080'
             }
         }).then(response => response.json());
-        }
+    }
 
-        findRestaurantByName() {
+    findRestaurantById(restaurantId) {
+        return fetch('http://localhost:8080/api/restaurant/' + restaurantId).then(response => response.json());
+    }
 
-        }
 
 }
