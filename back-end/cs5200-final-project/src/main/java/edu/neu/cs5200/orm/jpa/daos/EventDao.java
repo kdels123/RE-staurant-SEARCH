@@ -12,6 +12,7 @@ import edu.neu.cs5200.orm.jpa.entities.Event;
 import edu.neu.cs5200.orm.jpa.entities.Owner;
 import edu.neu.cs5200.orm.jpa.entities.Patron;
 import edu.neu.cs5200.orm.jpa.entities.Restaurant;
+import edu.neu.cs5200.orm.jpa.entities.Review;
 import edu.neu.cs5200.orm.jpa.repositories.EventRepository;
 
 @Component
@@ -82,7 +83,7 @@ public class EventDao {
 			newEvent.setOwner(ownerDao.findOwnerById(ownerId).get());
 			newEvent.setRestaurant(restaurantDao.findRestaurantById(restaurantId).get());
 		
-			return eventRepository.save(event);
+			return eventRepository.save(newEvent);
 		}
 		return null;
 	}
@@ -155,6 +156,17 @@ public class EventDao {
 	public Optional<Event> findEventById(int id) {
 		return eventRepository.findById(id);
 	}
+	
+	// FIND Events by restaurantId
+	public List<Event> findEventsForRestaurant(int restaurantId) {
+		Optional<Restaurant> data = restaurantDao.findRestaurantById(restaurantId);
+		if(data.isPresent()) {
+			Restaurant restaurant = data.get();
+			return restaurant.getEvents();
+		}
+		return null;
+	}
+
 	
 	// UPDATE Event
 	public void updateEvent(int id, Event newEvent) {

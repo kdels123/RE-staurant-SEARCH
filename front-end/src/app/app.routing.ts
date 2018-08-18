@@ -10,6 +10,7 @@ import {CriticProfilePrivateComponent} from './critic-profile-private/critic-pro
 import {PatronProfilePrivateComponent} from './patron-profile-private/patron-profile-private.component';
 import {PatronProfileComponent} from './patron-profile/patron-profile.component';
 import {EventCreateComponent} from './event-create/event-create.component';
+import {EventDetailComponent} from './event-detail/event-detail.component';
 
 const appRoutes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -17,6 +18,7 @@ const appRoutes: Routes = [
     {path: 'search', component: RestaurantSearchComponent},
     {path: 'restaurant/:restaurantId', component: RestaurantDetailComponent},
     {path: 'restaurant/:restaurantId/event', component: EventCreateComponent},
+    {path: 'restaurant/:restaurantId/event/:eventId', component: EventDetailComponent},
     {path: 'login', component: UserLoginComponent},
     {path: 'register', component: UserRegisterComponent},
     {path: 'profile/owner/:ownerId', component: OwnerProfilePrivateComponent},

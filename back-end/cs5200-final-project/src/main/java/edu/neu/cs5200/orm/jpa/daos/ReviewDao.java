@@ -23,42 +23,42 @@ public class ReviewDao {
 	RestaurantDao restaurantDao;
 	
 	public void test() {
-		// Delete all reviews
-		deleteAllReviews();
-		
-		// Create Review
-		Review review = new Review();
-		review.setDescription("Tapas tapas tapas");
-		review.setRating(5);
-		review.setTitle("Where to go for Tapas");
-		
-		Critic critic = new Critic();
-		critic.setFirstName("Suzy");
-		critic.setLastName("Smith");
-		critic.setUsername("suzyS");
-		
-		review.setCritic(critic);
-		
-		Restaurant r1 = new Restaurant();
-		r1.setName("Toro");
-		r1.setAddress("1704 Washington St");
-		r1.setCity("Boston");
-		r1.setState("MA");
-		r1.setPhone("617-536-4300");
-		r1.setNumberOfVisits(2000);
-		r1.setPrice("$$$");
-		
-		Owner owner = new Owner();
-		owner.setFirstName("Ken");
-		owner.setLastName("Oringer");
-		owner.setPhone("617-536-4300");
-		owner.setUsername("kenO");
-		
-		r1.setOwner(owner);
-		
-		review.setRestaurant(r1);
-		
-		createReview(review);
+//		// Delete all reviews
+//		deleteAllReviews();
+//		
+//		// Create Review
+//		Review review = new Review();
+//		review.setDescription("Tapas tapas tapas");
+//		review.setRating(5);
+//		review.setTitle("Where to go for Tapas");
+//		
+//		Critic critic = new Critic();
+//		critic.setFirstName("Suzy");
+//		critic.setLastName("Smith");
+//		critic.setUsername("suzyS");
+//		
+//		review.setCritic(critic);
+//		
+//		Restaurant r1 = new Restaurant();
+//		r1.setName("Toro");
+//		r1.setAddress("1704 Washington St");
+//		r1.setCity("Boston");
+//		r1.setState("MA");
+//		r1.setPhone("617-536-4300");
+//		r1.setNumberOfVisits(2000);
+//		r1.setPrice("$$$");
+//		
+//		Owner owner = new Owner();
+//		owner.setFirstName("Ken");
+//		owner.setLastName("Oringer");
+//		owner.setPhone("617-536-4300");
+//		owner.setUsername("kenO");
+//		
+//		r1.setOwner(owner);
+//		
+//		review.setRestaurant(r1);
+//		
+//		createReview(review);
 	}
 	
 	// CREATE Review

@@ -30,16 +30,16 @@ public class TestDao implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		ownerDao.test();
-		
-		criticDao.test();
-		patronDao.test();
-		
-		restaurantDao.test();
-		reviewDao.test();
-		eventDao.test();
-		vibeDao.test();
-		
+//		ownerDao.test();
+//		
+//		criticDao.test();
+//		patronDao.test();
+//		
+//		restaurantDao.test();
+//		reviewDao.test();
+//		eventDao.test();
+//		vibeDao.test();
+//		
 	}
 	
 	

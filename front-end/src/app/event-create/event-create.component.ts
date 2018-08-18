@@ -33,7 +33,11 @@ export class EventCreateComponent implements OnInit {
 
     createEvent(eventTitle, eventDescription, eventDateTime, eventPrice, eventAttire, ownerUsername) {
     this.ownerService.findOwnerByUsername(ownerUsername)
-        .then(owner => this.eventService.createEvent(eventTitle, eventDescription, eventDateTime, eventPrice, eventAttire, owner.id, this.restaurantId));
+        .then(owner => this.eventService.createEvent(
+            eventTitle, eventDescription, eventDateTime, eventPrice, eventAttire, owner.id, this.restaurantId))
+        .then(() => (this.router.navigate(['restaurant/' + this.restaurantId])))
+
+    ;
   }
 
 

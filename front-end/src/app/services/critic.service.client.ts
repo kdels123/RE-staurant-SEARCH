@@ -18,7 +18,7 @@ export class CriticServiceClient {
         const user = {
             username: username
         };
-        return fetch('http://localhost:8080/api/username', {
+        return fetch('http://localhost:8080/api/critic/username', {
             method: 'post',
             body: JSON.stringify(user),
             headers: {

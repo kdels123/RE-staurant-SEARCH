@@ -22,6 +22,7 @@ import {PatronServiceClient} from './services/patron.service.client';
 import { PatronProfileComponent } from './patron-profile/patron-profile.component';
 import { EventCreateComponent } from './event-create/event-create.component';
 import {EventServiceClient} from './services/event.service.client';
+import { EventDetailComponent } from './event-detail/event-detail.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {EventServiceClient} from './services/event.service.client';
     CriticProfilePrivateComponent,
     PatronProfilePrivateComponent,
     PatronProfileComponent,
-    EventCreateComponent
+    EventCreateComponent,
+    EventDetailComponent
   ],
   imports: [
     BrowserModule,

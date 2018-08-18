@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>{{event.title}}</h1>
+  <h3>{{event.description}}</h3>
+
+  <div class="form-group">
+    <button
+            class="btn btn-block btn-dark">Attend {{event.title}}
+    </button>
+  </div>
+
+  <h3>Patron Attendees:</h3>
+
+  <ul class="list-group list-group-flush" *ngFor="let patron of patrons">
+    <li class="list-group-item">
+      <p>Name: {{patron.firstName}} {{patron.lastName}}</p>
+    </li>
+  </ul>
+
+  <h3>Critic Attendees:</h3>
+
+  <ul class="list-group list-group-flush" *ngFor="let critic of critics">
+    <li class="list-group-item">
+      <p>Name: {{critic.firstName}} {{critic.lastName}}</p>
+    </li>
+  </ul>
+
+</div>

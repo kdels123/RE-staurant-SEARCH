@@ -5,6 +5,7 @@ import {ReviewServiceClient} from '../services/review.service.client';
 import {UserServiceClient} from '../services/user.service.client';
 import {CriticServiceClient} from '../services/critic.service.client';
 import {PatronServiceClient} from '../services/patron.service.client';
+import {EventServiceClient} from '../services/event.service.client';
 
 @Component({
   selector: 'app-restaurant-detail',
@@ -15,6 +16,7 @@ export class RestaurantDetailComponent implements OnInit {
 
   constructor(private restaurantService: RestaurantServiceClient,
               private reviewService: ReviewServiceClient,
+              private eventService: EventServiceClient,
               private userService: UserServiceClient,
               private criticService: CriticServiceClient,
               private patronService: PatronServiceClient,
@@ -40,6 +42,8 @@ export class RestaurantDetailComponent implements OnInit {
   patronUsername;
   patrons;
 
+  events;
+
   loadRestaurant(restaurantId) {
       this.restaurantId = restaurantId;
       this.restaurantService.findRestaurantById(restaurantId)
@@ -53,6 +57,8 @@ export class RestaurantDetailComponent implements OnInit {
           reviews => this.reviews = reviews);
       this.patronService.findPatronsByRestaurant(restaurant.id).then(
           patrons => this.patrons = patrons);
+      this.eventService.findEventsByRestaurant(restaurant.id).then(
+          events => this.events = events);
   }
 
   addReview(reviewTitle, reviewDescription, criticUsername) {
@@ -77,6 +83,10 @@ export class RestaurantDetailComponent implements OnInit {
 
     goToPatronsProfile(patronId) {
       this.router.navigate(['patron/' + patronId]);
+    }
+
+    goToEvent(eventId) {
+        this.router.navigate(['restaurant/' + this.restaurantId + '/event/' + eventId]);
     }
 
     createEvent() {

@@ -21,7 +21,9 @@ export class CriticProfileComponent implements OnInit {
   critic;
 
   reviews;
-  followers;
+
+  patronUsername;
+  patrons;
 
   loadCritic(criticId) {
           this.criticId = criticId;
