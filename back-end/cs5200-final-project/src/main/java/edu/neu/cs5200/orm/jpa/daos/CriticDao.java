@@ -12,6 +12,7 @@ import edu.neu.cs5200.orm.jpa.entities.Critic;
 import edu.neu.cs5200.orm.jpa.entities.Patron;
 import edu.neu.cs5200.orm.jpa.entities.Review;
 import edu.neu.cs5200.orm.jpa.repositories.CriticRepository;
+import edu.neu.cs5200.orm.jpa.repositories.PatronRepository;
 
 @Component
 public class CriticDao {
@@ -21,6 +22,8 @@ public class CriticDao {
 	PatronDao patronDao;
 	@Autowired
 	ReviewDao reviewDao;
+	@Autowired
+	PatronRepository patronRepository;
 	
 	public void test() {
 //		//Delete all critic
@@ -73,16 +76,42 @@ public class CriticDao {
 		
 	// DELETE all critics
 	public void deleteAllCritics() {
+		List<Patron> patronList = patronDao.findAllPatrons();
+		for (Patron p : patronList) {
+			p.setFavoriteCritic(null);
+			patronRepository.save(p);
+			
+		}
 		criticRepository.deleteAll();
 	}
 		
 	// DELETE Critic
 	public void deleteCritic(Critic critic) {
+		List<Patron> patronList = patronDao.findAllPatrons();
+		for (Patron p : patronList) {
+			if(p.getFavoriteCritic() != null) {
+				if(p.getFavoriteCritic().getId() == critic.getId()) {
+					p.setFavoriteCritic(null);
+					patronRepository.save(p);
+				}
+			}
+			
+		}
 		criticRepository.delete(critic);
 	}
 		
 	// DELETE Critic by ID
 	public void deleteCriticById(int id) {
+		List<Patron> patronList = patronDao.findAllPatrons();
+		for (Patron p : patronList) {
+			if(p.getFavoriteCritic() != null) {
+				if(p.getFavoriteCritic().getId() == id) {
+					p.setFavoriteCritic(null);
+					patronRepository.save(p);
+				}
+				
+			}
+		}
 		criticRepository.deleteById(id);
 	}
 		
