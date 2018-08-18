@@ -1,0 +1,26 @@
+<div class="container">
+  <h1>Profile</h1>
+
+  <div class="form-group">
+    <input [(ngModel)]="username" placeholder="username" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <input [(ngModel)]="firstName" placeholder="first name" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <input [(ngModel)]="lastName" placeholder="last name" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <input [(ngModel)]="email" placeholder="email" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <input [(ngModel)]="phone" placeholder="phone number" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <input [(ngModel)]="dob" placeholder="date of birth (YYYY-MM-DD)" class="form-control"/>
+  </div>
+  <button (click)="update(firstName, lastName, email, phone, dob)"
+          class="btn btn-block btn-primary">Update Profile</button>
+  <br/>
+  <button (click)="logout()" class="btn btn-block btn-primary">Logout</button>
+</div>

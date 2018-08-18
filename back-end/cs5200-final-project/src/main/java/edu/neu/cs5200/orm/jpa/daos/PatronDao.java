@@ -20,23 +20,23 @@ public class PatronDao {
 	PatronRepository patronRepository;
 	
 	public void test() {
-		//Delete all Patron
-		deleteAllPatrons();
-				
-		//Create Patron
-		Patron patron = new Patron();
-		patron.setFirstName("Jen");
-		patron.setLastName("Sherman");
-		patron.setUsername("jenO");
-		patron.setPassword("jen123");
-		createPatron(patron);
-				
-		Patron patron2 = new Patron();
-		patron2.setFirstName("Chris");
-		patron2.setLastName("Chan");
-		patron2.setUsername("chrisC");
-		patron2.setPassword("chris123");
-		createPatron(patron2);
+//		//Delete all Patron
+//		deleteAllPatrons();
+//				
+//		//Create Patron
+//		Patron patron = new Patron();
+//		patron.setFirstName("Jen");
+//		patron.setLastName("Sherman");
+//		patron.setUsername("jenO");
+//		patron.setPassword("jen123");
+//		createPatron(patron);
+//				
+//		Patron patron2 = new Patron();
+//		patron2.setFirstName("Chris");
+//		patron2.setLastName("Chan");
+//		patron2.setUsername("chrisC");
+//		patron2.setPassword("chris123");
+//		createPatron(patron2);
 		
 		
 	}

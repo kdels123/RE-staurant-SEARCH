@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {UserServiceClient} from '../services/user.service.client';
+import {CriticServiceClient} from '../services/critic.service.client';
+import {OwnerServiceClient} from '../services/owner.service.client';
+import {PatronServiceClient} from '../services/patron.service.client';
 
 
 @Component({
@@ -10,7 +13,10 @@ import {UserServiceClient} from '../services/user.service.client';
 })
 export class UserLoginComponent implements OnInit {
 
-  constructor(private router: Router, private service: UserServiceClient) { }
+  constructor(private router: Router,
+              private criticService: CriticServiceClient,
+              private ownerService: OwnerServiceClient,
+              private patronService: PatronServiceClient) { }
 
   userId;
   username;
@@ -23,10 +29,19 @@ export class UserLoginComponent implements OnInit {
 
   login(username, password) {
     if (this.role === 'owner') {
-          this.service.loginOwner(username, password)
+          this.ownerService.loginOwner(username, password)
               .then(user => (this.userId = user.id))
-              .then(() => (this.router.navigate(['profile/' + this.userId])));
-      }
+              .then(() => (this.router.navigate(['profile/owner/' + this.userId])));
+      } else if  (this.role === 'critic') {
+        this.criticService.loginCritic(username, password)
+            .then(user => (this.userId = user.id))
+            .then(() => (this.router.navigate(['profile/critic/' + this.userId])));
+    } else if (this.role === 'patron') {
+        this.patronService.loginPatron(username, password)
+            .then(user => (this.userId = user.id))
+            .then(() => (this.router.navigate(['profile/patron/' + this.userId])));
+    }
+
   }
 
   goHome() {

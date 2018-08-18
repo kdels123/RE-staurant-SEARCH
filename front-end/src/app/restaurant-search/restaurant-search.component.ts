@@ -21,15 +21,20 @@ export class RestaurantSearchComponent implements OnInit {
           .then(res => this.restaurants = res.businesses);
   }
 
-  visited(restaurant) {
-    this.restaurantService.addRestaurant(restaurant)
-        .then(savedRestaurant => this.restaurantId = savedRestaurant.id);
-  }
-
-  detail(restaurant) {
-      this.restaurantService.addRestaurant(restaurant)
-          .then(savedRestaurant => this.restaurantId = savedRestaurant.id)
-          .then(() => (this.router.navigate(['restaurant/' + this.restaurantId])));
+  goToDetail(restaurant) {
+      try {
+          this.restaurantService.addRestaurant(restaurant)
+              .then(savedRestaurant => this.restaurantId = savedRestaurant.id)
+              .then(() => (this.router.navigate(['restaurant/' + this.restaurantId])));
+      } finally {
+          try {
+              this.restaurantService.findRestaurantByName(restaurant)
+                  .then(savedRestaurant => this.restaurantId = savedRestaurant.id)
+                  .then(() => (this.router.navigate(['restaurant/' + this.restaurantId])));
+          } catch (e) {
+            console.log(e);
+          }
+      }
   }
 
   ngOnInit() {

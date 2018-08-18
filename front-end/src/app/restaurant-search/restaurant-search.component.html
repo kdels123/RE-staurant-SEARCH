@@ -5,20 +5,17 @@
 <div class="form-group">
   <div class="input-group">
     <input class="form-control" [(ngModel)]="restaurantName" placeholder="Restaurant Name"/>
-    <button class="btn btn-primary" (click)="searchForRestaurant(restaurantName)">Search</button>
+    &nbsp;
+    <button class="btn btn-dark" (click)="searchForRestaurant(restaurantName)">Search</button>
   </div>
 </div>
 
-  <div class="container-fluid" class="card-columns">
-    <div *ngFor="let restaurant of restaurants" class="card border-primary mb-3" style="max-width: 20rem;">
+  <div class="container" class="card-columns">
+    <div *ngFor="let restaurant of restaurants" class="card text-white bg-dark mb-2">
       <img class="card-img-top" src="{{restaurant.image_url}}" alt="Card image cap">
       <div class="card-body">
-        <button (click)="detail(restaurant)" class="btn btn-link btn-block" style="float: left;">{{restaurant.alias}}</button>
-        <!--<h5 class="card-title">{{restaurant.alias}}</h5>-->
-        <div>
-          <p class="card-text" style="float: left;">{{restaurant.location.city}}, {{restaurant.location.state}}</p>
-          <button (click)="visited(restaurant)" class="btn btn-outline-primary btn-sm" style="float: right;">Visited!</button>
-        </div>
+        <button (click)="goToDetail(restaurant)"
+                class="btn btn-link btn-block"  style="float: left; color: white">{{restaurant.alias}}</button>
       </div>
     </div>
   </div>

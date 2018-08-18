@@ -26,25 +26,25 @@ public class EventDao {
 	PatronDao patronDao;
 	
 	public void test() {
-		// Delete all events
-		deleteAllEvents();
-		
-		// Create event
-		
-		Event event = new Event();
-		event.setAttire("casual");
-		event.setTitle("drinks and drinks");
-		
-		Owner owner = new Owner();
-		owner.setFirstName("Ken");
-		owner.setLastName("Oringer");
-		owner.setPhone("617-536-4300");
-		owner.setUsername("kenO");
-		
-		ownerDao.createOwner(owner);
-		event.setOwner(owner);
-		
-		createEvent(event);
+//		// Delete all events
+//		deleteAllEvents();
+//		
+//		// Create event
+//		
+//		Event event = new Event();
+//		event.setAttire("casual");
+//		event.setTitle("drinks and drinks");
+//		
+//		Owner owner = new Owner();
+//		owner.setFirstName("Ken");
+//		owner.setLastName("Oringer");
+//		owner.setPhone("617-536-4300");
+//		owner.setUsername("kenO");
+//		
+//		ownerDao.createOwner(owner);
+//		event.setOwner(owner);
+//		
+//		createEvent(event);
 	}
 	
 	// CREATE Event

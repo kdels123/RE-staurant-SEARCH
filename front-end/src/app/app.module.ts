@@ -9,9 +9,16 @@ import {FormsModule} from '@angular/forms';
 import {routing} from './app.routing';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import {UserServiceClient} from './services/user.service.client';
+import { OwnerProfilePrivateComponent } from './owner-profile-private/owner-profile-private.component';
+import { UserServiceClient } from './services/user.service.client';
 import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail.component';
+import { ReviewServiceClient } from './services/review.service.client';
+import { CriticServiceClient } from './services/critic.service.client';
+import { CriticProfileComponent } from './critic-profile/critic-profile.component';
+import { CriticProfilePrivateComponent } from './critic-profile-private/critic-profile-private.component';
+import {OwnerServiceClient} from './services/owner.service.client';
+import { PatronProfilePrivateComponent } from './patron-profile-private/patron-profile-private.component';
+import {PatronServiceClient} from './services/patron.service.client';
 
 
 @NgModule({
@@ -21,8 +28,11 @@ import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail
     RestaurantHomeComponent,
     UserLoginComponent,
     UserRegisterComponent,
-    UserProfileComponent,
-    RestaurantDetailComponent
+    OwnerProfilePrivateComponent,
+    RestaurantDetailComponent,
+    CriticProfileComponent,
+    CriticProfilePrivateComponent,
+    PatronProfilePrivateComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +41,11 @@ import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail
   ],
   providers: [
       RestaurantServiceClient,
-      UserServiceClient
+      UserServiceClient,
+      ReviewServiceClient,
+      CriticServiceClient,
+      OwnerServiceClient,
+      PatronServiceClient
   ],
   bootstrap: [AppComponent]
 })
