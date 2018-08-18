@@ -51,7 +51,7 @@ public class OwnerService {
 		ownerDao.addPatronInviteToOwner(pid, oid);
 	}
 	
-	//GET: update owner to include cid to catronsInvited
+	//GET: update owner to include cid to criticsInvited
 	@GetMapping("/api/critic/{cid}/owner/{oid}")
 	public void addCriticnInviteToOwner(@PathVariable("cid") int cid, @PathVariable("oid") int oid) {
 		ownerDao.addCriticInviteToOwner(cid, oid);
