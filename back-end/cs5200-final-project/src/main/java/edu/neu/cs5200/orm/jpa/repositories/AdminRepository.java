@@ -1,11 +1,9 @@
 package edu.neu.cs5200.orm.jpa.repositories;
 
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-
-//import edu.neu.cs5200.orm.jpa.entities.Admin;
+import edu.neu.cs5200.orm.jpa.entities.Admin;
 
 public interface AdminRepository extends CrudRepository<Admin, Integer>{
 	@Query("SELECT a FROM Admin a WHERE a.username=:username")
