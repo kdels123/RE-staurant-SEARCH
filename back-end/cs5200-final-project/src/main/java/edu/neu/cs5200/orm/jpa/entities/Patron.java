@@ -28,6 +28,10 @@ public class Patron extends User{
 	@JsonIgnore
 	private List<Critic> criticsFollow; //manytomany
 	
+	@ManyToMany
+	@JsonIgnore
+	private List<Owner> ownerInvites;
+	
 	
 	public List<Restaurant> getRestaurantsVisited() {
 		return restaurantsVisited;
@@ -52,6 +56,12 @@ public class Patron extends User{
 	}
 	public void setFavoriteCritic(Critic favoriteCritic) {
 		this.favoriteCritic = favoriteCritic;
+	}
+	public List<Owner> getOwnerInvites() {
+		return ownerInvites;
+	}
+	public void setOwnerInvites(List<Owner> ownerInvites) {
+		this.ownerInvites = ownerInvites;
 	}
 	
 	

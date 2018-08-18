@@ -29,6 +29,10 @@ public class Critic extends User{
 					referencedColumnName="ID"))
 	@JsonIgnore
 	private List<Patron> followers; // manytomany
+	
+	@ManyToMany
+	@JsonIgnore
+	private List<Owner> ownerInvites;
 
 	
 	public String getUrlToOtherWork() {
@@ -48,6 +52,12 @@ public class Critic extends User{
 	}
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
+	}
+	public List<Owner> getOwnerInvites() {
+		return ownerInvites;
+	}
+	public void setOwnerInvites(List<Owner> ownerInvites) {
+		this.ownerInvites = ownerInvites;
 	}
 	
 	
