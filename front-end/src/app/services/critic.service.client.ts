@@ -21,6 +21,12 @@ export class CriticServiceClient {
             });
     }
 
+    // findCriticsByPatron(patronId) {
+    //     return fetch('http://localhost:8080/api/review/' + reviewId + '/critic')
+    //         .then(function (response) { return response.json();
+    //         });
+    // }
+
     findCriticByUsername(username) {
         const user = {
             username: username

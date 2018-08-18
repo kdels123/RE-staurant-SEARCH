@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {PatronServiceClient} from '../services/patron.service.client';
 import {ActivatedRoute, Router} from '@angular/router';
+import {ReviewServiceClient} from '../services/review.service.client';
+import {EventServiceClient} from '../services/event.service.client';
+import {CriticServiceClient} from '../services/critic.service.client';
+import {RestaurantServiceClient} from '../services/restaurant.service.client';
 
 @Component({
   selector: 'app-patron-profile-component',
@@ -10,6 +14,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class PatronProfilePrivateComponent implements OnInit {
 
     constructor(private patronService: PatronServiceClient,
+                private restaurantService: RestaurantServiceClient,
+                private eventService: EventServiceClient,
+                private criticService: CriticServiceClient,
                 private router: Router,
                 private route: ActivatedRoute) {
         this.route.params.subscribe(params => this.loadUser(params['patronId']));
@@ -24,8 +31,13 @@ export class PatronProfilePrivateComponent implements OnInit {
     phone;
     dob;
 
-    loadUser(ownerId) {
-        this.userId = ownerId;
+    restaurants;
+    critics;
+    events;
+    favoriteCritic;
+
+    loadUser(patronId) {
+        this.userId = patronId;
         this.patronService.findPatronById(this.userId)
             .then(user => this.loadProfile(user));
     }
@@ -36,6 +48,12 @@ export class PatronProfilePrivateComponent implements OnInit {
         this.lastName = user.lastName;
         this.email = user.email;
         this.phone = user.phone;
+        this.restaurantService.findRestaurantsByPatron(user.id).then(
+            restaurants => this.restaurants = restaurants);
+        // this.criticService.findCriticsByPatron(user.id).then(
+        //     critics => this.critics = critics);
+        // this.eventService.findEventsByPatron(user.id).then(
+        //     events => this.events = events);
         this.dob = this.styleDate(user.dob);
     }
 
