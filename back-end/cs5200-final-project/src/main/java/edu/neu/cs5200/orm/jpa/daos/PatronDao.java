@@ -12,12 +12,15 @@ import edu.neu.cs5200.orm.jpa.entities.Event;
 import edu.neu.cs5200.orm.jpa.entities.Patron;
 import edu.neu.cs5200.orm.jpa.entities.Restaurant;
 import edu.neu.cs5200.orm.jpa.repositories.PatronRepository;
+import edu.neu.cs5200.orm.jpa.repositories.RestaurantRepository;
 
 
 @Component
 public class PatronDao {
 	@Autowired
 	PatronRepository patronRepository;
+	@Autowired
+	RestaurantRepository restaurantRepository;
 	@Autowired
 	CriticDao criticDao;
 	
@@ -138,6 +141,32 @@ public class PatronDao {
 	// Find Patron by credentials (username and password)
 	public Patron findPatronByCredentials(String username, String password) {
 		return patronRepository.findPatronByCredentials(username, password);
+	}
+	
+	// UPDATE Patron add restaurantId to patron
+	public void addRestaurantToPatron(int rid, int pid) {
+		Optional<Restaurant> optionalRestaurant = restaurantRepository.findById(rid);
+		Optional<Patron> optionalPatron = findPatronById(pid);
+		
+		List<Restaurant> restaurantsVisited;
+		List<Patron> patronVisitors;
+		
+		if (optionalPatron.isPresent() && optionalRestaurant.isPresent()) {
+			Patron patron = optionalPatron.get();
+			Restaurant restaurant = optionalRestaurant.get();
+			
+			restaurantsVisited = patron.getRestaurantsVisited();
+			restaurantsVisited.add(restaurant);
+			
+			patronVisitors = restaurant.getPatrons();
+			patronVisitors.add(patron);
+		
+			restaurant.setPatrons(patronVisitors);
+			restaurantRepository.save(restaurant);
+			
+			patron.setRestaurantsVisited(restaurantsVisited);
+			patronRepository.save(patron);
+		}
 	}
 		
 	// UPDATE Patron

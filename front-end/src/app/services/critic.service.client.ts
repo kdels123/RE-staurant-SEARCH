@@ -14,6 +14,19 @@ export class CriticServiceClient {
             });
     }
 
+    findCriticByUsername(username) {
+        const user = {
+            username: username
+        };
+        return fetch('http://localhost:8080/api/username', {
+            method: 'post',
+            body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            }
+        }).then(response => response.json());
+    }
+
     createCritic(username, password) {
         const user = {
             username: username,

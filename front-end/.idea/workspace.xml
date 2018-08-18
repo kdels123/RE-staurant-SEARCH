@@ -41,11 +41,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="restaurant-detail.component.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="restaurant-detail.component.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/restaurant-detail/restaurant-detail.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="64" column="75" selection-start-line="64" selection-start-column="75" selection-end-line="64" selection-end-column="75" />
+            <state relative-caret-position="358">
+              <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
               </folding>
@@ -53,29 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="restaurant.service.client.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/services/restaurant.service.client.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="43" column="45" selection-start-line="43" selection-start-column="45" selection-end-line="43" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="review.service.client.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/services/review.service.client.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="111" lean-forward="true" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="111" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="patron.service.client.ts" pinned="false" current-in-tab="false">
+      <file leaf-file-name="patron.service.client.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/services/patron.service.client.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="43" column="100" selection-start-line="43" selection-start-column="100" selection-end-line="43" selection-end-column="100" />
+            <state relative-caret-position="385">
+              <caret line="56" column="101" selection-start-line="56" selection-start-column="101" selection-end-line="56" selection-end-column="101" />
             </state>
           </provider>
         </entry>
@@ -83,12 +65,21 @@
       <file leaf-file-name="restaurant-detail.component.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/restaurant-detail/restaurant-detail.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="23" column="26" lean-forward="true" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+            <state relative-caret-position="291">
+              <caret line="20" column="33" lean-forward="true" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
               <folding>
                 <element signature="n#style#0;n#img#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="critic-profile.component.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/critic-profile/critic-profile.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="36" lean-forward="true" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -118,33 +109,33 @@
         <option value="$PROJECT_DIR$/src/app/app.component.html" />
         <option value="$PROJECT_DIR$/src/app/user-profile/user-profile.component.html" />
         <option value="$PROJECT_DIR$/src/app/user-profile/user-profile.component.ts" />
-        <option value="$PROJECT_DIR$/src/app/user-login/user-login.component.html" />
         <option value="$PROJECT_DIR$/src/app/user-register/user-register.component.html" />
         <option value="$PROJECT_DIR$/src/app/services/restaurant.service.client.ts" />
         <option value="$PROJECT_DIR$/src/app/critic-profile-private/critic-profile-private.component.html" />
         <option value="$PROJECT_DIR$/src/app/critic-profile-private/critic-profile-private.component.ts" />
         <option value="$PROJECT_DIR$/src/app/services/review.service.client.ts" />
         <option value="$PROJECT_DIR$/src/app/critic-profile/critic-profile.component.ts" />
-        <option value="$PROJECT_DIR$/src/app/critic-profile/critic-profile.component.html" />
         <option value="$PROJECT_DIR$/src/app/patron-profile-component/patron-profile-component.component.ts" />
         <option value="$PROJECT_DIR$/src/app/patron-profile/patron-profile-component.component.ts" />
         <option value="$PROJECT_DIR$/src/app/patron-profile-private/patron-profile-component.component.ts" />
         <option value="$PROJECT_DIR$/src/app/user-login/user-login.component.ts" />
         <option value="$PROJECT_DIR$/src/app/app.routing.ts" />
         <option value="$PROJECT_DIR$/src/app/app.module.ts" />
-        <option value="$PROJECT_DIR$/src/app/services/user.service.client.ts" />
         <option value="$PROJECT_DIR$/src/app/services/owner.service.client.ts" />
         <option value="$PROJECT_DIR$/src/app/user-register/user-register.component.ts" />
         <option value="$PROJECT_DIR$/src/app/owner-profile-private/owner-profile-private.component.html" />
         <option value="$PROJECT_DIR$/src/app/patron-profile-private/patron-profile-private.component.html" />
-        <option value="$PROJECT_DIR$/src/app/services/critic.service.client.ts" />
         <option value="$PROJECT_DIR$/src/app/patron-profile-private/patron-profile-private.component.ts" />
         <option value="$PROJECT_DIR$/src/app/owner-profile-private/owner-profile-private.component.ts" />
         <option value="$PROJECT_DIR$/src/app/restaurant-search/restaurant-search.component.html" />
         <option value="$PROJECT_DIR$/src/app/restaurant-search/restaurant-search.component.ts" />
-        <option value="$PROJECT_DIR$/src/app/services/patron.service.client.ts" />
-        <option value="$PROJECT_DIR$/src/app/restaurant-detail/restaurant-detail.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/services/critic.service.client.ts" />
+        <option value="$PROJECT_DIR$/src/app/services/user.service.client.ts" />
+        <option value="$PROJECT_DIR$/src/app/user-login/user-login.component.html" />
+        <option value="$PROJECT_DIR$/src/app/critic-profile/critic-profile.component.html" />
         <option value="$PROJECT_DIR$/src/app/restaurant-detail/restaurant-detail.component.html" />
+        <option value="$PROJECT_DIR$/src/app/restaurant-detail/restaurant-detail.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/services/patron.service.client.ts" />
       </list>
     </option>
   </component>
@@ -197,14 +188,14 @@
               <item name="front-end" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
+              <item name="critic-profile" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="front-end" type="b2602c69:ProjectViewProjectNode" />
               <item name="front-end" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="user-login" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="front-end" type="b2602c69:ProjectViewProjectNode" />
@@ -260,15 +251,16 @@
       <workItem from="1533768552368" duration="3252000" />
       <workItem from="1534424843317" duration="19445000" />
       <workItem from="1534517777319" duration="786000" />
-      <workItem from="1534526813647" duration="12405000" />
+      <workItem from="1534526813647" duration="14986000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64832000" />
+    <option name="totallyTimeSpent" value="67413000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TypeScript" order="7" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21842733" />
@@ -450,17 +442,6 @@
     <entry file="file://$PROJECT_DIR$/src/app/user-register/user-register.component.spec.ts">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/user-register/user-register.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="8" lean-forward="true" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
-          <folding>
-            <element signature="n#style#0;n#button#0;n#div#4;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#1;n#div#4;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/restaurant-home/restaurant-home.component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -470,20 +451,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/user-login/user-login.component.css">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/user-login/user-login.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="41" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/critic-profile/critic-profile.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/app.routing.ts">
       <provider selected="true" editor-type-id="text-editor">
@@ -597,27 +564,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/services/critic.service.client.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/services/user.service.client.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="32" selection-start-column="32" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/services/restaurant.service.client.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="43" column="45" selection-start-line="43" selection-start-column="45" selection-end-line="43" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/services/owner.service.client.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -635,6 +581,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/services/user.service.client.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/services/review.service.client.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -642,17 +595,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/services/patron.service.client.ts">
+    <entry file="file://$PROJECT_DIR$/src/app/services/restaurant.service.client.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="43" column="100" selection-start-line="43" selection-start-column="100" selection-end-line="43" selection-end-column="100" />
+        <state relative-caret-position="645">
+          <caret line="43" column="45" selection-start-line="43" selection-start-column="45" selection-end-line="43" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/services/critic.service.client.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" selection-start-line="16" selection-end-line="27" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/user-register/user-register.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="102" selection-start-line="10" selection-start-column="87" selection-end-line="10" selection-end-column="102" />
+          <folding>
+            <element signature="n#style#0;n#button#0;n#div#4;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#1;n#div#4;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/user-login/user-login.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="26" lean-forward="true" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/restaurant-detail/restaurant-detail.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="23" column="26" lean-forward="true" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+        <state relative-caret-position="291">
+          <caret line="20" column="33" lean-forward="true" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
           <folding>
             <element signature="n#style#0;n#img#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
@@ -660,13 +638,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/critic-profile/critic-profile.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="36" lean-forward="true" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/restaurant-detail/restaurant-detail.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="64" column="75" selection-start-line="64" selection-start-column="75" selection-end-line="64" selection-end-column="75" />
+        <state relative-caret-position="358">
+          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/services/patron.service.client.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="56" column="101" selection-start-line="56" selection-start-column="101" selection-end-line="56" selection-end-column="101" />
         </state>
       </provider>
     </entry>

@@ -47,6 +47,12 @@ public class PatronService {
 		return patronDao.createPatron(patron);
 	}
 	
+	// PUT: Update patron to include the restaurantId
+	@GetMapping("/api/restaurant/{rid}/patron/{pid}")
+	public void addRestaurantToPatron(@PathVariable("rid") int rid, @PathVariable("pid") int pid) {
+		patronDao.addRestaurantToPatron(rid, pid);
+	}
+	
 	//PUT: Update patron instance whose primary key is pid
 	@PutMapping("/api/patron/{pid}")
 	public void updatePatron(@PathVariable("pid") int id, @RequestBody Patron newPatron) {
