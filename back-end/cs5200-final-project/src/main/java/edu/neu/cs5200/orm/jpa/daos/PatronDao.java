@@ -1,5 +1,6 @@
 package edu.neu.cs5200.orm.jpa.daos;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +14,9 @@ import edu.neu.cs5200.orm.jpa.entities.Owner;
 import edu.neu.cs5200.orm.jpa.entities.Patron;
 import edu.neu.cs5200.orm.jpa.entities.Restaurant;
 import edu.neu.cs5200.orm.jpa.entities.Review;
+import edu.neu.cs5200.orm.jpa.repositories.CriticRepository;
+import edu.neu.cs5200.orm.jpa.repositories.EventRepository;
+import edu.neu.cs5200.orm.jpa.repositories.OwnerRepository;
 import edu.neu.cs5200.orm.jpa.repositories.PatronRepository;
 import edu.neu.cs5200.orm.jpa.repositories.RestaurantRepository;
 
@@ -24,9 +28,19 @@ public class PatronDao {
 	@Autowired
 	RestaurantRepository restaurantRepository;
 	@Autowired
+	EventRepository eventRepository;
+	@Autowired
+	CriticRepository criticRepository;
+	@Autowired
+	OwnerRepository ownerRepository;
+	@Autowired
 	CriticDao criticDao;
 	@Autowired
 	RestaurantDao restaurantDao;
+	@Autowired
+	OwnerDao ownerDao;
+	@Autowired
+	EventDao eventDao;
 	
 	public void test() {
 //		//Delete all Patron
@@ -70,8 +84,20 @@ public class PatronDao {
 		patron2.setLastName("Chan");
 		patron2.setUsername("chrisC");
 		patron2.setPassword("chris123");
-		createPatron(patron2);
 		
+		//endorse Owner
+		Owner owner = new Owner();
+		owner.setFirstName("Ken");
+		owner.setLastName("Oringer");
+		owner.setPhone("617-536-4300");
+		owner.setUsername("kenO");
+		owner.setPassword("ken123");
+		List<Owner> ownersEndorsed = new ArrayList<Owner>();
+		ownersEndorsed.add(owner);
+		
+		patron2.setOwnersEndorsed(ownersEndorsed);
+		
+		createPatron(patron2);
 	}
 	
 	// CREATE Patron
@@ -81,7 +107,27 @@ public class PatronDao {
 			Critic c = criticDao.findCriticByUsername(patron.getFavoriteCritic().getUsername());
 			patron.setFavoriteCritic(c);
 		}
+//		if(patron.getOwnersEndorsed() != null) {
+//			for (Owner o : patron.getOwnersEndorsed()) {
+//				ownerDao.createOwner(o);
+//				o = ownerDao.findOwnerByUsername(o.getUsername());
+//				patron.getOwnersEndorsed().add(o);
+//			}
+//		}
+//		if(patron.getRestaurantsVisited() != null) {
+//			for (Restaurant r : patron.getRestaurantsVisited()) {
+//				restaurantDao.createRestaurant(r);
+//				r = restaurantDao.findRestaurantByName(r.getName());
+//				patron.getRestaurantsVisited().add(r);
+//			}
+//		}
+		
 		if(!existPatron(patron)) {
+			if(patron.getFavoriteCritic() != null) {
+				criticDao.createCritic(patron.getFavoriteCritic());
+				Critic c = criticDao.findCriticByUsername(patron.getFavoriteCritic().getUsername());
+				patron.setFavoriteCritic(c);
+			}
 			return patronRepository.save(patron);
 		}
 		return null;
@@ -245,6 +291,85 @@ public class PatronDao {
 			patronRepository.save(patron);
 		}
 	}
+	
+	// UPDATE Patron add eventId to patron
+	public void addEventToPatron(int eid, int pid) {
+		Optional<Event> optionalEvent = eventDao.findEventById(eid);
+		Optional<Patron> optionalPatron = findPatronById(pid);
+		
+		List<Event> eventsAttended;
+		List<Patron> patronAttended;
+		
+		if (optionalPatron.isPresent() && optionalEvent.isPresent()) {
+			Patron patron = optionalPatron.get();
+			Event event = optionalEvent.get();
+			
+			eventsAttended = patron.getEventsAttended();
+			eventsAttended.add(event);
+			
+			patronAttended = event.getPatronAttendees();
+			patronAttended.add(patron);
+		
+			event.setPatronAttendees(patronAttended);
+			eventRepository.save(event);
+			
+			patron.setEventsAttended(eventsAttended);
+			patronRepository.save(patron);
+		}
+	}
+		
+	// UPDATE Patron add critic to patron criticsFollow
+	public void addCriticToPatron(int cid, int pid) {
+		Optional<Critic> optionalCritic = criticDao.findCriticById(cid);
+		Optional<Patron> optionalPatron = findPatronById(pid);
+		
+		List<Critic> criticsFollow;
+		List<Patron> patronFollowers;
+		
+		if (optionalPatron.isPresent() && optionalCritic.isPresent()) {
+			Patron patron = optionalPatron.get();
+			Critic critic = optionalCritic.get();
+			
+			criticsFollow = patron.getCriticsFollow();
+			criticsFollow.add(critic);
+			
+			patronFollowers = critic.getFollowers();
+			patronFollowers.add(patron);
+		
+			critic.setFollowers(patronFollowers);
+			criticRepository.save(critic);
+
+			patron.setCriticsFollow(criticsFollow);
+			patronRepository.save(patron);
+		}
+	}
+		
+	// UPDATE Patron add oid to patron's ownersEndorsed
+	public void addOwnerToPatronEndorsed(int oid, int pid) {
+		Optional<Owner> optionalOwner = ownerDao.findOwnerById(oid);
+		Optional<Patron> optionalPatron = findPatronById(pid);
+		
+		List<Owner> ownersEndorsed;
+		List<Patron> patronEndorsements;
+		
+		if (optionalPatron.isPresent() && optionalOwner.isPresent()) {
+			Patron patron = optionalPatron.get();
+			Owner owner = optionalOwner.get();
+			
+			ownersEndorsed = patron.getOwnersEndorsed();
+			ownersEndorsed.add(owner);
+			
+			patronEndorsements = owner.getPatronEndorsements();
+			patronEndorsements.add(patron);
+			
+			owner.setPatronEndorsements(patronEndorsements);
+			ownerRepository.save(owner);
+			
+			patron.setOwnersEndorsed(ownersEndorsed);
+			patronRepository.save(patron);
+		}
+	}
+		
 		
 	// UPDATE Patron
 	public void updatePatron(int id, Patron newPatron) {

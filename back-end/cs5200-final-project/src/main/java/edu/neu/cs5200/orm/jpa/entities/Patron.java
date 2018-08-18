@@ -33,11 +33,11 @@ public class Patron extends User{
 	@JsonIgnore
 	private List<Critic> criticsBlockedBy; //manytomany
 	
-	@ManyToMany
+	@ManyToMany(mappedBy="patronsInvited")
 	@JsonIgnore
 	private List<Owner> ownerInvites;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy="patronEndorsements")
 	@JsonIgnore
 	private List<Owner> ownersEndorsed;
 	

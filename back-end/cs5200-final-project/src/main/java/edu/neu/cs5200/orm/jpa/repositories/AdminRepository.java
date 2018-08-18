@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 import edu.neu.cs5200.orm.jpa.entities.Admin;
 
 public interface AdminRepository extends CrudRepository<Admin, Integer>{
-	@Query("SELECT a FROM Admind a WHERE a.username=:username")
+	@Query("SELECT a FROM Admin a WHERE a.username=:username")
 	Admin findAdminByUsername (@Param("username") String username);
 	
 	@Query("SELECT u FROM Admin u WHERE u.username=:username AND u.password=:password")

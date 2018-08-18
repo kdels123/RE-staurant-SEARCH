@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import edu.neu.cs5200.orm.jpa.entities.Critic;
 import edu.neu.cs5200.orm.jpa.entities.Event;
 import edu.neu.cs5200.orm.jpa.entities.Owner;
+import edu.neu.cs5200.orm.jpa.entities.Patron;
 import edu.neu.cs5200.orm.jpa.entities.Restaurant;
 import edu.neu.cs5200.orm.jpa.entities.Review;
 import edu.neu.cs5200.orm.jpa.repositories.OwnerRepository;
@@ -20,6 +21,10 @@ public class OwnerDao {
 	OwnerRepository ownerRepository;
 	@Autowired
 	EventDao eventDao;
+	@Autowired
+	PatronDao patronDao;
+	@Autowired
+	CriticDao criticDao;
 	
 	public void test() {
 		//Delete all owners
@@ -86,6 +91,76 @@ public class OwnerDao {
 	public Owner findOwnerByCredentials(String username, String password) {
 		return ownerRepository.findOwnerByCredentials(username, password);
 	}
+	
+	
+//	// UPDATE Patron add eventId to patron
+//		public void addEventToPatron(int eid, int pid) {
+//			Optional<Event> optionalEvent = eventDao.findEventById(eid);
+//			Optional<Patron> optionalPatron = findPatronById(pid);
+//			
+//			List<Event> eventsAttended;
+//			List<Patron> patronAttended;
+//			
+//			if (optionalPatron.isPresent() && optionalEvent.isPresent()) {
+//				Patron patron = optionalPatron.get();
+//				Event event = optionalEvent.get();
+//				
+//				eventsAttended = patron.getEventsAttended();
+//				eventsAttended.add(event);
+//				
+//				patronAttended = event.getPatronAttendees();
+//				patronAttended.add(patron);
+//			
+//				event.setPatronAttendees(patronAttended);
+//				eventRepository.save(event);
+//				
+//				patron.setEventsAttended(eventsAttended);
+//				patronRepository.save(patron);
+//			}
+//		}
+	
+	// Update Owner add patronId to patronsInvited
+	public void addPatronInviteToOwner(int pid, int oid) {
+		Optional <Owner> optionalOwner = findOwnerById(oid);
+		Optional <Patron> optionalPatron = patronDao.findPatronById(pid);
+		
+		List<Patron> patronsInvited;
+		
+		if (optionalOwner.isPresent() && optionalPatron.isPresent()) {
+			Owner owner = optionalOwner.get();
+			Patron patron = optionalPatron.get();
+			
+			patronsInvited = owner.getPatronsInvited();
+			patronsInvited.add(patron);
+			
+			owner.setPatronsInvited(patronsInvited);
+			ownerRepository.save(owner);
+			
+		}
+	}
+	
+	// Update Owner add criticId to criticsInvited
+		public void addCriticInviteToOwner(int cid, int oid) {
+			Optional <Owner> optionalOwner = findOwnerById(oid);
+			Optional <Critic> optionalCritic = criticDao.findCriticById(cid);
+			
+			List<Critic> criticsInvited;
+			
+			if (optionalOwner.isPresent() && optionalCritic.isPresent()) {
+				Owner owner = optionalOwner.get();
+				Critic critic = optionalCritic.get();
+				
+				criticsInvited = owner.getCriticsInvited();
+				criticsInvited.add(critic);
+				
+				owner.setCriticsInvited(criticsInvited);
+				ownerRepository.save(owner);
+				
+			}
+		}
+	
+	
+	
 	
 	// UPDATE Owner
 	public void updateOwner(int id, Owner newOwner) {

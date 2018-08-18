@@ -41,11 +41,11 @@ public class Critic extends User{
 	@JsonIgnore
 	private List<Patron> blockedFollowers;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy="criticsInvited")
 	@JsonIgnore
 	private List<Owner> ownerInvites;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy="criticEndorsements")
 	@JsonIgnore
 	private List<Owner> ownersEndorsed;
 	

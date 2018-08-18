@@ -45,6 +45,25 @@ public class CriticService {
 		return criticDao.findCritcByReviewId(rid);
 	}
 	
+	//GET: Update critic to include patronId for blockedFollower
+	@GetMapping("/api/patron/{pid}/critic/{cid}")
+	public void addBlockedPatronToCritic(@PathVariable("pid") int pid, @PathVariable("cid") int cid) {
+		criticDao.addBlockedPatronToCritic(pid, cid);
+	}
+	
+	//GET: update critic to include eventId
+	@GetMapping("/api/event/{eid}/critic/{cid}")
+	public void addEventToCritic(@PathVariable("eid") int eid, @PathVariable("cid") int cid) {
+		criticDao.addEventToCritic(eid, cid);
+	}
+	
+	//GET: update critic to include ownerId for owner endorsement
+	@GetMapping("/api/owner/{oid}/critic/{cid}")
+	public void addOwnerToCriticEndorsed(@PathVariable("oid") int oid, @PathVariable("cid") int cid) {
+		criticDao.addOwnerToCriticEndorsed(oid, cid);
+	}
+	
+	
 	//DELETE: Delete critic instance whose primary key is cid
 	@DeleteMapping("/api/critic/{cid}")
 	public void deleteCriticById(@PathVariable("cid") int id) {
@@ -63,6 +82,9 @@ public class CriticService {
 	public void updateCritic(@PathVariable("cid")int id, @RequestBody Critic newCritic) {
 		criticDao.updateCritic(id, newCritic);
 	}
+	
+	
+	
 	
 	//Post: Get Critic instance by credentials (username and password)
 	@PostMapping("/api/critic/login")
