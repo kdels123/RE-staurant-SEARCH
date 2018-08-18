@@ -41,7 +41,6 @@ public class Critic extends User{
 	@JsonIgnore
 	private List<Patron> blockedFollowers;
 	
-	
 	@ManyToMany
 	@JsonIgnore
 	private List<Owner> ownerInvites;
@@ -49,6 +48,10 @@ public class Critic extends User{
 	@ManyToMany
 	@JsonIgnore
 	private List<Owner> ownersEndorsed;
+	
+	@ManyToMany(mappedBy="criticAttendees")
+	@JsonIgnore
+	private List<Event> eventsAttended; //manytomany
 
 	public String getUrlToOtherWork() {
 		return urlToOtherWork;
@@ -84,12 +87,19 @@ public class Critic extends User{
 			}
 		}
 		this.blockedFollowers = blockedFollowers;
+		
 	}
 	public List<Owner> getOwnersEndorsed() {
 		return ownersEndorsed;
 	}
 	public void setOwnersEndorsed(List<Owner> ownersEndorsed) {
 		this.ownersEndorsed = ownersEndorsed;
+	}
+	public List<Event> getEventsAttended() {
+		return eventsAttended;
+	}
+	public void setEventsAttended(List<Event> eventsAttended) {
+		this.eventsAttended = eventsAttended;
 	}
 	
 	

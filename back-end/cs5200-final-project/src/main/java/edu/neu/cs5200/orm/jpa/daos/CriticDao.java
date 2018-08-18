@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import edu.neu.cs5200.orm.jpa.entities.Critic;
+import edu.neu.cs5200.orm.jpa.entities.Event;
+import edu.neu.cs5200.orm.jpa.entities.Owner;
 import edu.neu.cs5200.orm.jpa.entities.Patron;
 import edu.neu.cs5200.orm.jpa.entities.Review;
 import edu.neu.cs5200.orm.jpa.repositories.CriticRepository;
@@ -58,8 +60,8 @@ public class CriticDao {
 		List<Patron> blockedFollowers = new ArrayList<Patron> ();
 		blockedFollowers.add(patron);
 		
-//		critic2.setFollowers(followers);
-//		critic2.setBlockedFollowers(blockedFollowers);
+		critic2.setFollowers(followers);
+		critic2.setBlockedFollowers(blockedFollowers);
 		createCritic(critic2);
 	}
 	
@@ -73,6 +75,16 @@ public class CriticDao {
 				followers.add(p);
 			}
 			critic.setFollowers(followers);
+		}
+		
+		if(critic.getBlockedFollowers() != null) {
+			List<Patron> blockedFollowers = new ArrayList<Patron>();
+			for (Patron p : critic.getBlockedFollowers()) {
+				patronDao.createPatron(p);
+				p = patronDao.findPatronByUsername(p.getUsername());
+				blockedFollowers.add(p);
+			}
+			critic.setBlockedFollowers(blockedFollowers);
 		}
 		
 		if(!existCritic(critic)) {
@@ -89,6 +101,22 @@ public class CriticDao {
 			patronRepository.save(p);
 			
 		}
+		List<Critic> criticList = (List<Critic>) criticRepository.findAll();
+		for (Critic c : criticList) {
+			for (Owner o : c.getOwnerInvites()) {
+				List<Critic> criticsInvited = o.getCriticsInvited();
+				criticsInvited.remove(c);
+			}
+			for (Owner o : c.getOwnersEndorsed()) {
+				List<Critic> criticEndorsements = o.getCriticEndorsements();
+				criticEndorsements.remove(c);
+			}
+			for (Event e : c.getEventsAttended()) {
+				List<Critic> criticAttendees = e.getCriticAttendees();
+				criticAttendees.remove(c);
+			}
+		}
+		
 		criticRepository.deleteAll();
 	}
 		
@@ -104,6 +132,23 @@ public class CriticDao {
 			}
 			
 		}
+		Optional<Critic> optional = criticRepository.findById(critic.getId());
+		if (optional.isPresent()) {
+			Critic c = optional.get();	
+			for (Owner o : c.getOwnerInvites()) {
+				List<Critic> criticsInvited = o.getCriticsInvited();
+				criticsInvited.remove(c);
+			}
+			for (Owner o : c.getOwnersEndorsed()) {
+				List<Critic> criticEndorsements = o.getCriticEndorsements();
+				criticEndorsements.remove(c);
+			}
+			for (Event e : c.getEventsAttended()) {
+				List<Critic> criticAttendees = e.getCriticAttendees();
+				criticAttendees.remove(c);
+			}
+		}
+		
 		criticRepository.delete(critic);
 	}
 		
@@ -117,6 +162,23 @@ public class CriticDao {
 					patronRepository.save(p);
 				}
 				
+			}
+		}
+		
+		Optional<Critic> optional = criticRepository.findById(id);
+		if (optional.isPresent()) {
+			Critic c = optional.get();	
+			for (Owner o : c.getOwnerInvites()) {
+				List<Critic> criticsInvited = o.getCriticsInvited();
+				criticsInvited.remove(c);
+			}
+			for (Owner o : c.getOwnersEndorsed()) {
+				List<Critic> criticEndorsements = o.getCriticEndorsements();
+				criticEndorsements.remove(c);
+			}
+			for (Event e : c.getEventsAttended()) {
+				List<Critic> criticAttendees = e.getCriticAttendees();
+				criticAttendees.remove(c);
 			}
 		}
 		criticRepository.deleteById(id);

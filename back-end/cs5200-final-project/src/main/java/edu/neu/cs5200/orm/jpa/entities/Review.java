@@ -25,6 +25,10 @@ public class Review {
 	@JsonIgnore
 	private Restaurant restaurant;
 	
+	@ManyToOne
+	@JsonIgnore
+	private Event event;
+	
 	
 	public int getId() {
 		return id;

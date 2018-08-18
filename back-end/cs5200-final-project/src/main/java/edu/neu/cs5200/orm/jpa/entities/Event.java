@@ -3,6 +3,7 @@ package edu.neu.cs5200.orm.jpa.entities;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +12,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -45,7 +47,24 @@ public class Event {
 					name="PATRON_ID",
 					referencedColumnName="ID"))
 	@JsonIgnore
-	private List<Patron> attendees; //manytomany
+	private List<Patron> patronAttendees; //manytomany
+	
+	@ManyToMany
+	@JoinTable(name="Event2Critic",
+			joinColumns=@JoinColumn(
+					name="EVENT_ID",
+					referencedColumnName = "ID"),
+			inverseJoinColumns=@JoinColumn(
+					name="Critic_ID",
+					referencedColumnName="ID"))
+	@JsonIgnore
+	private List<Critic> criticAttendees; //manytomany
+	
+	
+	@OneToMany(mappedBy="event", cascade=CascadeType.ALL)
+	@JsonIgnore
+	private List<Review> reviews; //1tomany
+	
 	
 	public int getId() {
 		return id;
@@ -101,11 +120,11 @@ public class Event {
 	public void setAttire(String attire) {
 		this.attire = attire;
 	}
-	public List<Patron> getAttendees() {
-		return attendees;
+	public List<Patron> getPatronAttendees() {
+		return patronAttendees;
 	}
-	public void setAttendees(List<Patron> attendees) {
-		this.attendees = attendees;
+	public void setPatronAttendees(List<Patron> patronAttendees) {
+		this.patronAttendees = patronAttendees;
 	}
 	public Restaurant getRestaurant() {
 		return restaurant;
@@ -118,6 +137,12 @@ public class Event {
 	}
 	public void setOwner(Owner owner) {
 		this.owner = owner;
+	}
+	public List<Critic> getCriticAttendees() {
+		return criticAttendees;
+	}
+	public void setCriticAttendees(List<Critic> criticAttendees) {
+		this.criticAttendees = criticAttendees;
 	}
 	
 	

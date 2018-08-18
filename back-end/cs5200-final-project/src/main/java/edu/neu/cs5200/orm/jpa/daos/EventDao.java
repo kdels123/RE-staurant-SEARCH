@@ -59,15 +59,15 @@ public class EventDao {
 			event.setRestaurant(restaurantDao.findRestaurantByName(event.getRestaurant().getName()));
 		}
 		
-		if (event.getAttendees() != null) {
+		if (event.getPatronAttendees() != null) {
 			Patron newPatron = new Patron();
 			List<Patron> patronList = new ArrayList<Patron>();
-			for (Patron p : event.getAttendees()) {
+			for (Patron p : event.getPatronAttendees()) {
 				patronDao.createPatron(p);
 				newPatron = patronDao.findPatronByUsername(p.getUsername());
 				patronList.add(newPatron);
 			}
-			event.setAttendees(patronList);
+			event.setPatronAttendees(patronList);
 		}
 				
 		if(!existEvent(event)) {
@@ -78,7 +78,7 @@ public class EventDao {
 			newEvent.setPrice(event.getPrice());
 			newEvent.setAttire(event.getAttire());
 			
-			newEvent.setAttendees(event.getAttendees());
+			newEvent.setPatronAttendees(event.getPatronAttendees());
 			newEvent.setOwner(ownerDao.findOwnerById(ownerId).get());
 			newEvent.setRestaurant(restaurantDao.findRestaurantById(restaurantId).get());
 		
@@ -99,15 +99,15 @@ public class EventDao {
 			event.setRestaurant(restaurantDao.findRestaurantByName(event.getRestaurant().getName()));
 		}
 		
-		if (event.getAttendees() != null) {
+		if (event.getPatronAttendees() != null) {
 			Patron newPatron = new Patron();
 			List<Patron> patronList = new ArrayList<Patron>();
-			for (Patron p : event.getAttendees()) {
+			for (Patron p : event.getPatronAttendees()) {
 				patronDao.createPatron(p);
 				newPatron = patronDao.findPatronByUsername(p.getUsername());
 				patronList.add(newPatron);
 			}
-			event.setAttendees(patronList);
+			event.setPatronAttendees(patronList);
 		}
 				
 		if(!existEvent(event)) {
@@ -118,7 +118,7 @@ public class EventDao {
 			newEvent.setPrice(event.getPrice());
 			newEvent.setAttire(event.getAttire());
 			
-			newEvent.setAttendees(event.getAttendees());
+			newEvent.setPatronAttendees(event.getPatronAttendees());
 			newEvent.setOwner(ownerDao.createOwner(event.getOwner()));
 			
 			if(event.getRestaurant() != null) {
@@ -173,7 +173,7 @@ public class EventDao {
 			String title = newEvent.getTitle() != null ? newEvent.getTitle() : currEvent.getTitle();
 			Owner owner = newEvent.getOwner() != null ? newEvent.getOwner() : currEvent.getOwner();
 			Restaurant restaurant = newEvent.getRestaurant() != null ? newEvent.getRestaurant() : currEvent.getRestaurant();
-			List<Patron> attendees = newEvent.getAttendees() != null ? newEvent.getAttendees() : currEvent.getAttendees();
+			List<Patron> attendees = newEvent.getPatronAttendees() != null ? newEvent.getPatronAttendees() : currEvent.getPatronAttendees();
 			
 //				currEvent.setAddress(address);
 //				currEvent.setAttire(attire);
@@ -185,7 +185,7 @@ public class EventDao {
 			currEvent.setTitle(title);
 			currEvent.setOwner(owner);
 			currEvent.setRestaurant(restaurant);
-			currEvent.setAttendees(attendees);
+			currEvent.setPatronAttendees(attendees);
 			
 			eventRepository.save(currEvent);
 		}

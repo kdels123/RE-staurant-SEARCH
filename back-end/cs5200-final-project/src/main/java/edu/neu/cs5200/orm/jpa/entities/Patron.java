@@ -21,13 +21,17 @@ public class Patron extends User{
 	@JsonIgnore
 	private List<Restaurant> restaurantsVisited; //manytomany
 	
-	@ManyToMany(mappedBy="attendees")
+	@ManyToMany(mappedBy="patronAttendees")
 	@JsonIgnore
 	private List<Event> eventsAttended; //manytomany
 	
 	@ManyToMany(mappedBy="followers")
 	@JsonIgnore
 	private List<Critic> criticsFollow; //manytomany
+	
+	@ManyToMany(mappedBy="blockedFollowers")
+	@JsonIgnore
+	private List<Critic> criticsBlockedBy; //manytomany
 	
 	@ManyToMany
 	@JsonIgnore
@@ -79,9 +83,18 @@ public class Patron extends User{
 	public void setOwnerInvites(List<Owner> ownerInvites) {
 		this.ownerInvites = ownerInvites;
 	}
-	
-	
-	
+	public List<Critic> getCriticsBlockedBy() {
+		return criticsBlockedBy;
+	}
+	public void setCriticsBlockedBy(List<Critic> criticsBlockedBy) {
+		this.criticsBlockedBy = criticsBlockedBy;
+	}
+	public List<Owner> getOwnersEndorsed() {
+		return ownersEndorsed;
+	}
+	public void setOwnersEndorsed(List<Owner> ownersEndorsed) {
+		this.ownersEndorsed = ownersEndorsed;
+	}
 	
 	
 }

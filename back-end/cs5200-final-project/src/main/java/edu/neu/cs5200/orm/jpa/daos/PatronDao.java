@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import edu.neu.cs5200.orm.jpa.entities.Critic;
 import edu.neu.cs5200.orm.jpa.entities.Event;
+import edu.neu.cs5200.orm.jpa.entities.Owner;
 import edu.neu.cs5200.orm.jpa.entities.Patron;
 import edu.neu.cs5200.orm.jpa.entities.Restaurant;
 import edu.neu.cs5200.orm.jpa.repositories.PatronRepository;
@@ -88,9 +89,29 @@ public class PatronDao {
 	public void deleteAllPatrons() {
 		List<Patron> patronList = (List<Patron>) patronRepository.findAll();
 		for (Patron p: patronList) {
-			for (Critic c:p.getCriticsFollow()) {
+			for (Critic c: p.getCriticsFollow()) {
 				List<Patron> followers = c.getFollowers();
 				followers.remove(p);
+			}
+			for (Critic c: p.getCriticsBlockedBy()) {
+				List<Patron> blockedFollowers = c.getBlockedFollowers();
+				blockedFollowers.remove(p);
+			}
+			for (Owner o : p.getOwnerInvites()) {
+				List<Patron> patronsInvited = o.getPatronsInvited();
+				patronsInvited.remove(p);
+			}
+			for (Owner o : p.getOwnersEndorsed()) {
+				List<Patron> patronEndorsements = o.getPatronEndorsements();
+				patronEndorsements.remove(p);
+			}
+			for (Event e : p.getEventsAttended()) {
+				List<Patron> patronAttendees = e.getPatronAttendees();
+				patronAttendees.remove(p);
+			}
+			for (Restaurant r : p.getRestaurantsVisited()) {
+				List<Patron> patrons = r.getPatrons();
+				patrons.remove(p);
 			}
 		}
 		patronRepository.deleteAll();
@@ -105,6 +126,27 @@ public class PatronDao {
 				List<Patron> followers = c.getFollowers();
 				followers.remove(p);
 			}
+			for (Critic c: p.getCriticsBlockedBy()) {
+				List<Patron> blockedFollowers = c.getBlockedFollowers();
+				blockedFollowers.remove(p);
+			}
+			for (Owner o : p.getOwnerInvites()) {
+				List<Patron> patronsInvited = o.getPatronsInvited();
+				patronsInvited.remove(p);
+			}
+			for (Owner o : p.getOwnersEndorsed()) {
+				List<Patron> patronEndorsements = o.getPatronEndorsements();
+				patronEndorsements.remove(p);
+			}
+			for (Event e : p.getEventsAttended()) {
+				List<Patron> patronAttendees = e.getPatronAttendees();
+				patronAttendees.remove(p);
+			}
+			for (Restaurant r : p.getRestaurantsVisited()) {
+				List<Patron> patrons = r.getPatrons();
+				patrons.remove(p);
+			}
+			
 		}
 		patronRepository.delete(patron);
 	}
@@ -112,11 +154,32 @@ public class PatronDao {
 	// DELETE Patron by ID
 	public void deletePatronById(int id) {
 		Optional<Patron> optional = patronRepository.findById(id);
+		System.out.println("BEFORE LOOP");
 		if(optional.isPresent()) {
-			Patron patron = optional.get();
-			for (Critic c: patron.getCriticsFollow()) {
+			Patron p = optional.get();
+			for (Critic c: p.getCriticsFollow()) {
 				List<Patron> followers = c.getFollowers();
-				followers.remove(patron);
+				followers.remove(p);
+			}
+			for (Critic c: p.getCriticsBlockedBy()) {
+				List<Patron> blockedFollowers = c.getBlockedFollowers();
+				blockedFollowers.remove(p);
+			}
+			for (Owner o : p.getOwnerInvites()) {
+				List<Patron> patronsInvited = o.getPatronsInvited();
+				patronsInvited.remove(p);
+			}
+			for (Owner o : p.getOwnersEndorsed()) {
+				List<Patron> patronEndorsements = o.getPatronEndorsements();
+				patronEndorsements.remove(p);
+			}
+			for (Event e : p.getEventsAttended()) {
+				List<Patron> patronAttendees = e.getPatronAttendees();
+				patronAttendees.remove(p);
+			}
+			for (Restaurant r : p.getRestaurantsVisited()) {
+				List<Patron> patrons = r.getPatrons();
+				patrons.remove(p);
 			}
 		}
 		//List<Critic> criticsFollow = 
