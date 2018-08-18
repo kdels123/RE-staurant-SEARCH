@@ -21,6 +21,12 @@ export class PatronServiceClient {
         }).then(response => response.json());
     }
 
+    findPatronsByRestaurant(restaurantId) {
+        return fetch('http://localhost:8080/api/restaurant/' + restaurantId + '/patron')
+            .then(function (response) { return response.json();
+            });
+    }
+
     createPatron(username, password) {
         const user = {
             username: username,

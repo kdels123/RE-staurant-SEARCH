@@ -35,6 +35,12 @@ public class RestaurantService {
 	public Optional<Restaurant> findRestaurantById (@PathVariable("rid") int id) {
 		return restaurantDao.findRestaurantById(id);
 	}
+	
+	//GET: Restaurant instances for patronId
+	@GetMapping("/api/patron/{pid}/restaurant")
+	public List<Restaurant> findRestaurantByPatron(@PathVariable("pid") int pid) {
+		return restaurantDao.findRestaurantsByPatron(pid);
+	}
 		
 	//DELETE: Delete restaurant instance whose primary key is rid
 	@DeleteMapping("/api/restaurant/{rid}")

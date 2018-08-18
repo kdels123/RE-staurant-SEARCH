@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import edu.neu.cs5200.orm.jpa.entities.Admin;
 import edu.neu.cs5200.orm.jpa.repositories.AdminRepository;
 
+
 @Component
 public class AdminDao {
 	@Autowired

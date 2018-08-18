@@ -10,7 +10,7 @@
             <div style="float: right">
                 <p>Address: {{restaurant.address}}, {{restaurant.city}}, {{restaurant.state}}</p>
                 <p>Phone: {{restaurant.phone}}</p>
-                <p>Number of Visits: {{restaurant.numberOfVisits}}</p>
+                <p>Number of Visits: {{patrons.length}}</p>
                 <p>Hours of Operation: {{restaurant.hoursOfOpp}}</p>
                 <p>Price: {{restaurant.price}}</p>
 
@@ -28,19 +28,32 @@
     </div>
 
     <h2>Visitors:</h2>
-
-    <h2>Reviews:</h2>
-
-    <ul class="list-group list-group-flush" *ngFor="let review of reviews">
+    <ul class="list-group list-group-flush" *ngFor="let patron of patrons">
         <li class="list-group-item">
-            <p>Title: {{review.title}}</p>
-            <p>Review: {{review.description}}</p>
-            <p>Rating: {{review.rating}}</p>
-            <button (click)="findCriticByReview(review.id)"
-                    type="button" class="btn btn-dark">View Critic's Profile
+            <p class="float-left">Name: {{patron.firstName}} {{patron.lastName}}</p>
+            <button (click)="goToPatronsProfile(patron.id)"
+                    type="button" class="btn btn-dark btn-sm float-right">View Patrons's Profile
             </button>
         </li>
     </ul>
+
+    <h2>Reviews:</h2>
+    <ul class="list-group list-group-flush" *ngFor="let review of reviews">
+        <li class="list-group-item">
+            <div class="float-left">
+            <p>Title: {{review.title}}</p>
+            <p>Review: {{review.description}}</p>
+            <p>Rating: {{review.rating}}</p>
+            </div>
+            <button (click)="findCriticByReview(review.id)"
+                    type="button" class="btn btn-dark btn-sm float-right">View Critic's Profile
+            </button>
+        </li>
+    </ul>
+
+    <h2>Events:</h2>
+
+
     <h3>Write a Review!</h3>
 
     <div>
@@ -80,17 +93,15 @@
                 </div>
             </div>
         </div>
-
-
         <div class="form-group">
-            <button (click)="addReview(reviewTitle, reviewDesription, criticUsername)"
+            <button (click)="addReview(reviewTitle, reviewDescription, criticUsername)"
                     class="btn btn-block btn-dark">Add
                 Review
             </button>
         </div>
 
         <div class="form-group">
-            <button (click)="addEvent()"
+            <button (click)="createEvent()"
                     class="btn btn-block btn-dark">Create an Event
             </button>
         </div>

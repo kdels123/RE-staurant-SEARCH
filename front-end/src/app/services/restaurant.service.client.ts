@@ -48,5 +48,11 @@ export class RestaurantServiceClient {
         return fetch('http://localhost:8080/api/restaurant/' + restaurantId).then(response => response.json());
     }
 
+    findRestaurantsByPatron(patronId) {
+        return fetch('http://localhost:8080/api/patron/' + patronId + '/restaurant')
+            .then(function (response) { return response.json();
+            });
+    }
+
 
 }

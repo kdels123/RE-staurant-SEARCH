@@ -12,6 +12,7 @@ import edu.neu.cs5200.orm.jpa.entities.Event;
 import edu.neu.cs5200.orm.jpa.entities.Owner;
 import edu.neu.cs5200.orm.jpa.entities.Patron;
 import edu.neu.cs5200.orm.jpa.entities.Restaurant;
+import edu.neu.cs5200.orm.jpa.entities.Review;
 import edu.neu.cs5200.orm.jpa.repositories.PatronRepository;
 import edu.neu.cs5200.orm.jpa.repositories.RestaurantRepository;
 
@@ -24,6 +25,8 @@ public class PatronDao {
 	RestaurantRepository restaurantRepository;
 	@Autowired
 	CriticDao criticDao;
+	@Autowired
+	RestaurantDao restaurantDao;
 	
 	public void test() {
 //		//Delete all Patron
@@ -68,7 +71,6 @@ public class PatronDao {
 		patron2.setUsername("chrisC");
 		patron2.setPassword("chris123");
 		createPatron(patron2);
-		
 		
 	}
 	
@@ -205,6 +207,18 @@ public class PatronDao {
 	public Patron findPatronByCredentials(String username, String password) {
 		return patronRepository.findPatronByCredentials(username, password);
 	}
+	
+	// Find Patrons by restaurant
+	public List<Patron> findAllPatronsForRestaurant(int restaurantId) {
+		Optional<Restaurant> data = restaurantDao.findRestaurantById(restaurantId);
+		if(data.isPresent()) {
+			Restaurant restaurant = data.get();
+			return restaurant.getPatrons();
+		} else {
+			return null;
+		}
+	}
+	
 	
 	// UPDATE Patron add restaurantId to patron
 	public void addRestaurantToPatron(int rid, int pid) {
