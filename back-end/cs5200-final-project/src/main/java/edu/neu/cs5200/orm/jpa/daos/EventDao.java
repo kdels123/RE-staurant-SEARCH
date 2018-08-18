@@ -26,28 +26,68 @@ public class EventDao {
 	PatronDao patronDao;
 	
 	public void test() {
-//		// Delete all events
-//		deleteAllEvents();
-//		
-//		// Create event
-//		
-//		Event event = new Event();
-//		event.setAttire("casual");
-//		event.setTitle("drinks and drinks");
-//		
-//		Owner owner = new Owner();
-//		owner.setFirstName("Ken");
-//		owner.setLastName("Oringer");
-//		owner.setPhone("617-536-4300");
-//		owner.setUsername("kenO");
-//		
-//		ownerDao.createOwner(owner);
-//		event.setOwner(owner);
-//		
-//		createEvent(event);
+		// Delete all events
+		deleteAllEvents();
+		
+		// Create event
+		
+		Event event = new Event();
+		event.setAttire("casual");
+		event.setTitle("drinks and drinks");
+		
+		Owner owner = new Owner();
+		owner.setFirstName("Ken");
+		owner.setLastName("Oringer");
+		owner.setPhone("617-536-4300");
+		owner.setUsername("kenO");
+		
+		ownerDao.createOwner(owner);
+		event.setOwner(owner);
+		
+		createEvent(event);
 	}
 	
 	// CREATE Event
+	public Event createEvent(Event event, int ownerId, int restaurantId) {
+		if (event.getOwner() != null) {
+			ownerDao.createOwner(event.getOwner());
+			event.setOwner(ownerDao.findOwnerByUsername(event.getOwner().getUsername()));
+		}
+		
+		if (event.getRestaurant() != null) {
+			restaurantDao.createRestaurant(event.getRestaurant());
+			event.setRestaurant(restaurantDao.findRestaurantByName(event.getRestaurant().getName()));
+		}
+		
+		if (event.getAttendees() != null) {
+			Patron newPatron = new Patron();
+			List<Patron> patronList = new ArrayList<Patron>();
+			for (Patron p : event.getAttendees()) {
+				patronDao.createPatron(p);
+				newPatron = patronDao.findPatronByUsername(p.getUsername());
+				patronList.add(newPatron);
+			}
+			event.setAttendees(patronList);
+		}
+				
+		if(!existEvent(event)) {
+			Event newEvent = new Event();
+			newEvent.setTitle(event.getTitle());
+			newEvent.setDescription(event.getDescription());
+			newEvent.setDateTime(event.getDateTime());
+			newEvent.setPrice(event.getPrice());
+			newEvent.setAttire(event.getAttire());
+			
+			newEvent.setAttendees(event.getAttendees());
+			newEvent.setOwner(ownerDao.findOwnerById(ownerId).get());
+			newEvent.setRestaurant(restaurantDao.findRestaurantById(restaurantId).get());
+		
+			return eventRepository.save(event);
+		}
+		return null;
+	}
+	
+	//CREATE: event (that already contains owner and restaurant object)
 	public Event createEvent(Event event) {
 		if (event.getOwner() != null) {
 			ownerDao.createOwner(event.getOwner());
@@ -71,6 +111,21 @@ public class EventDao {
 		}
 				
 		if(!existEvent(event)) {
+			Event newEvent = new Event();
+			newEvent.setTitle(event.getTitle());
+			newEvent.setDescription(event.getDescription());
+			newEvent.setDateTime(event.getDateTime());
+			newEvent.setPrice(event.getPrice());
+			newEvent.setAttire(event.getAttire());
+			
+			newEvent.setAttendees(event.getAttendees());
+			newEvent.setOwner(ownerDao.createOwner(event.getOwner()));
+			
+			if(event.getRestaurant() != null) {
+				newEvent.setRestaurant(restaurantDao.createRestaurant(event.getRestaurant()));
+			}
+			
+		
 			return eventRepository.save(event);
 		}
 		return null;

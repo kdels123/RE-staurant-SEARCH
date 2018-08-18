@@ -23,7 +23,7 @@ public class PatronDao {
 	
 	public void test() {
 //		//Delete all Patron
-//		deleteAllPatrons();
+		deleteAllPatrons();
 //				
 //		//Create Patron
 //		Patron patron = new Patron();
@@ -43,27 +43,27 @@ public class PatronDao {
 //		deleteAllPatrons();
 				
 		//Create Patron
-//		Patron patron = new Patron();
-//		patron.setFirstName("Jen");
-//		patron.setLastName("Sherman");
-//		patron.setUsername("jenO");
-//		patron.setPassword("jen123");
-//		
-//		Critic critic = new Critic();
-//		critic.setFirstName("Suzy");
-//		critic.setLastName("Smith");
-//		critic.setUsername("suzyS");
-//		critic.setPassword("suzy123");
-//		
-//		patron.setFavoriteCritic(critic);
-//		createPatron(patron);
-//				
-//		Patron patron2 = new Patron();
-//		patron2.setFirstName("Chris");
-//		patron2.setLastName("Chan");
-//		patron2.setUsername("chrisC");
-//		patron2.setPassword("chris123");
-//		createPatron(patron2);
+		Patron patron = new Patron();
+		patron.setFirstName("Jen");
+		patron.setLastName("Sherman");
+		patron.setUsername("jenO");
+		patron.setPassword("jen123");
+		
+		Critic critic = new Critic();
+		critic.setFirstName("Suzy");
+		critic.setLastName("Smith");
+		critic.setUsername("suzyS");
+		critic.setPassword("suzy123");
+		
+		patron.setFavoriteCritic(critic);
+		createPatron(patron);
+				
+		Patron patron2 = new Patron();
+		patron2.setFirstName("Chris");
+		patron2.setLastName("Chan");
+		patron2.setUsername("chrisC");
+		patron2.setPassword("chris123");
+		createPatron(patron2);
 		
 		
 	}
@@ -83,16 +83,40 @@ public class PatronDao {
 		
 	// DELETE all patrons
 	public void deleteAllPatrons() {
+		List<Patron> patronList = (List<Patron>) patronRepository.findAll();
+		for (Patron p: patronList) {
+			for (Critic c:p.getCriticsFollow()) {
+				List<Patron> followers = c.getFollowers();
+				followers.remove(p);
+			}
+		}
 		patronRepository.deleteAll();
 	}
 		
 	// DELETE Patron
 	public void deletePatron(Patron patron) {
+		Optional<Patron> optional = patronRepository.findById(patron.getId());
+		if(optional.isPresent()) {
+			Patron p = optional.get();
+			for (Critic c: p.getCriticsFollow()) {
+				List<Patron> followers = c.getFollowers();
+				followers.remove(p);
+			}
+		}
 		patronRepository.delete(patron);
 	}
 		
 	// DELETE Patron by ID
 	public void deletePatronById(int id) {
+		Optional<Patron> optional = patronRepository.findById(id);
+		if(optional.isPresent()) {
+			Patron patron = optional.get();
+			for (Critic c: patron.getCriticsFollow()) {
+				List<Patron> followers = c.getFollowers();
+				followers.remove(patron);
+			}
+		}
+		//List<Critic> criticsFollow = 
 		patronRepository.deleteById(id);
 	}
 		

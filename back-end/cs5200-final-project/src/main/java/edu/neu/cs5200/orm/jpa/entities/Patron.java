@@ -2,6 +2,7 @@ package edu.neu.cs5200.orm.jpa.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.MapsId;
@@ -31,6 +32,21 @@ public class Patron extends User{
 	@ManyToMany
 	@JsonIgnore
 	private List<Owner> ownerInvites;
+	
+	@ManyToMany
+	@JsonIgnore
+	private List<Owner> ownersEndorsed;
+	
+	
+//	public void addRestaurantToList(Restaurant restaurant) {
+//		if (restaurantsVisited.isEmpty()) {
+//			restaurantsVisited.add(restaurant);
+//		}
+//		else if (!(restaurantsVisited.isEmpty())) {
+//			if (restaurantsVisited.c)
+//		}
+//	}
+//	
 	
 	
 	public List<Restaurant> getRestaurantsVisited() {

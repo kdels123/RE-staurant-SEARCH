@@ -26,34 +26,41 @@ public class CriticDao {
 	PatronRepository patronRepository;
 	
 	public void test() {
-//		//Delete all critic
-//		deleteAllCritics();
-//				
-//		//Create critic
-//		Critic critic = new Critic();
-//		critic.setFirstName("Suzy");
-//		critic.setLastName("Smith");
-//		critic.setUsername("suzyS");
-//		critic.setPassword("suzy123");
-//		createCritic(critic);
-//		
-//		// add follower (patron)
-//		Patron patron = new Patron();
-//		patron.setFirstName("Jen");
-//		patron.setLastName("Sherman");
-//		patron.setUsername("jenO");
-//		patron.setPassword("jen123");
-//		
-//		List<Patron> followers = new ArrayList<Patron>();
-//		followers.add(patron);
-//	
-//		Critic critic2 = new Critic();
-//		critic2.setFirstName("Rachel");
-//		critic2.setLastName("Harrison");
-//		critic2.setUsername("rachelH");
-//		critic2.setPassword("rachel123");
+		//Delete all critic
+		deleteAllCritics();
+				
+		//Create critic
+		Critic critic = new Critic();
+		critic.setFirstName("Suzy");
+		critic.setLastName("Smith");
+		critic.setUsername("suzyS");
+		critic.setPassword("suzy123");
+		createCritic(critic);
+		
+		//Create Critic
+		Critic critic2 = new Critic();
+		critic2.setFirstName("Rachel");
+		critic2.setLastName("Harrison");
+		critic2.setUsername("rachelH");
+		critic2.setPassword("rachel123");
+		
+		// add follower (patron)
+		Patron patron = new Patron();
+		patron.setFirstName("Jen");
+		patron.setLastName("Sherman");
+		patron.setUsername("jenO");
+		patron.setPassword("jen123");
+		
+		List<Patron> followers = new ArrayList<Patron>();
+		followers.add(patron);
+		
+		// add blocked follower (patron)
+		List<Patron> blockedFollowers = new ArrayList<Patron> ();
+		blockedFollowers.add(patron);
+		
 //		critic2.setFollowers(followers);
-//		createCritic(critic2);
+//		critic2.setBlockedFollowers(blockedFollowers);
+		createCritic(critic2);
 	}
 	
 	// CREATE Critic
@@ -135,7 +142,7 @@ public class CriticDao {
 		return criticRepository.findCriticByCredentials(username, password);
 	}
 	
-	// FIND Critic by restaurantId
+	// FIND Critic by reviewId
 	public Critic findCritcByReviewId(int reviewId) {
 		Optional<Review> data = reviewDao.findReviewById(reviewId);
 		if(data.isPresent()) {
@@ -145,7 +152,7 @@ public class CriticDao {
 		return null;
 	}
 	
-	// UPDATE Owner
+	// UPDATE Critic
 	public void updateCritic(int id, Critic newCritic) {
 		Optional<Critic> optional = findCriticById(id);
 		if (optional.isPresent()) {

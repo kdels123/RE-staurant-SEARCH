@@ -39,6 +39,12 @@ public class OwnerService {
 		return ownerDao.findOwnerById(id);
 	}
 	
+	//GET: owner instance based on event (eid)
+		@GetMapping("/api/event/{eid}/owner")
+		public Owner findOwnerByEvent(@PathVariable("eid") int eid) {
+			return ownerDao.findOwnerByEventId(eid);
+		}
+	
 	//DELETE: Delete owner instance whose primary key is oid
 	@DeleteMapping("/api/owner/{oid}")
 	public void deleteOwnerById(@PathVariable("oid") int id) {

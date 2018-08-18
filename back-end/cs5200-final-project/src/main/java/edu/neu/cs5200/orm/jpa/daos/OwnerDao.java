@@ -7,35 +7,39 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import edu.neu.cs5200.orm.jpa.entities.Critic;
 import edu.neu.cs5200.orm.jpa.entities.Event;
 import edu.neu.cs5200.orm.jpa.entities.Owner;
 import edu.neu.cs5200.orm.jpa.entities.Restaurant;
+import edu.neu.cs5200.orm.jpa.entities.Review;
 import edu.neu.cs5200.orm.jpa.repositories.OwnerRepository;
 
 @Component
 public class OwnerDao {
 	@Autowired
 	OwnerRepository ownerRepository;
+	@Autowired
+	EventDao eventDao;
 	
 	public void test() {
-//		//Delete all owners
-//		deleteAllOwners();
-//		
-//		//Create owners
-//		Owner owner = new Owner();
-//		owner.setFirstName("Ken");
-//		owner.setLastName("Oringer");
-//		owner.setPhone("617-536-4300");
-//		owner.setUsername("kenO");
-//		owner.setPassword("ken123");
-//		createOwner(owner);
-//		
-//		Owner owner2 = new Owner();
-//		owner2.setFirstName("Jamie");
-//		owner2.setLastName("Bissonnette");
-//		owner2.setUsername("jamieB");
-//		owner2.setPassword("jamie123");
-//		createOwner(owner2);
+		//Delete all owners
+		deleteAllOwners();
+		
+		//Create owners
+		Owner owner = new Owner();
+		owner.setFirstName("Ken");
+		owner.setLastName("Oringer");
+		owner.setPhone("617-536-4300");
+		owner.setUsername("kenO");
+		owner.setPassword("ken123");
+		createOwner(owner);
+		
+		Owner owner2 = new Owner();
+		owner2.setFirstName("Jamie");
+		owner2.setLastName("Bissonnette");
+		owner2.setUsername("jamieB");
+		owner2.setPassword("jamie123");
+		createOwner(owner2);
 		
 	}
 	
@@ -125,4 +129,14 @@ public class OwnerDao {
 		}
 		return false;
 	}
+	
+	// FIND Owner by restaurantId
+		public Owner findOwnerByEventId(int eventId) {
+			Optional<Event> data = eventDao.findEventById(eventId);
+			if(data.isPresent()) {
+				Event event = data.get();
+				return event.getOwner();
+			}
+			return null;
+		}
 }

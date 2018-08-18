@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,6 +33,12 @@ public class PatronService {
 	@GetMapping("/api/patron/{pid}")
 	public Optional<Patron> findPatronById(@PathVariable("pid") int id) {
 		return patronDao.findPatronById(id);
+	}
+	
+	//DELETE: Delete Patron instance whose primary key is pid
+	@DeleteMapping("/api/patron/{pid}")
+	public void deletePatronById(@PathVariable("pid") int id) {
+		patronDao.deletePatronById(id);
 	}
 	
 	//POST: Create patron
