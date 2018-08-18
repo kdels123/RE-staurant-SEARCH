@@ -107,6 +107,16 @@ public class RestaurantDao {
 		}
 		return null;
 	}
+	
+	// FIND Restaurant by Owner
+	public List<Restaurant> findRestaurantByOwner(int oid) {
+		Optional<Owner> optional = ownerDao.findOwnerById(oid);
+		if (optional.isPresent()) {
+			Owner owner = optional.get();
+			return owner.getRestaurants();
+		}
+		return null;
+	}
 
 	// UPDATE Restaurant
 	public void updateRestaurant(int id, Restaurant newRestaurant) {

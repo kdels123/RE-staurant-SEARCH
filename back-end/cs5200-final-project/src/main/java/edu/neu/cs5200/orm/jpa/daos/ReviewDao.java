@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import edu.neu.cs5200.orm.jpa.entities.Critic;
+import edu.neu.cs5200.orm.jpa.entities.Event;
 import edu.neu.cs5200.orm.jpa.entities.Owner;
 import edu.neu.cs5200.orm.jpa.entities.Restaurant;
 import edu.neu.cs5200.orm.jpa.entities.Review;
@@ -21,6 +22,8 @@ public class ReviewDao {
 	CriticDao criticDao;
 	@Autowired
 	RestaurantDao restaurantDao;
+	@Autowired
+	EventDao eventDao;
 	
 	public void test() {
 //		// Delete all reviews
@@ -89,7 +92,7 @@ public class ReviewDao {
 	}
 	
 	//CREATE review that already contains a critic and restaurant object
-public Review createReview(Review review) {
+	public Review createReview(Review review) {
 		
 		if(review.getCritic() != null) {
 			criticDao.createCritic(review.getCritic());
@@ -156,6 +159,16 @@ public Review createReview(Review review) {
 		if(data.isPresent()) {
 			Restaurant restaurant = data.get();
 			return restaurant.getReviews();
+		}
+		return null;
+	}
+	
+	// FIND Reviews for event
+	public List<Review> findAllReviewsForEvent(int eventId) {
+		Optional<Event> optional = eventDao.findEventById(eventId);
+		if(optional.isPresent()) {
+			Event event = optional.get();
+			return event.getReviews();
 		}
 		return null;
 	}

@@ -12,8 +12,11 @@ import edu.neu.cs5200.orm.jpa.entities.Critic;
 import edu.neu.cs5200.orm.jpa.entities.Event;
 import edu.neu.cs5200.orm.jpa.entities.Owner;
 import edu.neu.cs5200.orm.jpa.entities.Patron;
+import edu.neu.cs5200.orm.jpa.entities.Restaurant;
 import edu.neu.cs5200.orm.jpa.entities.Review;
 import edu.neu.cs5200.orm.jpa.repositories.CriticRepository;
+import edu.neu.cs5200.orm.jpa.repositories.EventRepository;
+import edu.neu.cs5200.orm.jpa.repositories.OwnerRepository;
 import edu.neu.cs5200.orm.jpa.repositories.PatronRepository;
 
 @Component
@@ -26,6 +29,14 @@ public class CriticDao {
 	ReviewDao reviewDao;
 	@Autowired
 	PatronRepository patronRepository;
+	@Autowired
+	EventRepository eventRepository;
+	@Autowired
+	EventDao eventDao;
+	@Autowired
+	OwnerRepository ownerRepository;
+	@Autowired
+	OwnerDao ownerDao;
 	
 	public void test() {
 		//Delete all critic
@@ -213,6 +224,83 @@ public class CriticDao {
 		}
 		return null;
 	}
+	
+	
+	
+	// UPDATE Critic add patron to critic's followersBlocked
+		public void addBlockedPatronToCritic(int pid, int cid) {
+		
+			Optional<Patron> optionalPatron = patronDao.findPatronById(pid);
+			Optional<Critic> optionalCritic = findCriticById(cid);
+//			
+			List<Patron> blockedFollowers;		
+			if (optionalCritic.isPresent() && optionalPatron.isPresent()) {
+				Critic critic = optionalCritic.get();
+				Patron patron = optionalPatron.get();
+				
+				blockedFollowers = critic.getBlockedFollowers();
+				blockedFollowers.add(patron);
+				
+				critic.setBlockedFollowers(blockedFollowers);
+				criticRepository.save(critic);
+			}
+
+		}
+		
+		// UPDATE Critic add eventId to critic
+		public void addEventToCritic(int eid, int cid) {
+			Optional<Event> optionalEvent = eventDao.findEventById(eid);
+			Optional<Critic> optionalCritic = findCriticById(cid);
+			
+			List<Event> eventsAttended;
+			List<Critic> criticAttendees;
+			
+			if (optionalCritic.isPresent() && optionalEvent.isPresent()) {
+				Critic critic = optionalCritic.get();
+				Event event = optionalEvent.get();
+				
+				eventsAttended = critic.getEventsAttended();
+				eventsAttended.add(event);
+				
+				criticAttendees = event.getCriticAttendees();
+				criticAttendees.add(critic);
+			
+				event.setCriticAttendees(criticAttendees);
+				eventRepository.save(event);
+				
+				critic.setEventsAttended(eventsAttended);
+				criticRepository.save(critic);
+			}
+		}
+		
+		// UPDATE Critic add cid to critic's ownersEndorsed
+		public void addOwnerToCriticEndorsed(int oid, int cid) {
+			Optional<Owner> optionalOwner = ownerDao.findOwnerById(oid);
+			Optional<Critic> optionalCritic = findCriticById(cid);
+			
+			List<Owner> ownersEndorsed;
+			List<Critic> criticEndorsements;
+			
+			if (optionalCritic.isPresent() && optionalOwner.isPresent()) {
+				Critic critic = optionalCritic.get();
+				Owner owner = optionalOwner.get();
+				
+				ownersEndorsed = critic.getOwnersEndorsed();
+				ownersEndorsed.add(owner);
+				
+				criticEndorsements = owner.getCriticEndorsements();
+				criticEndorsements.add(critic);
+				
+				owner.setCriticEndorsements(criticEndorsements);
+				ownerRepository.save(owner);
+				
+				critic.setOwnersEndorsed(ownersEndorsed);
+				criticRepository.save(critic);
+			}
+		}
+		
+
+	
 	
 	// UPDATE Critic
 	public void updateCritic(int id, Critic newCritic) {

@@ -53,10 +53,28 @@ public class PatronService {
 		return patronDao.createPatron(patron);
 	}
 	
-	// PUT: Update patron to include the restaurantId
+	//GET: Update patron to include the restaurantId
 	@GetMapping("/api/restaurant/{rid}/patron/{pid}")
 	public void addRestaurantToPatron(@PathVariable("rid") int rid, @PathVariable("pid") int pid) {
 		patronDao.addRestaurantToPatron(rid, pid);
+	}
+	
+	//GET: Update patron to include the eventId
+	@GetMapping("/api/event/{eid}/patron/{pid}")
+	public void addEventToPatron(@PathVariable("eid") int eid, @PathVariable("pid") int pid) {
+		patronDao.addEventToPatron(eid, pid);
+	}
+	
+	//GET: Update patron to include criticId for critics followed
+	@GetMapping("/api/critic/{cid}/patron/{pid}")
+	public void addCriticToPatron(@PathVariable("cid") int cid, @PathVariable("pid") int pid) {
+		patronDao.addCriticToPatron(cid, pid);
+	}
+	
+	//GET: Update patron to include the ownerId for owners endorsed
+	@GetMapping("/api/owner/{oid}/patron/{pid}")
+	public void addOwnerToPatronEndorsed(@PathVariable("oid") int oid, @PathVariable("pid") int pid) {
+		patronDao.addOwnerToPatronEndorsed(oid, pid);
 	}
 	
 	//PUT: Update patron instance whose primary key is pid

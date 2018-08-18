@@ -40,10 +40,23 @@ public class OwnerService {
 	}
 	
 	//GET: owner instance based on event (eid)
-		@GetMapping("/api/event/{eid}/owner")
-		public Owner findOwnerByEvent(@PathVariable("eid") int eid) {
-			return ownerDao.findOwnerByEventId(eid);
-		}
+	@GetMapping("/api/event/{eid}/owner")
+	public Owner findOwnerByEvent(@PathVariable("eid") int eid) {
+		return ownerDao.findOwnerByEventId(eid);
+	}
+	
+	//GET: update owner to include pid to patronsInvited
+	@GetMapping("/api/patron/{pid}/owner/{oid}")
+	public void addPatronInviteToOwner(@PathVariable("pid") int pid, @PathVariable("oid") int oid) {
+		ownerDao.addPatronInviteToOwner(pid, oid);
+	}
+	
+	//GET: update owner to include cid to criticsInvited
+	@GetMapping("/api/critic/{cid}/owner/{oid}")
+	public void addCriticnInviteToOwner(@PathVariable("cid") int cid, @PathVariable("oid") int oid) {
+		ownerDao.addCriticInviteToOwner(cid, oid);
+	}
+		
 	
 	//DELETE: Delete owner instance whose primary key is oid
 	@DeleteMapping("/api/owner/{oid}")
