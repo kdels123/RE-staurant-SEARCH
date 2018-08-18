@@ -84,6 +84,7 @@ public class PatronDao {
 		patron2.setLastName("Chan");
 		patron2.setUsername("chrisC");
 		patron2.setPassword("chris123");
+
 		
 		//endorse Owner
 		Owner owner = new Owner();

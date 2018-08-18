@@ -27,24 +27,24 @@ public class OwnerDao {
 	CriticDao criticDao;
 	
 	public void test() {
-		//Delete all owners
-		deleteAllOwners();
-		
-		//Create owners
-		Owner owner = new Owner();
-		owner.setFirstName("Ken");
-		owner.setLastName("Oringer");
-		owner.setPhone("617-536-4300");
-		owner.setUsername("kenO");
-		owner.setPassword("ken123");
-		createOwner(owner);
-		
-		Owner owner2 = new Owner();
-		owner2.setFirstName("Jamie");
-		owner2.setLastName("Bissonnette");
-		owner2.setUsername("jamieB");
-		owner2.setPassword("jamie123");
-		createOwner(owner2);
+//		//Delete all owners
+//		deleteAllOwners();
+//		
+//		//Create owners
+//		Owner owner = new Owner();
+//		owner.setFirstName("Ken");
+//		owner.setLastName("Oringer");
+//		owner.setPhone("617-536-4300");
+//		owner.setUsername("kenO");
+//		owner.setPassword("ken123");
+//		createOwner(owner);
+//		
+//		Owner owner2 = new Owner();
+//		owner2.setFirstName("Jamie");
+//		owner2.setLastName("Bissonnette");
+//		owner2.setUsername("jamieB");
+//		owner2.setPassword("jamie123");
+//		createOwner(owner2);
 		
 	}
 	

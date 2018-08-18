@@ -4,16 +4,20 @@
     <p>{{critic.email}}</p>
     <p>{{critic.phone}}</p>
 
-    <div class="form-group">
-        <button
-                class="btn btn-block btn-dark">Follow {{critic.firstName}}
-        </button>
+    <div class="input-group mb-3">
+        <input [(ngModel)]="patronUsername" type="text" class="form-control" placeholder="patron username" aria-describedby="button-addon2">
+        <div class="input-group-append">
+            <button (click)="criticToPatron(patronUsername)"
+                    class="btn btn-dark" type="button" >Follow {{critic.firstName}}</button>
+        </div>
     </div>
 
-    <div class="form-group">
-        <button
-                class="btn btn-block btn-dark">Invite {{critic.firstName}} to an Event
-        </button>
+    <div class="input-group mb-3">
+        <input [(ngModel)]="patronUsername" type="text" class="form-control" placeholder=" owner username" aria-describedby="button-addon2">
+        <div class="input-group-append">
+            <button (click)="criticToOwner(ownerUsername)"
+                    class="btn btn-dark" type="button" >Invite Critic to Restaurant</button>
+        </div>
     </div>
 
     <h3>Reviews:</h3>

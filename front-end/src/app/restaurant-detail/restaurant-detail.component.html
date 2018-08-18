@@ -52,7 +52,17 @@
     </ul>
 
     <h2>Events:</h2>
-
+    <ul class="list-group list-group-flush" *ngFor="let event of events">
+        <li class="list-group-item">
+            <div class="float-left">
+                <p>Title: {{event.title}}</p>
+                <p>Description: {{event.description}}</p>
+            </div>
+            <button (click)="goToEvent(event.id)"
+                    type="button" class="btn btn-dark btn-sm float-right">View Event!
+            </button>
+        </li>
+    </ul>
 
     <h3>Write a Review!</h3>
 
