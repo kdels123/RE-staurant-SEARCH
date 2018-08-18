@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {ReviewServiceClient} from '../services/review.service.client';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CriticServiceClient} from '../services/critic.service.client';
 import {PatronServiceClient} from '../services/patron.service.client';

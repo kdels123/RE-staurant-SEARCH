@@ -8,6 +8,13 @@ export class CriticServiceClient {
             });
     }
 
+    findAllCritics() {
+        return fetch('http://localhost:8080/api/critic/')
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
     findCriticByReview(reviewId) {
         return fetch('http://localhost:8080/api/review/' + reviewId + '/critic')
             .then(function (response) { return response.json();
@@ -59,6 +66,12 @@ export class CriticServiceClient {
         });
     }
 
+    deleteCritic(criticId) {
+        return fetch('http://localhost:8080/api/critic/' + criticId, {
+            method: 'delete'
+        });
+    }
+
     loginCritic(username, password) {
         const credentials = {
             username: username,
@@ -73,5 +86,4 @@ export class CriticServiceClient {
             }
         }).then(response => response.json());
     }
-
 }

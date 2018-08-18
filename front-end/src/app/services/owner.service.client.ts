@@ -6,6 +6,13 @@ export class OwnerServiceClient {
             .then(response => response.json());
     }
 
+    findAllOwners() {
+        return fetch('http://localhost:8080/api/owner/')
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
     findOwnerByUsername(username) {
         const user = {
             username: username
@@ -51,6 +58,12 @@ export class OwnerServiceClient {
             headers: {
                 'content-type': 'application/json'
             }
+        });
+    }
+
+    deleteOwner(ownerId) {
+        return fetch('http://localhost:8080/api/owner/' + ownerId, {
+            method: 'delete'
         });
     }
 

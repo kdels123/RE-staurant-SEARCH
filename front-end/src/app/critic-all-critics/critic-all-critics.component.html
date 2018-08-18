@@ -1,0 +1,20 @@
+<div class="container-fluid">
+    <h1>Critics:</h1>
+
+
+    <ul class="list-group list-group-flush" *ngFor="let critic of critics">
+        <li class="list-group-item">
+            <div class="float-left">
+                <p>Name: {{critic.firstName}} {{critic.lastName}}</p>
+            </div>
+            <button (click)="deleteCritic(critic.id)"
+                    type="button" class="btn btn-danger btn-sm float-right">Delete Critic
+            </button>
+        </li>
+    </ul>
+
+    <div>
+        <button (click)="goToProfile()" class="btn btn-link" style="float: left">Return to Profile</button>
+        <button (click)="goHome()" class="btn btn-link" style="float: right">Home</button>
+    </div>
+</div>

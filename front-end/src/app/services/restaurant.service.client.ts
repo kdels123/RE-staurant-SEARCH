@@ -10,6 +10,13 @@ export class RestaurantServiceClient {
             .then(response => response.json());
     }
 
+    findAllRestaurants() {
+        return fetch('http://localhost:8080/api/restaurant/')
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
     addRestaurant(restaurant) {
         const data = {
             name: restaurant.alias,
@@ -52,6 +59,12 @@ export class RestaurantServiceClient {
         return fetch('http://localhost:8080/api/patron/' + patronId + '/restaurant')
             .then(function (response) { return response.json();
             });
+    }
+
+    deleteRestaurant(restaurantId) {
+        return fetch('http://localhost:8080/api/restaurant/' + restaurantId, {
+            method: 'delete'
+        });
     }
 
 
