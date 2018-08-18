@@ -55,7 +55,7 @@ public class Owner extends User{
 	private List<Patron> patronEndorsements;
 	
 	@ManyToMany
-	@JoinTable(name="CriticEndorsementsFromPatron",
+	@JoinTable(name="OwnerEndorsementsFromCritic",
 	joinColumns=@JoinColumn(
 			name = "OWNER_ID", 
 			referencedColumnName="ID"),
@@ -99,6 +99,22 @@ public class Owner extends User{
 
 	public void setCriticsInvited(List<Critic> criticsInvited) {
 		this.criticsInvited = criticsInvited;
+	}
+
+	public List<Patron> getPatronEndorsements() {
+		return patronEndorsements;
+	}
+
+	public void setPatronEndorsements(List<Patron> patronEndorsements) {
+		this.patronEndorsements = patronEndorsements;
+	}
+
+	public List<Critic> getCriticEndorsements() {
+		return criticEndorsements;
+	}
+
+	public void setCriticEndorsements(List<Critic> criticEndorsements) {
+		this.criticEndorsements = criticEndorsements;
 	}
 	
 	

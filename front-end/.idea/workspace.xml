@@ -77,8 +77,8 @@
       <file leaf-file-name="critic-profile.component.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/critic-profile/critic-profile.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="40" lean-forward="true" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
+            <state relative-caret-position="105">
+              <caret line="7" column="97" selection-start-line="7" selection-start-column="97" selection-end-line="7" selection-end-column="97" />
             </state>
           </provider>
         </entry>
@@ -264,12 +264,12 @@
       <workItem from="1533768552368" duration="3252000" />
       <workItem from="1534424843317" duration="19445000" />
       <workItem from="1534517777319" duration="786000" />
-      <workItem from="1534526813647" duration="22718000" />
+      <workItem from="1534526813647" duration="22978000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75145000" />
+    <option name="totallyTimeSpent" value="75405000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -664,8 +664,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/critic-profile/critic-profile.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="40" lean-forward="true" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
+        <state relative-caret-position="105">
+          <caret line="7" column="97" selection-start-line="7" selection-start-column="97" selection-end-line="7" selection-end-column="97" />
         </state>
       </provider>
     </entry>
