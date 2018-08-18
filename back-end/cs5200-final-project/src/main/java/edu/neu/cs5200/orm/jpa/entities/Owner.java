@@ -43,6 +43,32 @@ public class Owner extends User{
 	@JsonIgnore
 	private List<Critic> criticsInvited; //owner invites critics to restaurant
 	
+	@ManyToMany
+	@JoinTable(name="OwnerEndorsementsFromPatron",
+	joinColumns=@JoinColumn(
+			name = "OWNER_ID", 
+			referencedColumnName="ID"),
+	inverseJoinColumns=@JoinColumn(
+			name = "PATRON_ID",
+			referencedColumnName="ID"))
+	@JsonIgnore
+	private List<Patron> patronEndorsements;
+	
+	@ManyToMany
+	@JoinTable(name="CriticEndorsementsFromPatron",
+	joinColumns=@JoinColumn(
+			name = "OWNER_ID", 
+			referencedColumnName="ID"),
+	inverseJoinColumns=@JoinColumn(
+			name = "CRITIC_ID",
+			referencedColumnName="ID"))
+	@JsonIgnore
+	private List<Critic> criticEndorsements;
+	
+	
+	
+	
+	
 	public List<Restaurant> getRestaurants() {
 		return restaurants;
 	}

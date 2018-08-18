@@ -28,33 +28,29 @@ public class RestaurantDao {
 	PatronDao patronDao;
 	
 	public void test() {
-//		// Delete all restaurants
-//		deleteAllRestaurants();
-//		
-//		
-//		//Create restaurant
-//		Restaurant r1 = new Restaurant();
-//		r1.setName("Toro");
-//		r1.setAddress("1704 Washington St");
-//		r1.setCity("Boston");
-//		r1.setState("MA");
-//		r1.setPhone("617-536-4300");
-//		r1.setNumberOfVisits(2000);
-//		r1.setPrice("$$$");
-//		Owner owner = new Owner();
-//		owner.setFirstName("Ken");
-//		owner.setLastName("Oringer");
-//		owner.setPhone("617-536-4300");
-//		owner.setUsername("kenO");
-//		
-//		r1.setOwner(owner);
-//		
-//		createRestaurant(r1);
-//		
-//		List<Restaurant> list = findAllRestaurants();
-//		for (Restaurant r : list) {
-//			System.out.println(r.getName());
-//		}
+		// Delete all restaurants
+		deleteAllRestaurants();
+		
+		
+		//Create restaurant
+		Restaurant r1 = new Restaurant();
+		r1.setName("Toro");
+		r1.setAddress("1704 Washington St");
+		r1.setCity("Boston");
+		r1.setState("MA");
+		r1.setPhone("617-536-4300");
+		r1.setNumberOfVisits(2000);
+		r1.setPrice("$$$");
+		Owner owner = new Owner();
+		owner.setFirstName("Ken");
+		owner.setLastName("Oringer");
+		owner.setPhone("617-536-4300");
+		owner.setUsername("kenO");
+		
+		r1.setOwner(owner);
+		
+		createRestaurant(r1);
+		
 	}
 	
 	// CREATE Restaurant

@@ -31,10 +31,25 @@ public class Critic extends User{
 	private List<Patron> followers; // manytomany
 	
 	@ManyToMany
+	@JoinTable(name="Critic2BlockedPatron",
+			joinColumns=@JoinColumn(
+					name="CRITIC_ID",
+					referencedColumnName="ID"),
+			inverseJoinColumns=@JoinColumn(
+					name="PATRON_ID",
+					referencedColumnName="ID"))
+	@JsonIgnore
+	private List<Patron> blockedFollowers;
+	
+	
+	@ManyToMany
 	@JsonIgnore
 	private List<Owner> ownerInvites;
-
 	
+	@ManyToMany
+	@JsonIgnore
+	private List<Owner> ownersEndorsed;
+
 	public String getUrlToOtherWork() {
 		return urlToOtherWork;
 	}
@@ -59,7 +74,23 @@ public class Critic extends User{
 	public void setOwnerInvites(List<Owner> ownerInvites) {
 		this.ownerInvites = ownerInvites;
 	}
-	
+	public List<Patron> getBlockedFollowers() {
+		return blockedFollowers;
+	}
+	public void setBlockedFollowers(List<Patron> blockedFollowers) {
+		for (Patron p: blockedFollowers) {
+			if (this.followers.contains(p)) {
+				this.followers.remove(p);
+			}
+		}
+		this.blockedFollowers = blockedFollowers;
+	}
+	public List<Owner> getOwnersEndorsed() {
+		return ownersEndorsed;
+	}
+	public void setOwnersEndorsed(List<Owner> ownersEndorsed) {
+		this.ownersEndorsed = ownersEndorsed;
+	}
 	
 	
 }

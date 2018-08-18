@@ -24,41 +24,41 @@ public class ReviewDao {
 	
 	public void test() {
 		// Delete all reviews
-//		deleteAllReviews();
+		deleteAllReviews();
 		
-//		// Create Review
-//		Review review = new Review();
-//		review.setDescription("Tapas tapas tapas");
-//		review.setRating(5);
-//		review.setTitle("Where to go for Tapas");
-//		
-//		Critic critic = new Critic();
-//		critic.setFirstName("Suzy");
-//		critic.setLastName("Smith");
-//		critic.setUsername("suzyS");
-//		
-//		review.setCritic(critic);
-//		
-//		Restaurant r1 = new Restaurant();
-//		r1.setName("Toro");
-//		r1.setAddress("1704 Washington St");
-//		r1.setCity("Boston");
-//		r1.setState("MA");
-//		r1.setPhone("617-536-4300");
-//		r1.setNumberOfVisits(2000);
-//		r1.setPrice("$$$");
-//		
-//		Owner owner = new Owner();
-//		owner.setFirstName("Ken");
-//		owner.setLastName("Oringer");
-//		owner.setPhone("617-536-4300");
-//		owner.setUsername("kenO");
-//		
-//		r1.setOwner(owner);
-//		
-//		review.setRestaurant(r1);
-//		
-//		createReview(review);
+		// Create Review
+		Review review = new Review();
+		review.setDescription("Tapas tapas tapas");
+		review.setRating(5);
+		review.setTitle("Where to go for Tapas");
+		
+		Critic critic = new Critic();
+		critic.setFirstName("Suzy");
+		critic.setLastName("Smith");
+		critic.setUsername("suzyS");
+		
+		review.setCritic(critic);
+		
+		Restaurant r1 = new Restaurant();
+		r1.setName("Toro");
+		r1.setAddress("1704 Washington St");
+		r1.setCity("Boston");
+		r1.setState("MA");
+		r1.setPhone("617-536-4300");
+		r1.setNumberOfVisits(2000);
+		r1.setPrice("$$$");
+		
+		Owner owner = new Owner();
+		owner.setFirstName("Ken");
+		owner.setLastName("Oringer");
+		owner.setPhone("617-536-4300");
+		owner.setUsername("kenO");
+		
+		r1.setOwner(owner);
+		
+		review.setRestaurant(r1);
+		
+		createReview(review);
 	}
 	
 	// CREATE Review
@@ -81,6 +81,33 @@ public class ReviewDao {
 			newReview.setRating(review.getRating());
 			newReview.setCritic(criticDao.findCriticById(criticId).get());
 			newReview.setRestaurant(restaurantDao.findRestaurantById(restaurantId).get());
+			
+			return reviewRepository.save(newReview);
+		}
+		
+		return null;
+	}
+	
+	//CREATE review that already contains a critic and restaurant object
+public Review createReview(Review review) {
+		
+		if(review.getCritic() != null) {
+			criticDao.createCritic(review.getCritic());
+			review.setCritic(criticDao.findCriticByUsername(review.getCritic().getUsername()));
+		}
+		
+		if(review.getRestaurant() != null) {
+			restaurantDao.createRestaurant(review.getRestaurant());
+			review.setRestaurant(restaurantDao.findRestaurantByName(review.getRestaurant().getName()));
+		}
+		
+		if(!existReview(review)) {
+			Review newReview = new Review();
+			newReview.setTitle(review.getTitle());
+			newReview.setDescription(review.getDescription());
+			newReview.setRating(review.getRating());
+			newReview.setCritic(criticDao.createCritic(review.getCritic()));
+			newReview.setRestaurant(restaurantDao.createRestaurant(review.getRestaurant()));
 			
 			return reviewRepository.save(newReview);
 		}
