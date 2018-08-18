@@ -16,17 +16,4 @@ export class UserServiceClient {
     }
 
 
-    findUserByUsername(username) {
-        const user = {
-            username: username
-        };
-        return fetch('http://localhost:8080/api/username', {
-            method: 'post',
-            body: JSON.stringify(user),
-            headers: {
-                'content-type': 'application/json'
-            }
-        }).then(response => response.json());
-    }
-
 }

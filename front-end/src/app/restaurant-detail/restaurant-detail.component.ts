@@ -54,15 +54,15 @@ export class RestaurantDetailComponent implements OnInit {
   }
 
   addReview(reviewTitle, reviewDescription, criticUsername) {
-      this.userService.findUserByUsername(criticUsername)
+      this.criticService.findCriticByUsername(criticUsername)
           .then(critic => this.reviewService
               .addReview(reviewTitle, reviewDescription, this.reviewRating, critic.id, this.restaurantId))
           .then(() => location.reload());
   }
 
     restaurantToPatron(patronUsername) {
-      this.userService.findUserByUsername(patronUsername)
-          .then(() => patron => this.patronService.restaurantToPatron(patron.id, this.restaurantId));
+      this.patronService.findPatronByUsername(patronUsername)
+          .then(patron => this.patronService.restaurantToPatron(patron.id, this.restaurantId));
     }
 
     findCriticByReview(reviewId) {

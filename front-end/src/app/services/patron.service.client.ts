@@ -8,6 +8,19 @@ export class PatronServiceClient {
             });
     }
 
+    findPatronByUsername(username) {
+        const user = {
+            username: username
+        };
+        return fetch('http://localhost:8080/api/patron/username', {
+            method: 'post',
+            body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            }
+        }).then(response => response.json());
+    }
+
     createPatron(username, password) {
         const user = {
             username: username,
@@ -41,10 +54,7 @@ export class PatronServiceClient {
     }
 
     restaurantToPatron(patronId, restaurantId) {
-        return fetch('http://localhost:8080/api/restaurant/' + restaurantId + '/patron/' + patronId)
-            .then(function (response) {
-            return response.json();
-        });
+        return fetch('http://localhost:8080/api/restaurant/' + restaurantId + '/patron/' + patronId);
     }
 
     loginPatron(username, password) {
