@@ -26,11 +26,10 @@ export class RestaurantDetailComponent implements OnInit {
   restaurant;
   restaurantId;
   restaurantName;
-  restaurantDateEst;
 
   reviews;
   reviewTitle;
-  reviewDesription;
+  reviewDescription;
   reviewRating;
 
   critic;
@@ -39,6 +38,7 @@ export class RestaurantDetailComponent implements OnInit {
 
   patron;
   patronUsername;
+  patrons;
 
   loadRestaurant(restaurantId) {
       this.restaurantId = restaurantId;
@@ -51,6 +51,8 @@ export class RestaurantDetailComponent implements OnInit {
       this.restaurantName = this.styleName(restaurant.name);
       this.reviewService.findReviewsByRestaurant(restaurant.id).then(
           reviews => this.reviews = reviews);
+      this.patronService.findPatronsByRestaurant(restaurant.id).then(
+          patrons => this.patrons = patrons);
   }
 
   addReview(reviewTitle, reviewDescription, criticUsername) {
@@ -62,7 +64,8 @@ export class RestaurantDetailComponent implements OnInit {
 
     restaurantToPatron(patronUsername) {
       this.patronService.findPatronByUsername(patronUsername)
-          .then(patron => this.patronService.restaurantToPatron(patron.id, this.restaurantId));
+          .then(patron => this.patronService.restaurantToPatron(patron.id, this.restaurantId))
+          .then(() => location.reload());;
     }
 
     findCriticByReview(reviewId) {
@@ -70,6 +73,14 @@ export class RestaurantDetailComponent implements OnInit {
             .then(critic => this.criticId = critic.id)
             .then(() => (this.router.navigate(['critic/' + this.criticId])));
 
+    }
+
+    goToPatronsProfile(patronId) {
+      this.router.navigate(['patron/' + patronId]);
+    }
+
+    createEvent() {
+        this.router.navigate(['restaurant/' + this.restaurantId + '/event']);
     }
 
   setRating(rating) {

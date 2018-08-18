@@ -19,6 +19,9 @@ import { CriticProfilePrivateComponent } from './critic-profile-private/critic-p
 import {OwnerServiceClient} from './services/owner.service.client';
 import { PatronProfilePrivateComponent } from './patron-profile-private/patron-profile-private.component';
 import {PatronServiceClient} from './services/patron.service.client';
+import { PatronProfileComponent } from './patron-profile/patron-profile.component';
+import { EventCreateComponent } from './event-create/event-create.component';
+import {EventServiceClient} from './services/event.service.client';
 
 
 @NgModule({
@@ -32,7 +35,9 @@ import {PatronServiceClient} from './services/patron.service.client';
     RestaurantDetailComponent,
     CriticProfileComponent,
     CriticProfilePrivateComponent,
-    PatronProfilePrivateComponent
+    PatronProfilePrivateComponent,
+    PatronProfileComponent,
+    EventCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +50,8 @@ import {PatronServiceClient} from './services/patron.service.client';
       ReviewServiceClient,
       CriticServiceClient,
       OwnerServiceClient,
-      PatronServiceClient
+      PatronServiceClient,
+      EventServiceClient
   ],
   bootstrap: [AppComponent]
 })

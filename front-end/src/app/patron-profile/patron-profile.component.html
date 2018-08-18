@@ -1,0 +1,24 @@
+<div class="container">
+  <h1>{{patron.firstName}} {{patron.lastName}}</h1>
+  <h2>{{patron.username}}</h2>
+  <p>{{patron.email}}</p>
+  <p>{{patron.phone}}</p>
+
+  <div class="form-group">
+    <button
+            class="btn btn-block btn-dark">Invite {{patron.firstName}} to an Event
+    </button>
+  </div>
+
+  <h3>Restaurants Visited:</h3>
+
+  <ul class="list-group list-group-flush" *ngFor="let restaurant of restaurants">
+    <li class="list-group-item">
+      <p>Name: {{restaurant.name}}</p>
+      <p>Address: {{restaurant.city}}</p>
+    </li>
+  </ul>
+
+  <h3>Critics Followed:</h3>
+
+</div>

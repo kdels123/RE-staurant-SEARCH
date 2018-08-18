@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import edu.neu.cs5200.orm.jpa.entities.Critic;
 import edu.neu.cs5200.orm.jpa.entities.Event;
 import edu.neu.cs5200.orm.jpa.entities.Patron;
 import edu.neu.cs5200.orm.jpa.entities.Review;
@@ -23,6 +24,8 @@ public class RestaurantDao {
 	
 	@Autowired
 	OwnerDao ownerDao;
+	@Autowired
+	PatronDao patronDao;
 	
 	public void test() {
 //		// Delete all restaurants
@@ -98,7 +101,17 @@ public class RestaurantDao {
 	public Restaurant findRestaurantByName(String name) {
 		return restaurantRepository.findRestaurantByName(name);
 	}
-		
+	
+	// FIND Restaurants by Patron
+	public List<Restaurant> findRestaurantsByPatron(int pid) {
+		Optional<Patron> data = patronDao.findPatronById(pid);
+		if (data.isPresent()) {
+			Patron patron = data.get();
+			return patron.getRestaurantsVisited();
+		}
+		return null;
+	}
+
 	// UPDATE Restaurant
 	public void updateRestaurant(int id, Restaurant newRestaurant) {
 		Optional<Restaurant> optional = findRestaurantById(id);

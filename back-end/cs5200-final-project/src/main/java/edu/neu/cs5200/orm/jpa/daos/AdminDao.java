@@ -8,21 +8,19 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import edu.neu.cs5200.orm.jpa.entities.Admin;
-import edu.neu.cs5200.orm.jpa.repositories.AdminRepository;
 
 @Component
 public class AdminDao {
-	@Autowired
-	AdminRepository adminRepository;
+//	@Autowired
+//	AdminRepository adminRepository;
 	
 	// CREATE Admin
-		public Admin createAdmin(Admin admin) {
-			if(!existAdmin(admin)) {
-				return adminRepository.save(admin);
-			}
-			return null;
-		}
+//		public Admin createAdmin(Admin admin) {
+//			if(!existAdmin(admin)) {
+//				return adminRepository.save(admin);
+//			}
+//			return null;
+//		}
 			
 //		// DELETE all admin
 //		public void deleteAllAdmins() {
@@ -94,7 +92,7 @@ public class AdminDao {
 //			}
 //		}
 //			
-//		// Check if Critic already exists
+		// Check if Critic already exists
 //		public boolean existCritic(Critic critic) {
 //			List<Critic> critics = findAllCritics();
 //			for (Critic c : critics) {

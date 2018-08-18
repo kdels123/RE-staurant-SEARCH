@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.neu.cs5200.orm.jpa.daos.PatronDao;
 import edu.neu.cs5200.orm.jpa.entities.Patron;
+import edu.neu.cs5200.orm.jpa.entities.Review;
 import edu.neu.cs5200.orm.jpa.entities.User;
 
 @RestController
@@ -33,6 +34,12 @@ public class PatronService {
 	public Optional<Patron> findPatronById(@PathVariable("pid") int id) {
 		return patronDao.findPatronById(id);
 	}
+	
+	// GET: Patron instances for a resturantId
+		@GetMapping("/api/restaurant/{rid}/patron")
+		public List<Patron> findPatronsForRestaurant(@PathVariable("rid") int rid) {
+			return patronDao.findAllPatronsForRestaurant(rid);
+		}
 	
 	//POST: Create patron
 	@PostMapping("/api/patron")

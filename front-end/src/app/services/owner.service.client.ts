@@ -6,6 +6,19 @@ export class OwnerServiceClient {
             .then(response => response.json());
     }
 
+    findOwnerByUsername(username) {
+        const user = {
+            username: username
+        };
+        return fetch('http://localhost:8080/api/owner/username', {
+            method: 'post',
+            body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            }
+        }).then(response => response.json());
+    }
+
 
     createOwner(username, password) {
         const user = {
