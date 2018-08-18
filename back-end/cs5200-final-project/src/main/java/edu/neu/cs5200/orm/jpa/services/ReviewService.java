@@ -33,8 +33,20 @@ public class ReviewService {
 		
 	//GET: Review instance whose primary key is rid
 	@GetMapping("/api/review/{rid}")
-	public Optional<Review> findReviewtById (@PathVariable("rid") int id) {
+	public Optional<Review> findReviewsById (@PathVariable("rid") int id) {
 		return reviewDao.findReviewById(id);
+	}
+	
+	// GET: Review instance for a criticId
+	@GetMapping("/api/critic/{cid}/review")
+	public List<Review> findReviewsForCritic(@PathVariable("cid") int cid) {
+		return reviewDao.findAllReviewsForCritic(cid);
+	}
+
+	// GET: Review instance for a resturantId
+	@GetMapping("/api/restaurant/{rid}/review")
+	public List<Review> findReviewsForRestaurant(@PathVariable("rid") int rid) {
+		return reviewDao.findAllReviewsForRestaurant(rid);
 	}
 	
 	//DELETE: Delete restaurant instance whose primary key is rid
@@ -44,9 +56,9 @@ public class ReviewService {
 	}
 	
 	//POST: Create Review
-	@PostMapping("/api/review")
-	public Review createReview(@RequestBody Review review) {
-		return reviewDao.createReview(review);
+	@PostMapping("/api/critic/{cid}/restaurant/{rid}/review")
+	public Review createReview(@RequestBody Review review, @PathVariable("cid") int cid, @PathVariable("rid") int rid) {
+		return reviewDao.createReview(review, cid, rid);
 	}
 	
 	//PUT: Update review instance whose primary key is rid

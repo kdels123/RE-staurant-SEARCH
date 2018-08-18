@@ -1,0 +1,16 @@
+<div class="container">
+    <h1>{{critic.firstName}} {{critic.lastName}}</h1>
+    <h2>{{critic.username}}</h2>
+    <p>{{critic.email}}</p>
+    <p>{{critic.phone}}</p>
+    <p>Reviews:</p>
+
+    <ul class="list-group list-group-flush" *ngFor="let review of reviews">
+        <li class="list-group-item">
+            <p>Title: {{review.title}}</p>
+            <p>Review: {{review.description}}</p>
+        </li>
+    </ul>
+
+    <p>Followers:</p>
+</div>

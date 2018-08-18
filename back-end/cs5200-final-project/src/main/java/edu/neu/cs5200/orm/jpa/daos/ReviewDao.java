@@ -7,7 +7,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
 import edu.neu.cs5200.orm.jpa.entities.Critic;
 import edu.neu.cs5200.orm.jpa.entities.Owner;
 import edu.neu.cs5200.orm.jpa.entities.Restaurant;
@@ -25,45 +24,45 @@ public class ReviewDao {
 	
 	public void test() {
 		// Delete all reviews
-		deleteAllReviews();
+//		deleteAllReviews();
 		
-		// Create Review
-		Review review = new Review();
-		review.setDescription("Tapas tapas tapas");
-		review.setRating(5);
-		review.setTitle("Where to go for Tapas");
-		
-		Critic critic = new Critic();
-		critic.setFirstName("Suzy");
-		critic.setLastName("Smith");
-		critic.setUsername("suzyS");
-		
-		review.setCritic(critic);
-		
-		Restaurant r1 = new Restaurant();
-		r1.setName("Toro");
-		r1.setAddress("1704 Washington St");
-		r1.setCity("Boston");
-		r1.setState("MA");
-		r1.setPhone("617-536-4300");
-		r1.setNumberOfVisits(2000);
-		r1.setPrice("$$$");
-		
-		Owner owner = new Owner();
-		owner.setFirstName("Ken");
-		owner.setLastName("Oringer");
-		owner.setPhone("617-536-4300");
-		owner.setUsername("kenO");
-		
-		r1.setOwner(owner);
-		
-		review.setRestaurant(r1);
-		
-		createReview(review);
+//		// Create Review
+//		Review review = new Review();
+//		review.setDescription("Tapas tapas tapas");
+//		review.setRating(5);
+//		review.setTitle("Where to go for Tapas");
+//		
+//		Critic critic = new Critic();
+//		critic.setFirstName("Suzy");
+//		critic.setLastName("Smith");
+//		critic.setUsername("suzyS");
+//		
+//		review.setCritic(critic);
+//		
+//		Restaurant r1 = new Restaurant();
+//		r1.setName("Toro");
+//		r1.setAddress("1704 Washington St");
+//		r1.setCity("Boston");
+//		r1.setState("MA");
+//		r1.setPhone("617-536-4300");
+//		r1.setNumberOfVisits(2000);
+//		r1.setPrice("$$$");
+//		
+//		Owner owner = new Owner();
+//		owner.setFirstName("Ken");
+//		owner.setLastName("Oringer");
+//		owner.setPhone("617-536-4300");
+//		owner.setUsername("kenO");
+//		
+//		r1.setOwner(owner);
+//		
+//		review.setRestaurant(r1);
+//		
+//		createReview(review);
 	}
 	
 	// CREATE Review
-	public Review createReview(Review review) {
+	public Review createReview(Review review, int criticId, int restaurantId) {
 		
 		if(review.getCritic() != null) {
 			criticDao.createCritic(review.getCritic());
@@ -76,7 +75,14 @@ public class ReviewDao {
 		}
 		
 		if(!existReview(review)) {
-			return reviewRepository.save(review);
+			Review newReview = new Review();
+			newReview.setTitle(review.getTitle());
+			newReview.setDescription(review.getDescription());
+			newReview.setRating(review.getRating());
+			newReview.setCritic(criticDao.findCriticById(criticId).get());
+			newReview.setRestaurant(restaurantDao.findRestaurantById(restaurantId).get());
+			
+			return reviewRepository.save(newReview);
 		}
 		
 		return null;
@@ -106,6 +112,27 @@ public class ReviewDao {
 	public Optional<Review> findReviewById(int id) {
 		return reviewRepository.findById(id);
 	}
+	
+	// FIND Reviews for critic
+	public List<Review> findAllReviewsForCritic(int criticId) {
+		Optional<Critic> data = criticDao.findCriticById(criticId);
+		if(data.isPresent()) {
+			Critic critic = data.get();
+			return critic.getReviews();
+		}
+		return null;
+	}
+	
+	// FIND Reviews for restaurant
+	public List<Review> findAllReviewsForRestaurant(int restaurantId) {
+		Optional<Restaurant> data = restaurantDao.findRestaurantById(restaurantId);
+		if(data.isPresent()) {
+			Restaurant restaurant = data.get();
+			return restaurant.getReviews();
+		}
+		return null;
+	}
+
 		
 	// UPDATE Review
 	public void updateReview(int id, Review newReview) {

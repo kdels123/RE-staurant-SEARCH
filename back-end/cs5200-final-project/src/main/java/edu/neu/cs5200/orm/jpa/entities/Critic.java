@@ -16,6 +16,7 @@ public class Critic extends User{
 	private String urlToOtherWork;
 	
 	@OneToMany(mappedBy="critic", cascade=CascadeType.ALL)
+	@JsonIgnore
 	private List<Review> reviews;  // 1tomany
 	
 	@ManyToMany

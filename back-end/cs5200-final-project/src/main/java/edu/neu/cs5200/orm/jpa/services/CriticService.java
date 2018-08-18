@@ -39,6 +39,12 @@ public class CriticService {
 		return criticDao.findCriticById(id);
 	}
 	
+	//GET: Critic instance based on rid
+	@GetMapping("/api/review/{rid}/critic")
+	public Critic findCriticByReview(@PathVariable("rid") int rid) {
+		return criticDao.findCritcByReviewId(rid);
+	}
+	
 	//DELETE: Delete critic instance whose primary key is cid
 	@DeleteMapping("/api/critic/{cid}")
 	public void deleteCriticById(@PathVariable("cid") int id) {
@@ -66,7 +72,7 @@ public class CriticService {
 	}
 	
 	//Post: Get Critic instance by username
-	@PostMapping("/api/critic/username")
+	@PostMapping("/api/username")
 	public Critic findCriticByUsername(@RequestBody User user) {
 		return criticDao.findCriticByUsername(user.getUsername());
 	}

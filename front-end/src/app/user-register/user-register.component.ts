@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {UserServiceClient} from '../services/user.service.client';
+import {OwnerServiceClient} from '../services/owner.service.client';
+import {CriticServiceClient} from '../services/critic.service.client';
+import {PatronServiceClient} from '../services/patron.service.client';
 
 @Component({
   selector: 'app-restaurant-register',
@@ -9,7 +11,10 @@ import {UserServiceClient} from '../services/user.service.client';
 })
 export class UserRegisterComponent implements OnInit {
 
-  constructor(private router: Router, private service: UserServiceClient) { }
+  constructor(private router: Router,
+              private ownerService: OwnerServiceClient,
+              private criticService: CriticServiceClient,
+              private patronService: PatronServiceClient) { }
 
   username;
   role;
@@ -25,20 +30,20 @@ export class UserRegisterComponent implements OnInit {
     if (passwordI !== passwordII) {
       alert('passwords do not match');
     } else if (this.role === 'patron') {
-        this.service.createPatron(username, passwordI)
-            .then(() => this.router.navigate(['profile']));
+        this.patronService.createPatron(username, passwordI)
+            .then(user => (this.userId = user.id))
+            .then(() => (this.router.navigate(['profile/patron/' + this.userId])));
     } else if (this.role === 'owner') {
-      this.service.createOwner(username, passwordI)
-          .then(user => (
-              this.userId = user.id))
-          .then(() => (
-              this.router.navigate(['profile/' + this.userId])));
+      this.ownerService.createOwner(username, passwordI)
+          .then(user => (this.userId = user.id))
+          .then(() => (this.router.navigate(['profile/owner/' + this.userId])));
     } else if (this.role === 'critic') {
-        this.service.createCritic(username, passwordI)
-            .then(() => this.router.navigate(['profile']));
-    } else if (this.role === 'admin') {
-        this.service.createAdmin(username, passwordI)
-            .then(() => this.router.navigate(['profile']));
+        this.criticService.createCritic(username, passwordI)
+            .then(user => (this.userId = user.id))
+            .then(() => (this.router.navigate(['profile/critic/' + this.userId])));
+    // } else if (this.role === 'admin') {
+    //     this.service.createAdmin(username, passwordI)
+    //         .then(() => this.router.navigate(['profile']));
     }
   }
 

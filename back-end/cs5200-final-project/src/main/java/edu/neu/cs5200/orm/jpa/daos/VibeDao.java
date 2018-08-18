@@ -23,35 +23,35 @@ public class VibeDao {
 	RestaurantRepository restaurantRepository;
 	
 	public void test() {
-		//Delete vibes
-		deleteAllVibes();
-		
-		//Create vibe
-		Vibe vibe = new Vibe();
-		vibe.setCuisine("Mediterranean");
-		vibe.setDietarySpeciality("Vegetarian");
-		vibe.setOutdoorSeating("Yes");
-		vibe.setAlcoholServed("Yes");
-		
-		List<Restaurant> restaurantList = new ArrayList<Restaurant>();
-		Restaurant restaurant = new Restaurant();
-		restaurant.setName("Anoush'ella");
-		restaurant.setAddress("35 West Newton Street");
-		restaurant.setCity("Boston");
-		//restaurant.setNumberOfVisits(2000);
-		
-		Owner owner = new Owner();
-		owner.setFirstName("Nina");
-		owner.setLastName("Festekjian");
-		owner.setUsername("nFest");
-		owner.setPassword("nFest");
-		
-		restaurant.setOwner(owner);
-		restaurantList.add(restaurant);
-		
-		vibe.setRestaurants(restaurantList);
-		
-		createVibe(vibe);
+//		//Delete vibes
+//		deleteAllVibes();
+//		
+//		//Create vibe
+//		Vibe vibe = new Vibe();
+//		vibe.setCuisine("Mediterranean");
+//		vibe.setDietarySpeciality("Vegetarian");
+//		vibe.setOutdoorSeating("Yes");
+//		vibe.setAlcoholServed("Yes");
+//		
+//		List<Restaurant> restaurantList = new ArrayList<Restaurant>();
+//		Restaurant restaurant = new Restaurant();
+//		restaurant.setName("Anoush'ella");
+//		restaurant.setAddress("35 West Newton Street");
+//		restaurant.setCity("Boston");
+//		//restaurant.setNumberOfVisits(2000);
+//		
+//		Owner owner = new Owner();
+//		owner.setFirstName("Nina");
+//		owner.setLastName("Festekjian");
+//		owner.setUsername("nFest");
+//		owner.setPassword("nFest");
+//		
+//		restaurant.setOwner(owner);
+//		restaurantList.add(restaurant);
+//		
+//		vibe.setRestaurants(restaurantList);
+//		
+//		createVibe(vibe);
 		
 		
 	}

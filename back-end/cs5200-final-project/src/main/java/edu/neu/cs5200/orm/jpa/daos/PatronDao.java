@@ -22,31 +22,48 @@ public class PatronDao {
 	CriticDao criticDao;
 	
 	public void test() {
+//		//Delete all Patron
+//		deleteAllPatrons();
+//				
+//		//Create Patron
+//		Patron patron = new Patron();
+//		patron.setFirstName("Jen");
+//		patron.setLastName("Sherman");
+//		patron.setUsername("jenO");
+//		patron.setPassword("jen123");
+//		createPatron(patron);
+//				
+//		Patron patron2 = new Patron();
+//		patron2.setFirstName("Chris");
+//		patron2.setLastName("Chan");
+//		patron2.setUsername("chrisC");
+//		patron2.setPassword("chris123");
+//		createPatron(patron2);
 		//Delete all Patron
-		deleteAllPatrons();
+//		deleteAllPatrons();
 				
 		//Create Patron
-		Patron patron = new Patron();
-		patron.setFirstName("Jen");
-		patron.setLastName("Sherman");
-		patron.setUsername("jenO");
-		patron.setPassword("jen123");
-		
-		Critic critic = new Critic();
-		critic.setFirstName("Suzy");
-		critic.setLastName("Smith");
-		critic.setUsername("suzyS");
-		critic.setPassword("suzy123");
-		
-		patron.setFavoriteCritic(critic);
-		createPatron(patron);
-				
-		Patron patron2 = new Patron();
-		patron2.setFirstName("Chris");
-		patron2.setLastName("Chan");
-		patron2.setUsername("chrisC");
-		patron2.setPassword("chris123");
-		createPatron(patron2);
+//		Patron patron = new Patron();
+//		patron.setFirstName("Jen");
+//		patron.setLastName("Sherman");
+//		patron.setUsername("jenO");
+//		patron.setPassword("jen123");
+//		
+//		Critic critic = new Critic();
+//		critic.setFirstName("Suzy");
+//		critic.setLastName("Smith");
+//		critic.setUsername("suzyS");
+//		critic.setPassword("suzy123");
+//		
+//		patron.setFavoriteCritic(critic);
+//		createPatron(patron);
+//				
+//		Patron patron2 = new Patron();
+//		patron2.setFirstName("Chris");
+//		patron2.setLastName("Chan");
+//		patron2.setUsername("chrisC");
+//		patron2.setPassword("chris123");
+//		createPatron(patron2);
 		
 		
 	}

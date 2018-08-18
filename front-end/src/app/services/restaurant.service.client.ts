@@ -27,7 +27,19 @@ export class RestaurantServiceClient {
             body: JSON.stringify(data),
             headers: {
                 'content-type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:8080'
+            }
+        }).then(response => response.json());
+    }
+
+    findRestaurantByName(restaurant) {
+        const data = {
+            name: restaurant.alias
+        };
+        return fetch ('http://localhost:8080/api/restaurant/name', {
+            method: 'post',
+            body: JSON.stringify(data),
+            headers: {
+                'content-type': 'application/json',
             }
         }).then(response => response.json());
     }

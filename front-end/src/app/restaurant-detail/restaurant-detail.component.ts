@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RestaurantServiceClient} from '../services/restaurant.service.client';
+import {ReviewServiceClient} from '../services/review.service.client';
+import {UserServiceClient} from '../services/user.service.client';
+import {CriticServiceClient} from '../services/critic.service.client';
+import {PatronServiceClient} from '../services/patron.service.client';
 
 @Component({
   selector: 'app-restaurant-detail',
@@ -9,55 +13,84 @@ import {RestaurantServiceClient} from '../services/restaurant.service.client';
 })
 export class RestaurantDetailComponent implements OnInit {
 
-  constructor(private service: RestaurantServiceClient,
+  constructor(private restaurantService: RestaurantServiceClient,
+              private reviewService: ReviewServiceClient,
+              private userService: UserServiceClient,
+              private criticService: CriticServiceClient,
+              private patronService: PatronServiceClient,
               private router: Router,
               private route: ActivatedRoute) {
       this.route.params.subscribe(params => this.loadRestaurant(params['restaurantId']));
   }
 
+  restaurant;
   restaurantId;
   restaurantName;
-  restaurantAddress;
-  restaurantCity;
-  restaurantState;
-  restaurantPhone;
   restaurantDateEst;
-  restaurantHoursOfOpp;
-  restaurantNumberOfVisits;
-  restaurantPrice;
-  restaurantImage;
 
   reviews;
   reviewTitle;
   reviewDesription;
+  reviewRating;
 
+  critic;
   criticId;
   criticUsername;
 
+  patron;
+  patronUsername;
+
   loadRestaurant(restaurantId) {
       this.restaurantId = restaurantId;
-      this.service.findRestaurantById(restaurantId)
+      this.restaurantService.findRestaurantById(restaurantId)
           .then(restaurant => this.loadRestaurantDetail(restaurant));
   }
 
   loadRestaurantDetail(restaurant) {
-      this.restaurantName = restaurant.name;
-      this.restaurantAddress = restaurant.address;
-      this.restaurantCity = restaurant.city;
-      this.restaurantState = restaurant.state;
-      this.restaurantPhone = restaurant.phone;
-      this.restaurantDateEst = restaurant.DateEst;
-      this.restaurantHoursOfOpp = restaurant.hoursOfOpp;
-      this.restaurantNumberOfVisits = restaurant.numberOfVisits;
-      this.restaurantPrice = restaurant.numberOfVisits;
-      this.restaurantImage = restaurant.imageUrl;
+      this.restaurant = restaurant;
+      this.restaurantName = this.styleName(restaurant.name);
+      this.reviewService.findReviewsByRestaurant(restaurant.id).then(
+          reviews => this.reviews = reviews);
   }
 
-  addReview(reviewTitle, reviewDescription, criticId, restaurantId) {
-
+  addReview(reviewTitle, reviewDescription, criticUsername) {
+      this.userService.findUserByUsername(criticUsername)
+          .then(critic => this.reviewService
+              .addReview(reviewTitle, reviewDescription, this.reviewRating, critic.id, this.restaurantId))
+          .then(() => location.reload());
   }
 
-  ngOnInit() {
+    restaurantToPatron(patronUsername) {
+      this.userService.findUserByUsername(patronUsername)
+          .then(() => patron => this.patronService.restaurantToPatron(patron.id, this.restaurantId));
+    }
+
+    findCriticByReview(reviewId) {
+        this.criticService.findCriticByReview(reviewId)
+            .then(critic => this.criticId = critic.id)
+            .then(() => (this.router.navigate(['critic/' + this.criticId])));
+
+    }
+
+  setRating(rating) {
+      this.reviewRating = rating;
+  }
+
+  styleName(restaurantName) {
+      let styledName = '';
+      for (let i = 0; i < restaurantName.length; i++) {
+          if (restaurantName.charAt(i) !== '-') {
+              styledName = styledName + restaurantName.charAt(i);
+          } else {
+              styledName = styledName + ' ';
+          }
+      }
+      return styledName;
+  }
+
+
+
+        ngOnInit() {
   }
 
 }
