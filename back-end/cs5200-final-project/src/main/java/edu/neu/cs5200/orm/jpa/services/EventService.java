@@ -35,8 +35,7 @@ public class EventService {
 	public Optional<Event> findEventById(@PathVariable("eid") int eid) {
 		return eventDao.findEventById(eid);
 	}
-	
-	
+
 	// GET list of events
 	@GetMapping("/api/event")
 	public List<Event> findAllEvents() {
@@ -48,19 +47,35 @@ public class EventService {
 	public List<Event> findEventsForRestaurant(@PathVariable("rid") int rid) {
 		return eventDao.findEventsForRestaurant(rid);
 	}
-	
+
+	// GET list of events based on owner
+	@GetMapping("/api/owner/{oid}/event")
+	public List<Event> findEventsForOwner(@PathVariable("oid") int oid) {
+		return eventDao.findEventsForOwner(oid);
+	}
+
+	// GET list of events based on critic
+	@GetMapping("/api/critic/{cid}/event")
+	public List<Event> findEventsForCritic(@PathVariable("cid") int cid) {
+		return eventDao.findEventsForCritic(cid);
+	}
+
+	// GET list of events based on patron
+	@GetMapping("/api/patron/{pid}/event")
+	public List<Event> findEventsForPatron(@PathVariable("pid") int pid) {
+		return eventDao.findEventsForPatron(pid);
+	}
+
 	// DELETE Delete event instance whose primary key is eid
 	@DeleteMapping("/api/event/{eid}")
 	public void deleteEventById(@PathVariable("edi") int eid) {
 		eventDao.deleteEventById(eid);
 	}
-	
+
 	// UPDATE event whose id is eid
 	@PutMapping("/api/event/{eid}")
-	public void updateEventById(@PathVariable("eid")int eid, @RequestBody Event newEvent) {
+	public void updateEventById(@PathVariable("eid") int eid, @RequestBody Event newEvent) {
 		eventDao.updateEvent(eid, newEvent);
 	}
-	
-	
 
 }

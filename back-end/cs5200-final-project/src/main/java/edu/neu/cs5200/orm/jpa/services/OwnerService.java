@@ -26,68 +26,90 @@ import edu.neu.cs5200.orm.jpa.entities.User;
 public class OwnerService {
 	@Autowired
 	OwnerDao ownerDao;
-	
+
 	// GET: List of owners
 	@GetMapping("/api/owner")
 	public List<Owner> findAllOwners() {
 		return ownerDao.findAllOwners();
 	}
-	
-	//GET: Owner instance whose primary key is oid
+
+	// GET: Owner instance whose primary key is oid
 	@GetMapping("/api/owner/{oid}")
-	public Optional<Owner> findOwnerById (@PathVariable("oid") int id) {
+	public Optional<Owner> findOwnerById(@PathVariable("oid") int id) {
 		return ownerDao.findOwnerById(id);
 	}
-	
-	//GET: owner instance based on event (eid)
+
+	// GET: owner instance based on event (eid)
 	@GetMapping("/api/event/{eid}/owner")
 	public Owner findOwnerByEvent(@PathVariable("eid") int eid) {
 		return ownerDao.findOwnerByEventId(eid);
 	}
-	
-	//GET: update owner to include pid to patronsInvited
+
+	// GET: owner instances based on critic (cid)
+	@GetMapping("/api/critic/{cid}/owner")
+	public List<Owner> findOwnerInvitesByCritic(@PathVariable("cid") int cid) {
+		return ownerDao.findOwnerInvitesByCritic(cid);
+	}
+
+	// GET: owner instances based on patron (pid)
+	@GetMapping("/api/patron/{pid}/owner")
+	public List<Owner> findOwnerInvitesByPatron(@PathVariable("pid") int pid) {
+		return ownerDao.findOwnerInvitesByPatron(pid);
+	}
+
+	// GET: owner endorsement instances based on patron (pid)
+	@GetMapping("/api/patron/{pid}/ownerEndorsements")
+	public List<Owner> findOwnerEndorsementsByPatron(@PathVariable("pid") int pid) {
+		return ownerDao.findOwnerEndorsementsByPatron(pid);
+	}
+
+	// GET: owner endorsement instances based on critic (cid)
+	@GetMapping("/api/critic/{cid}/ownerEndorsements")
+	public List<Owner> findOwnerEndorsementsByCritic(@PathVariable("cid") int cid) {
+		return ownerDao.findOwnerEndorsementsByCritic(cid);
+	}
+
+	// GET: update owner to include pid to patronsInvited
 	@GetMapping("/api/patron/{pid}/owner/{oid}")
 	public void addPatronInviteToOwner(@PathVariable("pid") int pid, @PathVariable("oid") int oid) {
 		ownerDao.addPatronInviteToOwner(pid, oid);
 	}
-	
-	//GET: update owner to include cid to criticsInvited
+
+	// GET: update owner to include cid to criticsInvited
 	@GetMapping("/api/critic/{cid}/owner/{oid}")
-	public void addCriticnInviteToOwner(@PathVariable("cid") int cid, @PathVariable("oid") int oid) {
+	public void addCriticInviteToOwner(@PathVariable("cid") int cid, @PathVariable("oid") int oid) {
 		ownerDao.addCriticInviteToOwner(cid, oid);
 	}
-		
-	
-	//DELETE: Delete owner instance whose primary key is oid
+
+	// DELETE: Delete owner instance whose primary key is oid
 	@DeleteMapping("/api/owner/{oid}")
 	public void deleteOwnerById(@PathVariable("oid") int id) {
 		ownerDao.deleteOwnerById(id);
 	}
-	
-	//POST: Create Owner
+
+	// POST: Create Owner
 	@PostMapping("/api/owner")
 	public Owner createOwner(@RequestBody Owner owner) {
 		return ownerDao.createOwner(owner);
 	}
-	
-	//PUT: Update owner instance whose primary key is oid
+
+	// PUT: Update owner instance whose primary key is oid
 	@PutMapping("/api/owner/{oid}")
 	@Transactional
-	public void updateOwner(@PathVariable("oid")int id, @RequestBody Owner newOwner) {
+	public void updateOwner(@PathVariable("oid") int id, @RequestBody Owner newOwner) {
 		ownerDao.updateOwner(id, newOwner);
 	}
-	
-	//Post: Get Owner instance by credentials (username and password)
+
+	// Post: Get Owner instance by credentials (username and password)
 	@PostMapping("/api/owner/login")
 	public Owner login(@RequestBody User user) {
-		return ownerDao.findOwnerByCredentials(user.getUsername(), user.getPassword());	
+		return ownerDao.findOwnerByCredentials(user.getUsername(), user.getPassword());
 	}
-	
-	//Post: Get Owner instance by username
+
+	// Post: Get Owner instance by username
 	@PostMapping("/api/owner/username")
 	public Owner findOwnerByUsername(@RequestBody User user) {
 		return ownerDao.findOwnerByUsername(user.getUsername());
 	}
-	
-	
+
 }

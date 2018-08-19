@@ -1,0 +1,20 @@
+<div class="container-fluid">
+  <h1>Events:</h1>
+
+
+  <ul class="list-group list-group-flush" *ngFor="let event of events">
+    <li class="list-group-item">
+      <div class="float-left">
+        <p>Title: {{event.title}}</p>
+      </div>
+      <button (click)="deleteEvent(event.id)"
+              type="button" class="btn btn-danger btn-sm float-right">Delete Event
+      </button>
+    </li>
+  </ul>
+
+  <div>
+    <button (click)="goToProfile()" class="btn btn-link" style="float: left; color: black">Return to Profile</button>
+    <button (click)="goHome()" class="btn btn-link" style="float: right; color: black">Home</button>
+  </div>
+</div>

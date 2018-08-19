@@ -11,6 +11,14 @@ import {PatronProfilePrivateComponent} from './patron-profile-private/patron-pro
 import {PatronProfileComponent} from './patron-profile/patron-profile.component';
 import {EventCreateComponent} from './event-create/event-create.component';
 import {EventDetailComponent} from './event-detail/event-detail.component';
+import {AdminProfilePrivateComponent} from './admin-profile-private/admin-profile-private.component';
+import {OwnerAllOwnersComponent} from './owner-all-owners/owner-all-owners.component';
+import {CriticAllCriticsComponent} from './critic-all-critics/critic-all-critics.component';
+import {PatronAllPatronsComponent} from './patron-all-patrons/patron-all-patrons.component';
+import {RestaurantAllRestaurantsComponent} from './restaurant-all-restaurants/restaurant-all-restaurants.component';
+import {EventAllEventsComponent} from './event-all-events/event-all-events.component';
+import {OwnerProfileComponent} from './owner-profile/owner-profile.component';
+import {AdminRegisterComponent} from './admin-register/admin-register.component';
 
 const appRoutes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -21,11 +29,19 @@ const appRoutes: Routes = [
     {path: 'restaurant/:restaurantId/event/:eventId', component: EventDetailComponent},
     {path: 'login', component: UserLoginComponent},
     {path: 'register', component: UserRegisterComponent},
+    {path: 'admin/:adminId/register', component: AdminRegisterComponent},
+    {path: 'profile/admin/:adminId', component: AdminProfilePrivateComponent},
+    {path: 'owner/:ownerId', component: OwnerProfileComponent},
     {path: 'profile/owner/:ownerId', component: OwnerProfilePrivateComponent},
     {path: 'critic/:criticId', component: CriticProfileComponent},
     {path: 'profile/critic/:criticId', component: CriticProfilePrivateComponent},
     {path: 'patron/:patronId', component: PatronProfileComponent},
-    {path: 'profile/patron/:patronId', component: PatronProfilePrivateComponent}
+    {path: 'profile/patron/:patronId', component: PatronProfilePrivateComponent},
+    {path: 'admin/:adminId/owners', component: OwnerAllOwnersComponent},
+    {path: 'admin/:adminId/critics', component: CriticAllCriticsComponent},
+    {path: 'admin/:adminId/patrons', component: PatronAllPatronsComponent},
+    {path: 'admin/:adminId/restaurants', component: RestaurantAllRestaurantsComponent},
+    {path: 'admin/:adminId/events', component: EventAllEventsComponent},
 
 
 ];

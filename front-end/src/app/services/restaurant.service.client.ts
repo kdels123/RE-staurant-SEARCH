@@ -10,25 +10,11 @@ export class RestaurantServiceClient {
             .then(response => response.json());
     }
 
-    addRestaurant(restaurant) {
-        const data = {
-            name: restaurant.alias,
-            yelpId: restaurant.id,
-            address: restaurant.location.address1,
-            city: restaurant.location.city,
-            state: restaurant.location.state,
-            phone: restaurant.phone,
-            numberOfVisits: restaurant.review_count,
-            price: restaurant.price,
-            imageUrl: restaurant.image_url
-        };
-        return fetch('http://localhost:8080/api/restaurant', {
-            method: 'post',
-            body: JSON.stringify(data),
-            headers: {
-                'content-type': 'application/json',
-            }
-        }).then(response => response.json());
+    findAllRestaurants() {
+        return fetch('http://localhost:8080/api/restaurant/')
+            .then(function (response) {
+                return response.json();
+            });
     }
 
     findRestaurantByName(restaurant) {
@@ -52,6 +38,59 @@ export class RestaurantServiceClient {
         return fetch('http://localhost:8080/api/patron/' + patronId + '/restaurant')
             .then(function (response) { return response.json();
             });
+    }
+
+    findRestaurantsByOwner(ownerId) {
+        return fetch('http://localhost:8080/api/owner/' + ownerId + '/restaurant')
+            .then(function (response) { return response.json();
+            });
+    }
+
+    addRestaurantWithOwner(name, address, city, state, phone, price, ownerId) {
+        const data = {
+            name: name,
+            yelpId: '',
+            address: address,
+            city: city,
+            state: state,
+            phone: phone,
+            numberOfVisits: '',
+            price: price,
+        };
+        return fetch('http://localhost:8080/api/owner/' + ownerId + '/restaurant', {
+            method: 'post',
+            body: JSON.stringify(data),
+            headers: {
+                'content-type': 'application/json',
+            }
+        }).then(response => response.json());
+    }
+
+    addRestaurant(restaurant) {
+        const data = {
+            name: restaurant.alias,
+            yelpId: restaurant.id,
+            address: restaurant.location.address1,
+            city: restaurant.location.city,
+            state: restaurant.location.state,
+            phone: restaurant.phone,
+            numberOfVisits: restaurant.review_count,
+            price: restaurant.price,
+            imageUrl: restaurant.image_url
+        };
+        return fetch('http://localhost:8080/api/restaurant', {
+            method: 'post',
+            body: JSON.stringify(data),
+            headers: {
+                'content-type': 'application/json',
+            }
+        }).then(response => response.json());
+    }
+
+    deleteRestaurant(restaurantId) {
+        return fetch('http://localhost:8080/api/restaurant/' + restaurantId, {
+            method: 'delete'
+        });
     }
 
 

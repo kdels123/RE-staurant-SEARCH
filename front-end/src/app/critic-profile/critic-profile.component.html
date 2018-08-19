@@ -1,3 +1,9 @@
+<div>
+    <button (click)="goHome()" class="btn btn-link" style="color: black; float: left">Home</button>
+    <button (click)="search()" class="btn btn-link" style="color: black; float: right">Search</button>
+
+</div>
+<br>
 <div class="container">
     <h1>{{critic.firstName}} {{critic.lastName}}</h1>
     <h2>{{critic.username}}</h2>
@@ -13,7 +19,7 @@
     </div>
 
     <div class="input-group mb-3">
-        <input [(ngModel)]="patronUsername" type="text" class="form-control" placeholder=" owner username" aria-describedby="button-addon2">
+        <input [(ngModel)]="ownerUsername" type="text" class="form-control" placeholder=" owner username" aria-describedby="button-addon2">
         <div class="input-group-append">
             <button (click)="criticToOwner(ownerUsername)"
                     class="btn btn-dark" type="button" >Invite Critic to Restaurant</button>
@@ -31,4 +37,10 @@
     </ul>
 
     <h3>Followers:</h3>
+
+    <ul class="list-group list-group-flush" *ngFor="let patron of patrons">
+        <li class="list-group-item">
+            <p>Name: {{patron.firstName}} {{patron.lastName}}</p>
+        </li>
+    </ul>
 </div>

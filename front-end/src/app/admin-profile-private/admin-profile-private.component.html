@@ -1,0 +1,57 @@
+<div>
+    <button (click)="goHome()" class="btn btn-link" style="color: black; float: left">Home</button>
+    <button (click)="search()" class="btn btn-link" style="color: black; float: right">Search</button>
+
+</div>
+<br>
+<div class="container">
+
+    <h1>Profile</h1>
+
+    <div class="form-group">
+        <input [(ngModel)]="username" placeholder="username" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <input [(ngModel)]="firstName" placeholder="first name" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <input [(ngModel)]="lastName" placeholder="last name" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <input [(ngModel)]="email" placeholder="email" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <input [(ngModel)]="phone" placeholder="phone number" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <input [(ngModel)]="dob" placeholder="date of birth (YYYY-MM-DD)" class="form-control"/>
+    </div>
+    <button (click)="update(firstName, lastName, email, phone, dob)"
+            class="btn btn-block btn-dark">Update Profile
+    </button>
+    <br/>
+    <button (click)="logout()" class="btn btn-block btn-dark">Logout</button>
+
+    <h2>Current Users</h2>
+    <div class="form-group">
+        <button (click)="goToAllRestaurantOwners()" class="btn btn-link">View All Restaurant Owners</button>
+    </div>
+    <div class="form-group">
+        <button (click)="goToAllCritics()" class="btn btn-link">View All Critics</button>
+    </div>
+    <div class="form-group">
+        <button (click)="goToAllPatrons()" class="btn btn-link">View All Patrons</button>
+    </div>
+    <div class="form-group">
+        <button (click)="goToRegister()" class="btn btn-link">Add a User</button>
+    </div>
+    <h2>Restaurants</h2>
+    <div class="form-group">
+        <button (click)="goToAllRestaurants()" class="btn btn-link">View All Restaurants</button>
+    </div>
+    <h2>Events</h2>
+    <div class="form-group">
+        <button (click)="goToAllEvents()" class="btn btn-link">View All Events</button>
+    </div>
+
+</div>

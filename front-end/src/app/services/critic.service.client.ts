@@ -8,10 +8,57 @@ export class CriticServiceClient {
             });
     }
 
+    findAllCritics() {
+        return fetch('http://localhost:8080/api/critic/')
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
     findCriticByReview(reviewId) {
         return fetch('http://localhost:8080/api/review/' + reviewId + '/critic')
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
+    findCriticsByPatron(patronId) {
+        return fetch('http://localhost:8080/api/patron/' + patronId + '/critic')
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
+    findCriticsByOwner(ownerId) {
+        return fetch('http://localhost:8080/api/owner/' + ownerId + '/critic')
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
+    findCriticsByEvent(eventId) {
+        return fetch('http://localhost:8080/api/event/' + eventId + '/critic')
             .then(function (response) { return response.json();
             });
+    }
+
+    findCriticInvitesByOwner(ownerId) {
+        return fetch('http://localhost:8080/api/owner/' + ownerId + '/criticInvite')
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
+    addBlockPatron(patronId, criticId) {
+        return fetch('http://localhost:8080/api/patron/' + patronId + '/critic/' + criticId);
+    }
+
+    addOwnerToCriticEndorsed(ownerId, criticId) {
+        return fetch('http://localhost:8080/api/owner/' + ownerId + '/critic/' + criticId);
+    }
+
+    addEventToCritic(eventId, criticId) {
+        return fetch('http://localhost:8080/api/event/' + eventId + '/critic/' + criticId);
     }
 
     findCriticByUsername(username) {
@@ -26,6 +73,7 @@ export class CriticServiceClient {
             }
         }).then(response => response.json());
     }
+
 
     createCritic(username, password) {
         const user = {
@@ -59,6 +107,12 @@ export class CriticServiceClient {
         });
     }
 
+    deleteCritic(criticId) {
+        return fetch('http://localhost:8080/api/critic/' + criticId, {
+            method: 'delete'
+        });
+    }
+
     loginCritic(username, password) {
         const credentials = {
             username: username,
@@ -73,5 +127,6 @@ export class CriticServiceClient {
             }
         }).then(response => response.json());
     }
+
 
 }

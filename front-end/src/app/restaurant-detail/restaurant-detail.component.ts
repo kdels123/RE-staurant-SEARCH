@@ -36,10 +36,10 @@ export class RestaurantDetailComponent implements OnInit {
 
   critic;
   criticId;
-  criticUsername;
+  criticUsername = null;
 
   patron;
-  patronUsername;
+  patronUsername = null;
   patrons;
 
   events;
@@ -62,16 +62,26 @@ export class RestaurantDetailComponent implements OnInit {
   }
 
   addReview(reviewTitle, reviewDescription, criticUsername) {
+      if (this.criticUsername === null) {
+          alert('Please enter a username');
+          return;
+      }
       this.criticService.findCriticByUsername(criticUsername)
           .then(critic => this.reviewService
               .addReview(reviewTitle, reviewDescription, this.reviewRating, critic.id, this.restaurantId))
-          .then(() => location.reload());
+          .then(() => location.reload())
+          .catch(() => alert('Must be logged in as Critic'));
   }
 
     restaurantToPatron(patronUsername) {
+      if (patronUsername === null) {
+          alert('Please enter a username');
+          return;
+      }
       this.patronService.findPatronByUsername(patronUsername)
           .then(patron => this.patronService.restaurantToPatron(patron.id, this.restaurantId))
-          .then(() => location.reload());;
+          .then(() => location.reload())
+          .catch(() => alert('Must be logged in as Patron'));
     }
 
     findCriticByReview(reviewId) {
@@ -109,7 +119,14 @@ export class RestaurantDetailComponent implements OnInit {
       return styledName;
   }
 
+    goHome() {
+        this.router.navigate(['home']);
+    }
 
+
+    search() {
+        this.router.navigate(['search']);
+    }
 
         ngOnInit() {
   }

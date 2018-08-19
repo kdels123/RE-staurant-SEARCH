@@ -6,6 +6,13 @@ export class OwnerServiceClient {
             .then(response => response.json());
     }
 
+    findAllOwners() {
+        return fetch('http://localhost:8080/api/owner/')
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
     findOwnerByUsername(username) {
         const user = {
             username: username
@@ -19,6 +26,43 @@ export class OwnerServiceClient {
         }).then(response => response.json());
     }
 
+    findOwnerByEvent(eventId) {
+        return fetch('http://localhost:8080/api/event/' + eventId + '/owner')
+            .then(function (response) { return response.json();
+            });
+    }
+
+    findOwnerInvitesByCritic(criticId) {
+        return fetch('http://localhost:8080/api/critic/' + criticId + '/owner')
+            .then(function (response) { return response.json();
+            });
+    }
+
+    findOwnerInvitesByPatron(patronId) {
+        return fetch('http://localhost:8080/api/patron/' + patronId + '/owner')
+            .then(function (response) { return response.json();
+            });
+    }
+
+    findOwnerEndorsementsByPatron(patronId) {
+        return fetch('http://localhost:8080/api/patron/' + patronId + '/ownerEndorsements')
+            .then(function (response) { return response.json();
+            });
+    }
+
+    findOwnerEndorsementsByCritic(criticId) {
+        return fetch('http://localhost:8080/api/critic/' + criticId + '/ownerEndorsements')
+            .then(function (response) { return response.json();
+            });
+    }
+
+    addCriticInviteToOwner(ownerId, criticId) {
+        return fetch('http://localhost:8080/api/critic/' + criticId + '/owner/' + ownerId);
+    }
+
+    addPatronInviteToOwner(ownerId, patronId) {
+        return fetch('http://localhost:8080/api/patron/' + patronId + '/owner/' + ownerId);
+    }
 
     createOwner(username, password) {
         const user = {
@@ -51,6 +95,12 @@ export class OwnerServiceClient {
             headers: {
                 'content-type': 'application/json'
             }
+        });
+    }
+
+    deleteOwner(ownerId) {
+        return fetch('http://localhost:8080/api/owner/' + ownerId, {
+            method: 'delete'
         });
     }
 

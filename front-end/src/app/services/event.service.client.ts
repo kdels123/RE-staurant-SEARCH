@@ -6,9 +6,37 @@ export class EventServiceClient {
             .then(response => response.json());
     }
 
+
+    findAllEvents() {
+        return fetch('http://localhost:8080/api/event/')
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
     findEventsByRestaurant(restaurantId) {
         return fetch('http://localhost:8080/api/restaurant/' + restaurantId + '/event')
             .then(function (response) { return response.json();
+            });
+    }
+
+    findEventsByOwner(ownerId) {
+        return fetch('http://localhost:8080/api/owner/' + ownerId + '/event')
+            .then(function (response) { return response.json();
+            });
+    }
+
+    findEventsByCritic(criticId) {
+        return fetch('http://localhost:8080/api/critic/' + criticId + '/event')
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
+    findEventsByPatron(patronId) {
+        return fetch('http://localhost:8080/api/patron/' + patronId + '/event')
+            .then(function (response) {
+                return response.json();
             });
     }
 
@@ -28,6 +56,12 @@ export class EventServiceClient {
                 'content-type': 'application/json',
             }
         }).then(response => response.json());
+    }
+
+    deleteEvent(eventId) {
+        return fetch('http://localhost:8080/api/event/' + eventId, {
+            method: 'delete'
+        });
     }
 }
 

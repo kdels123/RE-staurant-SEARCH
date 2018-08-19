@@ -8,6 +8,13 @@ export class PatronServiceClient {
             });
     }
 
+    findAllPatrons() {
+        return fetch('http://localhost:8080/api/patron/')
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
     findPatronByUsername(username) {
         const user = {
             username: username
@@ -23,7 +30,51 @@ export class PatronServiceClient {
 
     findPatronsByRestaurant(restaurantId) {
         return fetch('http://localhost:8080/api/restaurant/' + restaurantId + '/patron')
-            .then(function (response) { return response.json();
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
+    findPatronsByCritic(criticId) {
+        return fetch('http://localhost:8080/api/critic/' + criticId + '/patron')
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
+    findBlockPatronsByCritic(criticId) {
+        return fetch('http://localhost:8080/api/critic/' + criticId + '/blockpatron')
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
+    findPatronsByOwner(ownerId) {
+        return fetch('http://localhost:8080/api/owner/' + ownerId + '/patron')
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
+    findPatronsByEvent(eventId) {
+        return fetch('http://localhost:8080/api/event/' + eventId + '/patron')
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
+    findPatronInvitesByOwner(ownerId) {
+        return fetch('http://localhost:8080/api/owner/' + ownerId + '/patronInvite')
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
+
+    findFavoriteCritic(patronId) {
+        return fetch('http://localhost:8080/api/favoriteCritic/' + patronId + '/patron')
+            .then(function (response) {
+                return response.json();
             });
     }
 
@@ -61,6 +112,28 @@ export class PatronServiceClient {
 
     restaurantToPatron(patronId, restaurantId) {
         return fetch('http://localhost:8080/api/restaurant/' + restaurantId + '/patron/' + patronId);
+    }
+
+    criticToPatron(patronId, criticId) {
+        return fetch('http://localhost:8080/api/critic/' + criticId + '/patron/' + patronId);
+    }
+
+    addOwnerToPatronEndorsed(ownerId, patronId) {
+        return fetch('http://localhost:8080/api/owner/' + ownerId + '/patron/' + patronId);
+    }
+
+    addEventToPatron(eventId, patronId) {
+        return fetch('http://localhost:8080/api/event/' + eventId + '/patron/' + patronId);
+    }
+
+    addFavoriteCritic(criticId, patronId) {
+        return fetch('http://localhost:8080/api/favoriteCritic/' + criticId + '/patron/' + patronId);
+    }
+
+    deletePatron(patronId) {
+        return fetch('http://localhost:8080/api/patron/' + patronId, {
+            method: 'delete'
+        });
     }
 
     loginPatron(username, password) {

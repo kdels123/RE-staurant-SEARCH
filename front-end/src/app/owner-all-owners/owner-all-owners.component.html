@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <h1>Owners:</h1>
+
+
+  <ul class="list-group list-group-flush" *ngFor="let owner of owners">
+    <li class="list-group-item">
+      <div class="float-left">
+        <p>Name: {{owner.firstName}} {{owner.lastName}}</p>
+      </div>
+      <button (click)="deleteOwner(owner.id)"
+              type="button" class="btn btn-danger btn-sm float-right">Delete Owner
+      </button>
+      <button (click)="updateOwner(owner.id)"
+              type="button" class="btn btn-dark btn-sm float-right btn-group mr-2">Update Owner
+      </button>
+
+    </li>
+  </ul>
+
+  <div>
+    <button (click)="goToProfile()" class="btn btn-link" style="float: left; color: black">Return to Profile</button>
+    <button (click)="goHome()" class="btn btn-link" style="float: right; color: black">Home</button>
+  </div>
+</div>

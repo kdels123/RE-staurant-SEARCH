@@ -1,0 +1,29 @@
+<div class="container">
+  <h1>Create a User - Admin</h1>
+
+  <div class="form-group">
+    <input [(ngModel)]="username" placeholder="username" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <input [(ngModel)]="passwordI" placeholder="password" class="form-control" type="password"/>
+  </div>
+  <div class="form-group">
+    <input [(ngModel)]="passwordII" placeholder="verify password" class="form-control" type="password"/>
+  </div>
+
+  <div class="form-group">
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button (click)="setRole('patron')" type="button" class="btn btn-secondary">Restaurant Patron</button>
+      <button (click)="setRole('critic')" type="button" class="btn btn-secondary">Critic</button>
+      <button (click)="setRole('owner')" type="button" class="btn btn-secondary">Restaurant Owner</button>
+    </div>
+  </div>
+
+  <button (click)="register(username, passwordI, passwordII)" class="btn btn-block btn-dark">Create User</button>
+
+  <div>
+    <button (click)="goHome()" class="btn btn-link" style="float: left; color: black">Home</button>
+    <button (click)="goToProfile()" class="btn btn-link" style="float: right; color: black">Return to Profile</button>
+  </div>
+
+</div>

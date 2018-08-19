@@ -23,6 +23,15 @@ import { PatronProfileComponent } from './patron-profile/patron-profile.componen
 import { EventCreateComponent } from './event-create/event-create.component';
 import {EventServiceClient} from './services/event.service.client';
 import { EventDetailComponent } from './event-detail/event-detail.component';
+import { AdminProfilePrivateComponent } from './admin-profile-private/admin-profile-private.component';
+import {AdminServiceClient} from './services/admin.service.client';
+import { OwnerAllOwnersComponent } from './owner-all-owners/owner-all-owners.component';
+import { CriticAllCriticsComponent } from './critic-all-critics/critic-all-critics.component';
+import { PatronAllPatronsComponent } from './patron-all-patrons/patron-all-patrons.component';
+import { RestaurantAllRestaurantsComponent } from './restaurant-all-restaurants/restaurant-all-restaurants.component';
+import { EventAllEventsComponent } from './event-all-events/event-all-events.component';
+import { OwnerProfileComponent } from './owner-profile/owner-profile.component';
+import { AdminRegisterComponent } from './admin-register/admin-register.component';
 
 
 @NgModule({
@@ -39,7 +48,15 @@ import { EventDetailComponent } from './event-detail/event-detail.component';
     PatronProfilePrivateComponent,
     PatronProfileComponent,
     EventCreateComponent,
-    EventDetailComponent
+    EventDetailComponent,
+    AdminProfilePrivateComponent,
+    OwnerAllOwnersComponent,
+    CriticAllCriticsComponent,
+    PatronAllPatronsComponent,
+    RestaurantAllRestaurantsComponent,
+    EventAllEventsComponent,
+    OwnerProfileComponent,
+    AdminRegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +70,8 @@ import { EventDetailComponent } from './event-detail/event-detail.component';
       CriticServiceClient,
       OwnerServiceClient,
       PatronServiceClient,
-      EventServiceClient
+      EventServiceClient,
+      AdminServiceClient
   ],
   bootstrap: [AppComponent]
 })

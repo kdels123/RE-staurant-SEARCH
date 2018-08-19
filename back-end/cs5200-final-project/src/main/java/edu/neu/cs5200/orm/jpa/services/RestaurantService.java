@@ -60,6 +60,12 @@ public class RestaurantService {
 		return restaurantDao.createRestaurant(restaurant);
 	}
 	
+	//POST: Create Restaurant with Owner
+		@PostMapping("/api/owner/{oid}/restaurant")
+		public Restaurant createRestaurantWitOwner(@PathVariable("oid") int oid, @RequestBody Restaurant restaurant) {
+			return restaurantDao.createRestaurant(oid, restaurant);
+		}
+	
 	//PUT: Update restaurant instance whose primary key is rid
 	@PutMapping("/api/restaurant/{rid}")
 	@Transactional

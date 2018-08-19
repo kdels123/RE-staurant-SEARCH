@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ReviewServiceClient} from '../services/review.service.client';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CriticServiceClient} from '../services/critic.service.client';
 import {PatronServiceClient} from '../services/patron.service.client';
 import {EventServiceClient} from '../services/event.service.client';
+import {OwnerServiceClient} from '../services/owner.service.client';
 
 @Component({
   selector: 'app-event-detail',
@@ -15,17 +15,22 @@ export class EventDetailComponent implements OnInit {
     constructor(private criticService: CriticServiceClient,
                 private patronService: PatronServiceClient,
                 private eventService: EventServiceClient,
+                private ownerService: OwnerServiceClient,
                 private router: Router,
                 private route: ActivatedRoute) {
         this.route.params.subscribe(params => this.loadEvent(params['eventId']));
     }
 
     critics;
+    criticUsername = null;
 
-    patrons
+    patrons;
+    patronUsername = null;
 
     event;
     eventId;
+
+    ownerId;
 
     loadEvent(eventId) {
         this.eventId = eventId;
@@ -35,10 +40,48 @@ export class EventDetailComponent implements OnInit {
 
     loadEventProfile(event) {
         this.event = event;
-        // this.patronService.findPatronsByEvent(event.id).then(
-        //     patrons => this.patrons = patrons);
-        // this.criticService.findCriticsByEvent(event.id).then(
-        //     critics => this.critics = critics);
+        this.ownerService.findOwnerByEvent(event.id).then(
+            owner => this.ownerId = owner.id);
+        this.patronService.findPatronsByEvent(event.id).then(
+            patrons => this.patrons = patrons);
+        this.criticService.findCriticsByEvent(event.id).then(
+            critics => this.critics = critics);
+    }
+
+    addEventToPatron(patronUsername) {
+        if (patronUsername === null) {
+            alert('Please enter username');
+            return;
+        }
+        this.patronService.findPatronByUsername(patronUsername)
+            .then(patron => this.patronService.addEventToPatron(this.eventId, patron.id))
+            .then(() => location.reload())
+            .catch(() => alert('Must be logged in as Patron'));
+    }
+
+    addEventToCritic(criticUsername) {
+        if (criticUsername === null) {
+            alert('Please enter username');
+            return;
+        }
+        this.criticService.findCriticByUsername(criticUsername)
+            .then(critic => this.criticService.addEventToCritic(this.eventId, critic.id))
+            .then(() => location.reload())
+            .catch(() => alert('Must be logged in as Critic'));
+        ;
+    }
+
+    goToOwner() {
+        this.router.navigate(['owner/' + this.ownerId]);
+    }
+
+    goHome() {
+        this.router.navigate(['home']);
+    }
+
+
+    search() {
+        this.router.navigate(['search']);
     }
 
     ngOnInit() {

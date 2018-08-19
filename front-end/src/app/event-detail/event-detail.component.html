@@ -1,10 +1,31 @@
+<div>
+  <button (click)="goHome()" class="btn btn-link" style="color: black; float: left">Home</button>
+  <button (click)="search()" class="btn btn-link" style="color: black; float: right">Search</button>
+</div>
+<br>
 <div class="container">
   <h1>{{event.title}}</h1>
   <h3>{{event.description}}</h3>
 
+  <div class="input-group mb-3">
+    <input [(ngModel)]="patronUsername" type="text" class="form-control" placeholder="patron username" aria-describedby="button-addon2">
+    <div class="input-group-append">
+      <button (click)="addEventToPatron(patronUsername)"
+              class="btn btn-dark" type="button" >Attend as Patron</button>
+    </div>
+  </div>
+
+  <div class="input-group mb-3">
+    <input [(ngModel)]="criticUsername" type="text" class="form-control" placeholder="critic username" aria-describedby="button-addon2">
+    <div class="input-group-append">
+      <button (click)="addEventToCritic(criticUsername)"
+              class="btn btn-dark" type="button" >Attend as Critic</button>
+    </div>
+  </div>
+
   <div class="form-group">
     <button
-            class="btn btn-block btn-dark">Attend {{event.title}}
+            (click)="goToOwner()" class="btn btn-block btn-dark">View Host
     </button>
   </div>
 
