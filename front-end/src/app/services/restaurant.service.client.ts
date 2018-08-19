@@ -11,7 +11,7 @@ export class RestaurantServiceClient {
     }
 
     findAllRestaurants() {
-        return fetch('http://localhost:8080/api/restaurant/')
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/restaurant/')
             .then(function (response) {
                 return response.json();
             });
@@ -21,7 +21,7 @@ export class RestaurantServiceClient {
         const data = {
             name: restaurant.alias
         };
-        return fetch('http://localhost:8080/api/restaurant/name', {
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/restaurant/name', {
             method: 'post',
             body: JSON.stringify(data),
             headers: {
@@ -31,18 +31,18 @@ export class RestaurantServiceClient {
     }
 
     findRestaurantById(restaurantId) {
-        return fetch('http://localhost:8080/api/restaurant/' + restaurantId).then(response => response.json());
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/restaurant/' + restaurantId).then(response => response.json());
     }
 
     findRestaurantsByPatron(patronId) {
-        return fetch('http://localhost:8080/api/patron/' + patronId + '/restaurant')
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/patron/' + patronId + '/restaurant')
             .then(function (response) {
                 return response.json();
             });
     }
 
     findRestaurantsByOwner(ownerId) {
-        return fetch('http://localhost:8080/api/owner/' + ownerId + '/restaurant')
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/owner/' + ownerId + '/restaurant')
             .then(function (response) {
                 return response.json();
             });
@@ -59,7 +59,7 @@ export class RestaurantServiceClient {
             numberOfVisits: '',
             price: price,
         };
-        return fetch('http://localhost:8080/api/owner/' + ownerId + '/restaurant', {
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/owner/' + ownerId + '/restaurant', {
             method: 'post',
             body: JSON.stringify(data),
             headers: {
@@ -80,7 +80,7 @@ export class RestaurantServiceClient {
             price: restaurant.price,
             imageUrl: restaurant.image_url
         };
-        return fetch('http://localhost:8080/api/restaurant', {
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/restaurant', {
             method: 'post',
             body: JSON.stringify(data),
             headers: {
@@ -99,7 +99,7 @@ export class RestaurantServiceClient {
             phone: restaurantPhone,
             price: restaurantPrice,
         };
-        return fetch('http://localhost:8080/api/restaurant/' + restaurantId, {
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/restaurant/' + restaurantId, {
             method: 'put',
             body: JSON.stringify(data),
             headers: {
@@ -109,7 +109,7 @@ export class RestaurantServiceClient {
     }
 
     deleteRestaurant(restaurantId) {
-        return fetch('http://localhost:8080/api/restaurant/' + restaurantId, {
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/restaurant/' + restaurantId, {
             method: 'delete'
         });
     }
