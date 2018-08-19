@@ -220,6 +220,16 @@ public class CriticDao {
 		return null;
 	}
 
+	// Find Critics Invites by owner
+	public List<Critic> findCriticInvitesByOwner(int ownerId) {
+		Optional<Owner> data = ownerDao.findOwnerById(ownerId);
+		if (data.isPresent()) {
+			Owner owner = data.get();
+			return owner.getCriticsInvited();
+		}
+		return null;
+	}
+
 	// FIND Critics by ownerId
 	public List<Critic> findCriticsByOwnerId(int oid) {
 		Optional<Owner> data = ownerDao.findOwnerById(oid);
@@ -251,7 +261,7 @@ public class CriticDao {
 		if (data.isPresent()) {
 			Event event = data.get();
 			return event.getCriticAttendees();
-		} 
+		}
 		return null;
 	}
 

@@ -31,6 +31,7 @@ import { PatronAllPatronsComponent } from './patron-all-patrons/patron-all-patro
 import { RestaurantAllRestaurantsComponent } from './restaurant-all-restaurants/restaurant-all-restaurants.component';
 import { EventAllEventsComponent } from './event-all-events/event-all-events.component';
 import { OwnerProfileComponent } from './owner-profile/owner-profile.component';
+import { AdminRegisterComponent } from './admin-register/admin-register.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { OwnerProfileComponent } from './owner-profile/owner-profile.component';
     PatronAllPatronsComponent,
     RestaurantAllRestaurantsComponent,
     EventAllEventsComponent,
-    OwnerProfileComponent
+    OwnerProfileComponent,
+    AdminRegisterComponent
   ],
   imports: [
     BrowserModule,

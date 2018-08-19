@@ -18,6 +18,7 @@ import {PatronAllPatronsComponent} from './patron-all-patrons/patron-all-patrons
 import {RestaurantAllRestaurantsComponent} from './restaurant-all-restaurants/restaurant-all-restaurants.component';
 import {EventAllEventsComponent} from './event-all-events/event-all-events.component';
 import {OwnerProfileComponent} from './owner-profile/owner-profile.component';
+import {AdminRegisterComponent} from './admin-register/admin-register.component';
 
 const appRoutes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
     {path: 'restaurant/:restaurantId/event/:eventId', component: EventDetailComponent},
     {path: 'login', component: UserLoginComponent},
     {path: 'register', component: UserRegisterComponent},
+    {path: 'admin/:adminId/register', component: AdminRegisterComponent},
     {path: 'profile/admin/:adminId', component: AdminProfilePrivateComponent},
     {path: 'owner/:ownerId', component: OwnerProfileComponent},
     {path: 'profile/owner/:ownerId', component: OwnerProfilePrivateComponent},

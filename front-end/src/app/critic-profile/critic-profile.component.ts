@@ -26,10 +26,10 @@ export class CriticProfileComponent implements OnInit {
 
   reviews;
 
-  patronUsername;
+  patronUsername = null;
   patrons;
 
-  ownerUsername;
+  ownerUsername = null;
 
   loadCritic(criticId) {
           this.criticId = criticId;
@@ -46,16 +46,35 @@ export class CriticProfileComponent implements OnInit {
   }
 
   criticToPatron(patronUsername) {
+    if (patronUsername === null) {
+      alert('Please enter a username');
+      return;
+    }
     this.patronService.findPatronByUsername(patronUsername)
         .then(patron => this.patronService.criticToPatron(patron.id, this.criticId))
-        .then(() => location.reload());
+        .then(() => location.reload())
+        .catch(() => alert('Must be logged in as Patron'));
   }
 
   criticToOwner(ownerUsername) {
+      if (ownerUsername === null) {
+          alert('Please enter a username');
+          return;
+      }
     this.ownerService.findOwnerByUsername(ownerUsername)
         .then(owner => this.ownerService.addCriticInviteToOwner(owner.id, this.criticId))
-        .then( () => alert('Invite Sent!'));
+        .then( () => alert('Invite Sent!'))
+        .catch(() => alert('Must be logged in as Owner'));
   }
+
+    goHome() {
+        this.router.navigate(['home']);
+    }
+
+
+    search() {
+        this.router.navigate(['search']);
+    }
 
   ngOnInit() {
   }

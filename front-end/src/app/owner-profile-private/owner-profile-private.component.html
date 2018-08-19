@@ -1,3 +1,9 @@
+<div>
+  <button (click)="goHome()" class="btn btn-link" style="color: black; float: left">Home</button>
+  <button (click)="search()" class="btn btn-link" style="color: black; float: right">Search</button>
+
+</div>
+<br>
 <div class="container">
   <h1>Profile</h1>
 
@@ -106,6 +112,23 @@
     </li>
   </ul>
 </div>
+
+  <h3>Invites to Patrons:</h3>
+
+  <ul class="list-group list-group-flush" *ngFor="let patronInvite of patronInvites">
+    <li class="list-group-item">
+      <p>Name: {{patronInvite.firstName}} {{patronInvite.lastName}}</p>
+    </li>
+  </ul>
+
+  <h3>Invites to Critics:</h3>
+
+  <ul class="list-group list-group-flush" *ngFor="let criticInvite of criticInvites">
+    <li class="list-group-item">
+      <p>Name: {{criticInvite.firstName}} {{criticInvite.lastName}}</p>
+    </li>
+  </ul>
+
   <div class="form-group">
     <button (click)="logout()" class="btn btn-block btn-dark">Logout</button>
   </div>

@@ -38,7 +38,8 @@ export class CriticProfilePrivateComponent implements OnInit {
     blockPatrons;
     owners;
     events;
-    invites
+    invites;
+    endorsements;
 
     loadUser(criticId) {
         this.criticId = criticId;
@@ -62,6 +63,8 @@ export class CriticProfilePrivateComponent implements OnInit {
             events => this.events = events);
         this.ownerService.findOwnerInvitesByCritic(user.id).then(
             invites => this.invites = invites);
+        this.ownerService.findOwnerEndorsementsByCritic(user.id).then(
+            endorsements => this.endorsements = endorsements);
         this.dob = this.styleDate(user.dob);
     }
 
@@ -80,6 +83,15 @@ export class CriticProfilePrivateComponent implements OnInit {
 
     styleDate(date) {
      return date.substring(0, 10);
+    }
+
+    goHome() {
+        this.router.navigate(['home']);
+    }
+
+
+    search() {
+        this.router.navigate(['search']);
     }
 
   ngOnInit() {

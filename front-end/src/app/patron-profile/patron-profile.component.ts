@@ -21,6 +21,8 @@ export class PatronProfileComponent implements OnInit {
         this.route.params.subscribe(params => this.loadPatron(params['patronId']));
     }
 
+    ownerUsername = null;
+
     patronId;
     patron;
 
@@ -42,9 +44,23 @@ export class PatronProfileComponent implements OnInit {
     }
 
     patronToOwner(ownerUsername) {
+        if (ownerUsername === null) {
+            alert('Please enter a username');
+            return;
+        }
         this.ownerService.findOwnerByUsername(ownerUsername)
             .then(owner => this.ownerService.addPatronInviteToOwner(owner.id, this.patronId))
-            .then( () => alert('Invite Sent!'));;
+            .then( () => alert('Invite Sent!'))
+            .catch(() => alert('Must be logged in as Restaurant Owner'));
+    }
+
+    goHome() {
+        this.router.navigate(['home']);
+    }
+
+
+    search() {
+        this.router.navigate(['search']);
     }
 
     ngOnInit() {

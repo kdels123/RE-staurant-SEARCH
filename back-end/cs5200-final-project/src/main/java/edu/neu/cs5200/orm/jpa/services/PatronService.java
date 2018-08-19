@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.neu.cs5200.orm.jpa.daos.PatronDao;
+import edu.neu.cs5200.orm.jpa.entities.Critic;
 import edu.neu.cs5200.orm.jpa.entities.Patron;
 import edu.neu.cs5200.orm.jpa.entities.Review;
 import edu.neu.cs5200.orm.jpa.entities.User;
@@ -65,6 +66,18 @@ public class PatronService {
 	public List<Patron> findPatronsByEvent(@PathVariable("eid") int eid) {
 		return patronDao.findPatronsByEvent(eid);
 	}
+	
+	// GET: Patron invite instances for a ownerId
+		@GetMapping("/api/owner/{oid}/patronInvite")
+		public List<Patron> findPatronInvitesByOwner(@PathVariable("oid") int oid) {
+		return patronDao.findPatronInvitesByOwner(oid);
+	}
+	
+	// GET: Critic instances for a patronId
+	@GetMapping("/api/favoriteCritic/{pid}/patron")
+	public Critic findFavoriteCriticByPatron(@PathVariable("pid") int pid) {
+		return patronDao.findFavoriteCriticByPatron(pid);
+	}
 
 	// DELETE: Delete Patron instance whose primary key is pid
 	@DeleteMapping("/api/patron/{pid}")
@@ -94,6 +107,12 @@ public class PatronService {
 	@GetMapping("/api/critic/{cid}/patron/{pid}")
 	public void addCriticToPatron(@PathVariable("cid") int cid, @PathVariable("pid") int pid) {
 		patronDao.addCriticToPatron(cid, pid);
+	}
+
+	// GET: Update patron to include favorite critic
+	@GetMapping("/api/favoriteCritic/{cid}/patron/{pid}")
+	public void addFavoriteCriticToPatron(@PathVariable("cid") int cid, @PathVariable("pid") int pid) {
+		patronDao.addFavoriteCriticToPatron(cid, pid);
 	}
 
 	// GET: Update patron to include the ownerId for owners endorsed

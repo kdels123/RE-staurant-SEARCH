@@ -1,3 +1,8 @@
+<div>
+  <button (click)="goHome()" class="btn btn-link" style="color: black; float: left">Home</button>
+  <button (click)="search()" class="btn btn-link" style="color: black; float: right">Search</button>
+</div>
+<br>
 <div class="container">
   <h1>{{owner.firstName}} {{owner.lastName}}</h1>
   <h2>{{owner.username}}</h2>
@@ -13,9 +18,9 @@
   </div>
 
   <div class="input-group mb-3">
-    <input [(ngModel)]="ownerUsername" type="text" class="form-control" placeholder="critic username" aria-describedby="button-addon2">
+    <input [(ngModel)]="criticUsername" type="text" class="form-control" placeholder="critic username" aria-describedby="button-addon2">
     <div class="input-group-append">
-      <button (click)="ownerToCritic(ownerUsername)"
+      <button (click)="ownerToCritic(criticUsername)"
               class="btn btn-dark" type="button" >Endorse as Critic</button>
     </div>
   </div>

@@ -22,10 +22,10 @@ export class EventDetailComponent implements OnInit {
     }
 
     critics;
-    criticUsername;
+    criticUsername = null;
 
     patrons;
-    patronUsername;
+    patronUsername = null;
 
     event;
     eventId;
@@ -49,19 +49,39 @@ export class EventDetailComponent implements OnInit {
     }
 
     addEventToPatron(patronUsername) {
+        if (patronUsername === null) {
+            alert('Please enter username');
+            return;
+        }
         this.patronService.findPatronByUsername(patronUsername)
             .then(patron => this.patronService.addEventToPatron(this.eventId, patron.id))
-            .then(() => location.reload());
+            .then(() => location.reload())
+            .catch(() => alert('Must be logged in as Patron'));
     }
 
     addEventToCritic(criticUsername) {
+        if (criticUsername === null) {
+            alert('Please enter username');
+            return;
+        }
         this.criticService.findCriticByUsername(criticUsername)
             .then(critic => this.criticService.addEventToCritic(this.eventId, critic.id))
-            .then(() => location.reload());
+            .then(() => location.reload())
+            .catch(() => alert('Must be logged in as Critic'));
+        ;
     }
 
     goToOwner() {
         this.router.navigate(['owner/' + this.ownerId]);
+    }
+
+    goHome() {
+        this.router.navigate(['home']);
+    }
+
+
+    search() {
+        this.router.navigate(['search']);
     }
 
     ngOnInit() {

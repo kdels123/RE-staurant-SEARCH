@@ -33,9 +33,11 @@ export class CriticAllCriticsComponent implements OnInit {
   updateCritic(criticId) {
       this.router.navigate(['profile/critic/' + criticId]);
   }
-  goToProfile() {
-      this.router.navigate(['admin/' + this.adminId]);
-  }
+
+
+    goToProfile() {
+        this.router.navigate(['profile/admin/' + this.adminId]);
+    }
 
     goHome() {
         this.router.navigate(['home']);

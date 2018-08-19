@@ -50,12 +50,24 @@ public class OwnerService {
 	public List<Owner> findOwnerInvitesByCritic(@PathVariable("cid") int cid) {
 		return ownerDao.findOwnerInvitesByCritic(cid);
 	}
-	
+
 	// GET: owner instances based on patron (pid)
-		@GetMapping("/api/patron/{pid}/owner")
-		public List<Owner> findOwnerInvitesByPatron(@PathVariable("pid") int pid) {
-			return ownerDao.findOwnerInvitesByPatron(pid);
-		}
+	@GetMapping("/api/patron/{pid}/owner")
+	public List<Owner> findOwnerInvitesByPatron(@PathVariable("pid") int pid) {
+		return ownerDao.findOwnerInvitesByPatron(pid);
+	}
+
+	// GET: owner endorsement instances based on patron (pid)
+	@GetMapping("/api/patron/{pid}/ownerEndorsements")
+	public List<Owner> findOwnerEndorsementsByPatron(@PathVariable("pid") int pid) {
+		return ownerDao.findOwnerEndorsementsByPatron(pid);
+	}
+
+	// GET: owner endorsement instances based on critic (cid)
+	@GetMapping("/api/critic/{cid}/ownerEndorsements")
+	public List<Owner> findOwnerEndorsementsByCritic(@PathVariable("cid") int cid) {
+		return ownerDao.findOwnerEndorsementsByCritic(cid);
+	}
 
 	// GET: update owner to include pid to patronsInvited
 	@GetMapping("/api/patron/{pid}/owner/{oid}")

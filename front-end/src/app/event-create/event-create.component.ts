@@ -20,7 +20,7 @@ export class EventCreateComponent implements OnInit {
 
   restaurantId;
 
-  ownerUsername;
+  ownerUsername = null;
   eventTitle;
   eventDescription;
   eventDateTime;
@@ -32,14 +32,26 @@ export class EventCreateComponent implements OnInit {
   }
 
     createEvent(eventTitle, eventDescription, eventDateTime, eventPrice, eventAttire, ownerUsername) {
+    if (ownerUsername === null) {
+      alert('Please enter username');
+      return;
+    }
     this.ownerService.findOwnerByUsername(ownerUsername)
         .then(owner => this.eventService.createEvent(
             eventTitle, eventDescription, eventDateTime, eventPrice, eventAttire, owner.id, this.restaurantId))
         .then(() => (this.router.navigate(['restaurant/' + this.restaurantId])))
-
-    ;
+        .catch(() => 'Must be logged in as User');
   }
 
+
+    goHome() {
+        this.router.navigate(['home']);
+    }
+
+
+    search() {
+        this.router.navigate(['search']);
+    }
 
   ngOnInit() {
   }

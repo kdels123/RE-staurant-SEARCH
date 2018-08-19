@@ -111,6 +111,26 @@ public class OwnerDao {
 		return null;
 	}
 
+	// FIND Owners Endorsed by patronId
+	public List<Owner> findOwnerEndorsementsByPatron(int pid) {
+		Optional<Patron> data = patronDao.findPatronById(pid);
+		if (data.isPresent()) {
+			Patron patron = data.get();
+			return patron.getOwnersEndorsed();
+		}
+		return null;
+	}
+
+	// FIND Owners Endorsed by criticId
+	public List<Owner> findOwnerEndorsementsByCritic(int cid) {
+		Optional<Critic> data = criticDao.findCriticById(cid);
+		if (data.isPresent()) {
+			Critic critic = data.get();
+			return critic.getOwnersEndorsed();
+		}
+		return null;
+	}
+
 	// // UPDATE Patron add eventId to patron
 	// public void addEventToPatron(int eid, int pid) {
 	// Optional<Event> optionalEvent = eventDao.findEventById(eid);

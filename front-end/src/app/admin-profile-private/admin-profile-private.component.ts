@@ -57,7 +57,7 @@ export class AdminProfilePrivateComponent implements OnInit {
     }
 
     goToRegister() {
-        this.router.navigate(['register']);
+        this.router.navigate(['admin/' + this.adminId + '/register']);
     }
 
     goToAllRestaurants() {
@@ -74,6 +74,15 @@ export class AdminProfilePrivateComponent implements OnInit {
 
     styleDate(date) {
         return date.substring(0, 10);
+    }
+
+    goHome() {
+        this.router.navigate(['home']);
+    }
+
+
+    search() {
+        this.router.navigate(['search']);
     }
 
     ngOnInit() {

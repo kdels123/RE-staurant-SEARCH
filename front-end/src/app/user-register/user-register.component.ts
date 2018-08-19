@@ -19,7 +19,7 @@ export class UserRegisterComponent implements OnInit {
               private patronService: PatronServiceClient) { }
 
   username;
-  role;
+  role = null;
   passwordI;
   passwordII;
   userId;
@@ -31,22 +31,29 @@ export class UserRegisterComponent implements OnInit {
   register(username, passwordI, passwordII) {
     if (passwordI !== passwordII) {
       alert('passwords do not match');
-    } else if (this.role === 'patron') {
+    } else if (this.role === null) {
+        alert('please specify user type');
+    }
+    else if (this.role === 'patron') {
         this.patronService.createPatron(username, passwordI)
             .then(user => (this.userId = user.id))
-            .then(() => (this.router.navigate(['profile/patron/' + this.userId])));
+            .then(() => (this.router.navigate(['profile/patron/' + this.userId])))
+            .catch(() => alert('Useranme already exists, please try again'));
     } else if (this.role === 'owner') {
       this.ownerService.createOwner(username, passwordI)
           .then(user => (this.userId = user.id))
-          .then(() => (this.router.navigate(['profile/owner/' + this.userId])));
+          .then(() => (this.router.navigate(['profile/owner/' + this.userId])))
+          .catch(() => alert('Useranme already exists, please try again'));
     } else if (this.role === 'critic') {
         this.criticService.createCritic(username, passwordI)
             .then(user => (this.userId = user.id))
-            .then(() => (this.router.navigate(['profile/critic/' + this.userId])));
+            .then(() => (this.router.navigate(['profile/critic/' + this.userId])))
+            .catch(() => alert('Useranme already exists, please try again'));
     } else if (this.role === 'admin') {
         this.adminService.createAdmin(username, passwordI)
             .then(user => (this.userId = user.id))
-            .then(() => (this.router.navigate(['profile/admin/' + this.userId])));
+            .then(() => (this.router.navigate(['profile/admin/' + this.userId])))
+            .catch(() => alert('Useranme already exists, please try again'));
     }
   }
 

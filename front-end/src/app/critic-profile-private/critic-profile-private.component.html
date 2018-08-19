@@ -1,3 +1,11 @@
+<div>
+  <button (click)="goHome()" class="btn btn-link" style="color: black; float: left">Home</button>
+  <button (click)="search()" class="btn btn-link" style="color: black; float: right">Search</button>
+
+</div>
+<br>
+
+
 <div class="container">
   <h1>Profile</h1>
 
@@ -75,10 +83,10 @@
 
   <h2>Owners Endorsed</h2>
 
-  <ul class="list-group list-group-flush" *ngFor="let owner of owners">
+  <ul class="list-group list-group-flush" *ngFor="let endorsement of endorsements">
     <li class="list-group-item">
       <div class="float-left">
-        <p>Name: {{owner.firstName}} {{owner.lastName}}</p>
+        <p>Name: {{endorsement.firstName}} {{endorsement.lastName}}</p>
       </div>
     </li>
   </ul>

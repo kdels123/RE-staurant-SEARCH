@@ -30,31 +30,51 @@ export class PatronServiceClient {
 
     findPatronsByRestaurant(restaurantId) {
         return fetch('http://localhost:8080/api/restaurant/' + restaurantId + '/patron')
-            .then(function (response) { return response.json();
+            .then(function (response) {
+                return response.json();
             });
     }
 
     findPatronsByCritic(criticId) {
         return fetch('http://localhost:8080/api/critic/' + criticId + '/patron')
-            .then(function (response) { return response.json();
+            .then(function (response) {
+                return response.json();
             });
     }
 
     findBlockPatronsByCritic(criticId) {
         return fetch('http://localhost:8080/api/critic/' + criticId + '/blockpatron')
-            .then(function (response) { return response.json();
+            .then(function (response) {
+                return response.json();
             });
     }
 
     findPatronsByOwner(ownerId) {
         return fetch('http://localhost:8080/api/owner/' + ownerId + '/patron')
-            .then(function (response) { return response.json();
-        });
+            .then(function (response) {
+                return response.json();
+            });
     }
 
     findPatronsByEvent(eventId) {
         return fetch('http://localhost:8080/api/event/' + eventId + '/patron')
-            .then(function (response) { return response.json();
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
+    findPatronInvitesByOwner(ownerId) {
+        return fetch('http://localhost:8080/api/owner/' + ownerId + '/patronInvite')
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
+
+    findFavoriteCritic(patronId) {
+        return fetch('http://localhost:8080/api/favoriteCritic/' + patronId + '/patron')
+            .then(function (response) {
+                return response.json();
             });
     }
 
@@ -104,6 +124,10 @@ export class PatronServiceClient {
 
     addEventToPatron(eventId, patronId) {
         return fetch('http://localhost:8080/api/event/' + eventId + '/patron/' + patronId);
+    }
+
+    addFavoriteCritic(criticId, patronId) {
+        return fetch('http://localhost:8080/api/favoriteCritic/' + criticId + '/patron/' + patronId);
     }
 
     deletePatron(patronId) {

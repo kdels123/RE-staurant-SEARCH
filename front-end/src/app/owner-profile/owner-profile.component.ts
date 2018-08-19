@@ -28,10 +28,11 @@ export class OwnerProfileComponent implements OnInit {
 
     events;
 
-    patronUsername;
+    patronUsername = null;
     patrons;
     patronEndorsements;
 
+    criticUsername = null;
     critics;
     criticEndorsements;
 
@@ -54,15 +55,35 @@ export class OwnerProfileComponent implements OnInit {
     }
 
     ownerToPatron(patronUsername) {
+        if (patronUsername === null) {
+            alert('Please enter username');
+            return;
+        }
         this.patronService.findPatronByUsername(patronUsername)
             .then(patron => this.patronService.addOwnerToPatronEndorsed(this.ownerId, patron.id))
-            .then(() => location.reload());
+            .then(() => location.reload())
+            .catch(() => alert('Must be logged in as Patron'));
     }
 
     ownerToCritic(criticUsername) {
+        if (criticUsername === null) {
+            alert('Please enter username');
+            return;
+        }
         this.criticService.findCriticByUsername(criticUsername)
             .then(critic => this.criticService.addOwnerToCriticEndorsed(this.ownerId, critic.id))
-            .then(() => location.reload());;
+            .then(() => location.reload())
+            .catch(() => alert('Must be logged in as Critic'));
+
+    }
+
+    goHome() {
+        this.router.navigate(['home']);
+    }
+
+
+    search() {
+        this.router.navigate(['search']);
     }
 
     ngOnInit() {

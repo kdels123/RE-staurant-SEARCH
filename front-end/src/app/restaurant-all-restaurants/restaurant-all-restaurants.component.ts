@@ -31,7 +31,7 @@ export class RestaurantAllRestaurantsComponent implements OnInit {
     }
 
     goToProfile() {
-        this.router.navigate(['home']);
+        this.router.navigate(['profile/admin/' + this.adminId]);
     }
 
     goHome() {

@@ -58,11 +58,17 @@ public class CriticService {
 	public List<Critic> findCriticByOwner(@PathVariable("oid") int oid) {
 		return criticDao.findCriticsByOwnerId(oid);
 	}
-	
+
 	// GET: Critic instances for a eventId
-		@GetMapping("/api/event/{eid}/critic")
-		public List<Critic> findCriticsByEvent(@PathVariable("eid") int eid) {
-			return criticDao.findCriticsByEvent(eid);
+	@GetMapping("/api/event/{eid}/critic")
+	public List<Critic> findCriticsByEvent(@PathVariable("eid") int eid) {
+		return criticDao.findCriticsByEvent(eid);
+	}
+	
+	// GET: Critic invite instances for a ownerId
+			@GetMapping("/api/owner/{oid}/criticInvite")
+			public List<Critic> findCriticInvitesByOwner(@PathVariable("oid") int oid) {
+			return criticDao.findCriticInvitesByOwner(oid);
 		}
 
 	// GET: Update critic to include patronId for blockedFollower

@@ -34,9 +34,10 @@ export class PatronProfilePrivateComponent implements OnInit {
 
     restaurants;
     critics;
-    events;
     favoriteCritic;
+    events;
     invites;
+    endorsements;
 
     loadUser(patronId) {
         this.userId = patronId;
@@ -50,6 +51,8 @@ export class PatronProfilePrivateComponent implements OnInit {
         this.lastName = user.lastName;
         this.email = user.email;
         this.phone = user.phone;
+        this.patronService.findFavoriteCritic(user.id).then(
+            favoriteCritic => this.favoriteCritic = favoriteCritic);
         this.restaurantService.findRestaurantsByPatron(user.id).then(
             restaurants => this.restaurants = restaurants);
         this.criticService.findCriticsByPatron(user.id).then(
@@ -58,11 +61,19 @@ export class PatronProfilePrivateComponent implements OnInit {
             events => this.events = events);
         this.ownerService.findOwnerInvitesByPatron(user.id).then(
             invites => this.invites = invites);
+        this.ownerService.findOwnerEndorsementsByPatron(user.id).then(
+            endorsements => this.endorsements = endorsements);
         this.dob = this.styleDate(user.dob);
+
     }
 
     update(firstName, lastName, email, phone, dob) {
-        this.patronService.updatePatron(firstName, lastName, email, phone, dob, this.userId);
+        this.patronService.updatePatron(firstName, lastName, email, phone, dob, this.userId)
+    }
+
+    addFavoriteCritic(criticId) {
+        this.patronService.addFavoriteCritic(criticId, this.userId)
+            .then(() => location.reload());
     }
 
     logout() {
@@ -71,6 +82,15 @@ export class PatronProfilePrivateComponent implements OnInit {
 
     styleDate(date) {
         return date.substring(0, 10);
+    }
+
+    goHome() {
+        this.router.navigate(['home']);
+    }
+
+
+    search() {
+        this.router.navigate(['search']);
     }
 
   ngOnInit() {

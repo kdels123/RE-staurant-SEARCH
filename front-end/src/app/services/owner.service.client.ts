@@ -44,6 +44,18 @@ export class OwnerServiceClient {
             });
     }
 
+    findOwnerEndorsementsByPatron(patronId) {
+        return fetch('http://localhost:8080/api/patron/' + patronId + '/ownerEndorsements')
+            .then(function (response) { return response.json();
+            });
+    }
+
+    findOwnerEndorsementsByCritic(criticId) {
+        return fetch('http://localhost:8080/api/critic/' + criticId + '/ownerEndorsements')
+            .then(function (response) { return response.json();
+            });
+    }
+
     addCriticInviteToOwner(ownerId, criticId) {
         return fetch('http://localhost:8080/api/critic/' + criticId + '/owner/' + ownerId);
     }

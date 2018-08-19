@@ -44,9 +44,11 @@ export class OwnerProfilePrivateComponent implements OnInit {
 
     patrons;
     patronEndorsements;
+    patronInvites;
 
     critics;
     criticEndorsements;
+    criticInvites;
 
     loadOwner(ownerId) {
         this.ownerId = ownerId;
@@ -68,6 +70,11 @@ export class OwnerProfilePrivateComponent implements OnInit {
             patronEndorsements => this.patronEndorsements = patronEndorsements);
         this.criticService.findCriticsByOwner(owner.id).then(
             criticEndorsements => this.criticEndorsements = criticEndorsements);
+        this.patronService.findPatronInvitesByOwner(owner.id).then(
+            patronInvites => this.patronInvites = patronInvites);
+        this.criticService.findCriticInvitesByOwner(owner.id).then(
+            criticInvites => this.criticInvites = criticInvites);
+
         this.dob = this.styleDate(owner.dob);
     }
 
@@ -90,6 +97,15 @@ export class OwnerProfilePrivateComponent implements OnInit {
 
     setPrice(price) {
         this.price = price;
+    }
+
+    goHome() {
+        this.router.navigate(['home']);
+    }
+
+
+    search() {
+        this.router.navigate(['search']);
     }
 
     ngOnInit() {

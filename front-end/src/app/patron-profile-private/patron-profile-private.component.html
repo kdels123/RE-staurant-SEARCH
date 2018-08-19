@@ -1,3 +1,9 @@
+<div>
+  <button (click)="goHome()" class="btn btn-link" style="color: black; float: left">Home</button>
+  <button (click)="search()" class="btn btn-link" style="color: black; float: right">Search</button>
+
+</div>
+
 <div class="container">
   <h1>Profile</h1>
 
@@ -39,7 +45,7 @@
   </ul>
 
   <h2>Favorite Critic</h2>
-  <p>Name: {{favoriteCritic}}</p>
+  <p>Name: {{favoriteCritic.firstName}} {{favoriteCritic.lastName}}</p>
 
   <h2>Critics Followed</h2>
 
@@ -48,6 +54,9 @@
       <div class="float-left">
         <p>Name: {{critic.firstName}} {{critic.lastName}}</p>
       </div>
+      <button (click)="addFavoriteCritic(critic.id)"
+              type="button" class="btn btn-primary btn-sm float-right">Favorite
+      </button>
     </li>
   </ul>
 
@@ -71,6 +80,17 @@
       </div>
     </li>
   </ul>
+
+  <h2>Owners Endorsed</h2>
+
+  <ul class="list-group list-group-flush" *ngFor="let endorsement of endorsements">
+    <li class="list-group-item">
+      <div class="float-left">
+        <p>Name: {{endorsement.firstName}} {{endorsement.lastName}}</p>
+      </div>
+    </li>
+  </ul>
+
 
 
 </div>

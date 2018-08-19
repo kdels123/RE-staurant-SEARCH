@@ -42,6 +42,13 @@ export class CriticServiceClient {
             });
     }
 
+    findCriticInvitesByOwner(ownerId) {
+        return fetch('http://localhost:8080/api/owner/' + ownerId + '/criticInvite')
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
     addBlockPatron(patronId, criticId) {
         return fetch('http://localhost:8080/api/patron/' + patronId + '/critic/' + criticId);
     }

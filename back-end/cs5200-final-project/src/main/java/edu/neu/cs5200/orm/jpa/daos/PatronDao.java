@@ -303,7 +303,27 @@ public class PatronDao {
 		if (data.isPresent()) {
 			Event event = data.get();
 			return event.getPatronAttendees();
-		} 
+		}
+		return null;
+	}
+
+	// Find Patron Invites by owner
+	public List<Patron> findPatronInvitesByOwner(int ownerId) {
+		Optional<Owner> data = ownerDao.findOwnerById(ownerId);
+		if (data.isPresent()) {
+			Owner owner = data.get();
+			return owner.getPatronsInvited();
+		}
+		return null;
+	}
+
+	// Find Critic by patronId
+	public Critic findFavoriteCriticByPatron(int patronId) {
+		Optional<Patron> optionalPatron = findPatronById(patronId);
+		if (optionalPatron.isPresent()) {
+			Patron patron = optionalPatron.get();
+			return patron.getFavoriteCritic();
+		}
 		return null;
 	}
 
@@ -407,6 +427,21 @@ public class PatronDao {
 			ownerRepository.save(owner);
 
 			patron.setOwnersEndorsed(ownersEndorsed);
+			patronRepository.save(patron);
+		}
+	}
+
+	// UPDATE Patron add favorite critic
+	public void addFavoriteCriticToPatron(int cid, int pid) {
+		Optional<Critic> optionalCritic = criticDao.findCriticById(cid);
+		Optional<Patron> optionalPatron = findPatronById(pid);
+
+		if (optionalPatron.isPresent() && optionalCritic.isPresent()) {
+			Patron patron = optionalPatron.get();
+			Critic critic = optionalCritic.get();
+
+			patron.setFavoriteCritic(critic);
+
 			patronRepository.save(patron);
 		}
 	}

@@ -23,14 +23,16 @@ export class UserLoginComponent implements OnInit {
   userId;
   username;
   password;
-  role;
+  role = null;
 
   setRole(role) {
     this.role = role;
   }
 
   login(username, password) {
-    if (this.role === 'owner') {
+    if (this.role === null) {
+      alert('please specify a user type');
+    } else if (this.role === 'owner') {
           this.ownerService.loginOwner(username, password)
               .then(user => (this.userId = user.id))
               .then(() => (this.router.navigate(['profile/owner/' + this.userId])))
@@ -38,15 +40,18 @@ export class UserLoginComponent implements OnInit {
       } else if  (this.role === 'critic') {
         this.criticService.loginCritic(username, password)
             .then(user => (this.userId = user.id))
-            .then(() => (this.router.navigate(['profile/critic/' + this.userId])));
+            .then(() => (this.router.navigate(['profile/critic/' + this.userId])))
+            .catch(() => alert('Username and/or Password are not Valid'));
     } else if (this.role === 'patron') {
         this.patronService.loginPatron(username, password)
             .then(user => (this.userId = user.id))
-            .then(() => (this.router.navigate(['profile/patron/' + this.userId])));
+            .then(() => (this.router.navigate(['profile/patron/' + this.userId])))
+            .catch(() => alert('Username and/or Password are not Valid'));
     } else if (this.role === 'admin') {
         this.adminService.loginAdmin(username, password)
             .then(user => (this.userId = user.id))
-            .then(() => (this.router.navigate(['profile/admin/' + this.userId])));
+            .then(() => (this.router.navigate(['profile/admin/' + this.userId])))
+            .catch(() => alert('Username and/or Password are not Valid'));
     }
 
   }
