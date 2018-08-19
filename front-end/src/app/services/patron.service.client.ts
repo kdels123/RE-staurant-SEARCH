@@ -52,6 +52,12 @@ export class PatronServiceClient {
         });
     }
 
+    findPatronsByEvent(eventId) {
+        return fetch('http://localhost:8080/api/event/' + eventId + '/patron')
+            .then(function (response) { return response.json();
+            });
+    }
+
     createPatron(username, password) {
         const user = {
             username: username,
@@ -94,6 +100,10 @@ export class PatronServiceClient {
 
     addOwnerToPatronEndorsed(ownerId, patronId) {
         return fetch('http://localhost:8080/api/owner/' + ownerId + '/patron/' + patronId);
+    }
+
+    addEventToPatron(eventId, patronId) {
+        return fetch('http://localhost:8080/api/event/' + eventId + '/patron/' + patronId);
     }
 
     deletePatron(patronId) {

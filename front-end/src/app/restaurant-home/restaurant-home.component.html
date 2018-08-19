@@ -1,11 +1,23 @@
-
 <div class="container-fluid">
-    <h1>Restaurant Finder</h1>
+    <div style="position: fixed; top: 20%; left: 40%;">
+        <div class="form-check-inline">
+            <h1>RE</h1>
+            <p>[staurant]</p>
+            <h1>SEARCH</h1>
+        </div>
+        <div style="align-items: center; justify-content: center;">
 
-    <a href="/search">Search for a Restaurant!</a>
-    <br/>
-    <a href="/login">Login</a>
-    <br/>
-    <a href="/register">Register</a>
-
+            <form>
+                <div class="form-group">
+                    <button (click)="search()" type="button" class="btn btn-dark btn-sm btn-block">Search for a Restaurant!</button>
+                </div>
+                <div class="form-group">
+                    <button (click)="login()" type="button" class="btn btn-dark btn-sm btn-block">Login</button>
+                </div>
+                <div class="form-group">
+                    <button (click)="register()" type="button" class="btn btn-dark btn-sm btn-block">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

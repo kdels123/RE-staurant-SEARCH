@@ -22,8 +22,10 @@ export class EventDetailComponent implements OnInit {
     }
 
     critics;
+    criticUsername;
 
-    patrons
+    patrons;
+    patronUsername;
 
     event;
     eventId;
@@ -40,10 +42,22 @@ export class EventDetailComponent implements OnInit {
         this.event = event;
         this.ownerService.findOwnerByEvent(event.id).then(
             owner => this.ownerId = owner.id);
-        // this.patronService.findPatronsByEvent(event.id).then(
-        //     patrons => this.patrons = patrons);
-        // this.criticService.findCriticsByEvent(event.id).then(
-        //     critics => this.critics = critics);
+        this.patronService.findPatronsByEvent(event.id).then(
+            patrons => this.patrons = patrons);
+        this.criticService.findCriticsByEvent(event.id).then(
+            critics => this.critics = critics);
+    }
+
+    addEventToPatron(patronUsername) {
+        this.patronService.findPatronByUsername(patronUsername)
+            .then(patron => this.patronService.addEventToPatron(this.eventId, patron.id))
+            .then(() => location.reload());
+    }
+
+    addEventToCritic(criticUsername) {
+        this.criticService.findCriticByUsername(criticUsername)
+            .then(critic => this.criticService.addEventToCritic(this.eventId, critic.id))
+            .then(() => location.reload());
     }
 
     goToOwner() {

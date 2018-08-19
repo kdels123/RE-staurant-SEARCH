@@ -30,6 +30,10 @@ export class PatronAllPatronsComponent implements OnInit {
             .then(() => location.reload());
     }
 
+    updatePatron(patronId) {
+        this.router.navigate(['profile/patron/' + patronId]);
+    }
+
     goToProfile() {
         this.router.navigate(['home']);
     }

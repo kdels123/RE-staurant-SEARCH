@@ -32,6 +32,26 @@ export class OwnerServiceClient {
             });
     }
 
+    findOwnerInvitesByCritic(criticId) {
+        return fetch('http://localhost:8080/api/critic/' + criticId + '/owner')
+            .then(function (response) { return response.json();
+            });
+    }
+
+    findOwnerInvitesByPatron(patronId) {
+        return fetch('http://localhost:8080/api/patron/' + patronId + '/owner')
+            .then(function (response) { return response.json();
+            });
+    }
+
+    addCriticInviteToOwner(ownerId, criticId) {
+        return fetch('http://localhost:8080/api/critic/' + criticId + '/owner/' + ownerId);
+    }
+
+    addPatronInviteToOwner(ownerId, patronId) {
+        return fetch('http://localhost:8080/api/patron/' + patronId + '/owner/' + ownerId);
+    }
+
     createOwner(username, password) {
         const user = {
             username: username,

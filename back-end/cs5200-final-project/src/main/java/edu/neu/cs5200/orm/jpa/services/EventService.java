@@ -54,6 +54,18 @@ public class EventService {
 		return eventDao.findEventsForOwner(oid);
 	}
 
+	// GET list of events based on critic
+	@GetMapping("/api/critic/{cid}/event")
+	public List<Event> findEventsForCritic(@PathVariable("cid") int cid) {
+		return eventDao.findEventsForCritic(cid);
+	}
+
+	// GET list of events based on patron
+	@GetMapping("/api/patron/{pid}/event")
+	public List<Event> findEventsForPatron(@PathVariable("pid") int pid) {
+		return eventDao.findEventsForPatron(pid);
+	}
+
 	// DELETE Delete event instance whose primary key is eid
 	@DeleteMapping("/api/event/{eid}")
 	public void deleteEventById(@PathVariable("edi") int eid) {

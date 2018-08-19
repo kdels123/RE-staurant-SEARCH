@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {PatronServiceClient} from '../services/patron.service.client';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ReviewServiceClient} from '../services/review.service.client';
 import {EventServiceClient} from '../services/event.service.client';
 import {CriticServiceClient} from '../services/critic.service.client';
 import {RestaurantServiceClient} from '../services/restaurant.service.client';
+import {OwnerServiceClient} from '../services/owner.service.client';
 
 @Component({
   selector: 'app-patron-profile-component',
@@ -17,6 +17,7 @@ export class PatronProfilePrivateComponent implements OnInit {
                 private restaurantService: RestaurantServiceClient,
                 private eventService: EventServiceClient,
                 private criticService: CriticServiceClient,
+                private ownerService: OwnerServiceClient,
                 private router: Router,
                 private route: ActivatedRoute) {
         this.route.params.subscribe(params => this.loadUser(params['patronId']));
@@ -35,6 +36,7 @@ export class PatronProfilePrivateComponent implements OnInit {
     critics;
     events;
     favoriteCritic;
+    invites;
 
     loadUser(patronId) {
         this.userId = patronId;
@@ -52,8 +54,10 @@ export class PatronProfilePrivateComponent implements OnInit {
             restaurants => this.restaurants = restaurants);
         this.criticService.findCriticsByPatron(user.id).then(
             critics => this.critics = critics);
-        // this.eventService.findEventsByPatron(user.id).then(
-        //     events => this.events = events);
+        this.eventService.findEventsByPatron(user.id).then(
+            events => this.events = events);
+        this.ownerService.findOwnerInvitesByPatron(user.id).then(
+            invites => this.invites = invites);
         this.dob = this.styleDate(user.dob);
     }
 

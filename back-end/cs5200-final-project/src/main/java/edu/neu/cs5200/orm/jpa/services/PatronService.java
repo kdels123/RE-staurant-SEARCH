@@ -53,11 +53,17 @@ public class PatronService {
 	public List<Patron> findBlockPatronsForCritic(@PathVariable("cid") int cid) {
 		return patronDao.findBlockPatronsByCritic(cid);
 	}
-	
+
 	// GET: Patron instances for a ownerId
 	@GetMapping("/api/owner/{oid}/patron")
 	public List<Patron> findPatronsByOwner(@PathVariable("oid") int oid) {
 		return patronDao.findPatronsByOwner(oid);
+	}
+
+	// GET: Patron instances for a eventId
+	@GetMapping("/api/event/{eid}/patron")
+	public List<Patron> findPatronsByEvent(@PathVariable("eid") int eid) {
+		return patronDao.findPatronsByEvent(eid);
 	}
 
 	// DELETE: Delete Patron instance whose primary key is pid

@@ -26,6 +26,20 @@ export class EventServiceClient {
             });
     }
 
+    findEventsByCritic(criticId) {
+        return fetch('http://localhost:8080/api/critic/' + criticId + '/event')
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
+    findEventsByPatron(patronId) {
+        return fetch('http://localhost:8080/api/patron/' + patronId + '/event')
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
     createEvent(title, description, dateTime, price, attire, ownerId, restaurantId) {
         const event = {
             title: title,

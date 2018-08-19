@@ -30,6 +30,10 @@ export class OwnerAllOwnersComponent implements OnInit {
             .then(() => location.reload());
     }
 
+    updateOwner(ownerId) {
+        this.router.navigate(['profile/owner/' + ownerId]);
+    }
+
     goToProfile() {
         this.router.navigate(['home']);
     }

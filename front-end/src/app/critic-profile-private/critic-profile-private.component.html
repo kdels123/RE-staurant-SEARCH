@@ -62,6 +62,17 @@
     </li>
   </ul>
 
+  <h2>Events Attending</h2>
+
+  <ul class="list-group list-group-flush" *ngFor="let event of events">
+    <li class="list-group-item">
+      <div class="float-left">
+        <p>Title: {{event.title}}</p>
+        <p>Description: {{event.description}}</p>
+      </div>
+    </li>
+  </ul>
+
   <h2>Owners Endorsed</h2>
 
   <ul class="list-group list-group-flush" *ngFor="let owner of owners">
@@ -72,13 +83,12 @@
     </li>
   </ul>
 
-  <h2>Events Attended</h2>
+  <h2>Invitations From Owners</h2>
 
-  <ul class="list-group list-group-flush" *ngFor="let event of events">
+  <ul class="list-group list-group-flush" *ngFor="let invite of invites">
     <li class="list-group-item">
       <div class="float-left">
-        <p>Title: {{event.title}}</p>
-        <p>Description: {{event.description}}</p>
+        <p>Name: {{invite.firstName}} {{invite.lastName}}</p>
       </div>
     </li>
   </ul>

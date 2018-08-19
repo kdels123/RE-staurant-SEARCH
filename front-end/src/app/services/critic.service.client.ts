@@ -36,12 +36,22 @@ export class CriticServiceClient {
             });
     }
 
+    findCriticsByEvent(eventId) {
+        return fetch('http://localhost:8080/api/event/' + eventId + '/critic')
+            .then(function (response) { return response.json();
+            });
+    }
+
     addBlockPatron(patronId, criticId) {
         return fetch('http://localhost:8080/api/patron/' + patronId + '/critic/' + criticId);
     }
 
     addOwnerToCriticEndorsed(ownerId, criticId) {
         return fetch('http://localhost:8080/api/owner/' + ownerId + '/critic/' + criticId);
+    }
+
+    addEventToCritic(eventId, criticId) {
+        return fetch('http://localhost:8080/api/event/' + eventId + '/critic/' + criticId);
     }
 
     findCriticByUsername(username) {

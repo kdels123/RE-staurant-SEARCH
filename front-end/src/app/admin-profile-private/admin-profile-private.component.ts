@@ -56,6 +56,10 @@ export class AdminProfilePrivateComponent implements OnInit {
         this.router.navigate(['/admin/' + this.adminId + '/patrons']);
     }
 
+    goToRegister() {
+        this.router.navigate(['register']);
+    }
+
     goToAllRestaurants() {
         this.router.navigate(['/admin/' + this.adminId + '/restaurants']);
     }

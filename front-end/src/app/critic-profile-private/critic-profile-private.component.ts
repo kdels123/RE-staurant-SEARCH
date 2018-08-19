@@ -4,6 +4,7 @@ import {CriticServiceClient} from '../services/critic.service.client';
 import {ReviewServiceClient} from '../services/review.service.client';
 import {PatronServiceClient} from '../services/patron.service.client';
 import {OwnerServiceClient} from '../services/owner.service.client';
+import {EventServiceClient} from '../services/event.service.client';
 
 @Component({
   selector: 'app-critic-profile-private',
@@ -16,6 +17,7 @@ export class CriticProfilePrivateComponent implements OnInit {
                 private reviewService: ReviewServiceClient,
                 private patronService: PatronServiceClient,
                 private ownerService: OwnerServiceClient,
+                private eventService: EventServiceClient,
                 private router: Router,
                 private route: ActivatedRoute) {
         this.route.params.subscribe(params => this.loadUser(params['criticId']));
@@ -36,6 +38,7 @@ export class CriticProfilePrivateComponent implements OnInit {
     blockPatrons;
     owners;
     events;
+    invites
 
     loadUser(criticId) {
         this.criticId = criticId;
@@ -55,8 +58,10 @@ export class CriticProfilePrivateComponent implements OnInit {
             patrons => this.patrons = patrons);
         this.patronService.findBlockPatronsByCritic(user.id).then(
             blockPatrons => this.blockPatrons = blockPatrons);
-        // this.ownerService.findOwnersByCritic(user.id).then(
-        //     owners => this.owners = owners);
+        this.eventService.findEventsByCritic(user.id).then(
+            events => this.events = events);
+        this.ownerService.findOwnerInvitesByCritic(user.id).then(
+            invites => this.invites = invites);
         this.dob = this.styleDate(user.dob);
     }
 

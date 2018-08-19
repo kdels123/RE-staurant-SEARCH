@@ -26,6 +26,8 @@ public class EventDao {
 	RestaurantDao restaurantDao;
 	@Autowired
 	PatronDao patronDao;
+	@Autowired
+	CriticDao criticDao;
 
 	public void test() {
 		// Delete all events
@@ -173,6 +175,26 @@ public class EventDao {
 		if (data.isPresent()) {
 			Owner owner = data.get();
 			return owner.getEvents();
+		}
+		return null;
+	}
+
+	// FIND Events by criticId
+	public List<Event> findEventsForCritic(int criticId) {
+		Optional<Critic> data = criticDao.findCriticById(criticId);
+		if (data.isPresent()) {
+			Critic critic = data.get();
+			return critic.getEventsAttended();
+		}
+		return null;
+	}
+
+	// FIND Events by patronId
+	public List<Event> findEventsForPatron(int patronId) {
+		Optional<Patron> data = patronDao.findPatronById(patronId);
+		if (data.isPresent()) {
+			Patron patron = data.get();
+			return patron.getEventsAttended();
 		}
 		return null;
 	}

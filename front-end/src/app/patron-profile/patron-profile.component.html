@@ -4,10 +4,12 @@
   <p>{{patron.email}}</p>
   <p>{{patron.phone}}</p>
 
-  <div class="form-group">
-    <button
-            class="btn btn-block btn-dark">Invite {{patron.firstName}} to an Event
-    </button>
+  <div class="input-group mb-3">
+    <input [(ngModel)]="ownerUsername" type="text" class="form-control" placeholder="owner username" aria-describedby="button-addon2">
+    <div class="input-group-append">
+      <button (click)="patronToOwner(ownerUsername)"
+              class="btn btn-dark" type="button" >Invite Patron to Restaurant</button>
+    </div>
   </div>
 
   <h3>Restaurants Visited:</h3>
@@ -21,4 +23,9 @@
 
   <h3>Critics Followed:</h3>
 
+  <ul class="list-group list-group-flush" *ngFor="let critic of critics">
+    <li class="list-group-item">
+      <p>Name: {{critic.firstName}} {{critic.lastName}}</p>
+    </li>
+  </ul>
 </div>

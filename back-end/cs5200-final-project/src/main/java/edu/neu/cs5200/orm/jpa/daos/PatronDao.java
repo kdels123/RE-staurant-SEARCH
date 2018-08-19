@@ -285,17 +285,27 @@ public class PatronDao {
 			return null;
 		}
 	}
-	
+
 	// Find Patrons by owner
-		public List<Patron> findPatronsByOwner(int ownerId) {
-			Optional<Owner> data = ownerDao.findOwnerById(ownerId);
-			if (data.isPresent()) {
-				Owner owner = data.get();
-				return owner.getPatronEndorsements();
-			} else {
-				return null;
-			}
+	public List<Patron> findPatronsByOwner(int ownerId) {
+		Optional<Owner> data = ownerDao.findOwnerById(ownerId);
+		if (data.isPresent()) {
+			Owner owner = data.get();
+			return owner.getPatronEndorsements();
+		} else {
+			return null;
 		}
+	}
+
+	// Find Patrons by event
+	public List<Patron> findPatronsByEvent(int eventId) {
+		Optional<Event> data = eventDao.findEventById(eventId);
+		if (data.isPresent()) {
+			Event event = data.get();
+			return event.getPatronAttendees();
+		} 
+		return null;
+	}
 
 	// UPDATE Patron add restaurantId to patron
 	public void addRestaurantToPatron(int rid, int pid) {

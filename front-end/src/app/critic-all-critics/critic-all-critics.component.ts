@@ -30,6 +30,9 @@ export class CriticAllCriticsComponent implements OnInit {
           .then(() => location.reload());
   }
 
+  updateCritic(criticId) {
+      this.router.navigate(['profile/critic/' + criticId]);
+  }
   goToProfile() {
       this.router.navigate(['admin/' + this.adminId]);
   }

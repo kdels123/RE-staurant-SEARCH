@@ -31,4 +31,10 @@
     </ul>
 
     <h3>Followers:</h3>
+
+    <ul class="list-group list-group-flush" *ngFor="let patron of patrons">
+        <li class="list-group-item">
+            <p>Name: {{patron.firstName}} {{patron.lastName}}</p>
+        </li>
+    </ul>
 </div>

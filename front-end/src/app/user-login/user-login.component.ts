@@ -33,7 +33,8 @@ export class UserLoginComponent implements OnInit {
     if (this.role === 'owner') {
           this.ownerService.loginOwner(username, password)
               .then(user => (this.userId = user.id))
-              .then(() => (this.router.navigate(['profile/owner/' + this.userId])));
+              .then(() => (this.router.navigate(['profile/owner/' + this.userId])))
+              .catch(() => alert('Username and/or Password are not Valid'));
       } else if  (this.role === 'critic') {
         this.criticService.loginCritic(username, password)
             .then(user => (this.userId = user.id))

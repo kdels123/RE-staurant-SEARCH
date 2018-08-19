@@ -22,10 +22,10 @@
 
   <div class="form-group">
   <button (click)="update(firstName, lastName, email, phone, dob)"
-          class="btn btn-block btn-primary">Update Profile</button>
+          class="btn btn-block btn-dark">Update Profile</button>
   </div>
   <div class="form-group">
-  <button (click)="logout()" class="btn btn-block btn-primary">Logout</button>
+  <button (click)="logout()" class="btn btn-block btn-dark">Logout</button>
   </div>
 
   <h2>Restaurants Visited</h2>
@@ -47,6 +47,27 @@
     <li class="list-group-item">
       <div class="float-left">
         <p>Name: {{critic.firstName}} {{critic.lastName}}</p>
+      </div>
+    </li>
+  </ul>
+
+  <h2>Events Attending</h2>
+
+  <ul class="list-group list-group-flush" *ngFor="let event of events">
+    <li class="list-group-item">
+      <div class="float-left">
+        <p>Title: {{event.title}}</p>
+        <p>Description: {{event.description}}</p>
+      </div>
+    </li>
+  </ul>
+
+  <h2>Invitations from Owners</h2>
+
+  <ul class="list-group list-group-flush" *ngFor="let invite of invites">
+    <li class="list-group-item">
+      <div class="float-left">
+        <p>Name: {{invite.firstName}} {{invite.lastName}}</p>
       </div>
     </li>
   </ul>
