@@ -21,6 +21,7 @@ import {OwnerProfileComponent} from './owner-profile/owner-profile.component';
 import {AdminRegisterComponent} from './admin-register/admin-register.component';
 import {RestaurantUpdateComponent} from './restaurant-update/restaurant-update.component';
 import {EventUpdateComponent} from './event-update/event-update.component';
+import {ReviewUpdateComponent} from './review-update/review-update.component';
 
 const appRoutes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -38,6 +39,7 @@ const appRoutes: Routes = [
     {path: 'owner/:ownerId/event/:eventId', component: EventUpdateComponent},
     {path: 'profile/owner/:ownerId', component: OwnerProfilePrivateComponent},
     {path: 'critic/:criticId', component: CriticProfileComponent},
+    {path: 'critic/:criticId/review/:reviewId', component: ReviewUpdateComponent},
     {path: 'profile/critic/:criticId', component: CriticProfilePrivateComponent},
     {path: 'patron/:patronId', component: PatronProfileComponent},
     {path: 'profile/patron/:patronId', component: PatronProfilePrivateComponent},

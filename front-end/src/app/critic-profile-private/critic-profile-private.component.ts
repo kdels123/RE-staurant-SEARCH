@@ -81,6 +81,16 @@ export class CriticProfilePrivateComponent implements OnInit {
             .then(() => location.reload());
     }
 
+    deleteReview(reviewId) {
+        this.reviewService.deleteReview(reviewId)
+            .then(() => location.reload());
+    }
+
+    updateReview(reviewId) {
+        this.router.navigate(['critic/' + this.criticId + '/review/' + reviewId]);
+    }
+
+
     styleDate(date) {
      return date.substring(0, 10);
     }

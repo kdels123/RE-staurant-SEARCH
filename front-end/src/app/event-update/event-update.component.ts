@@ -57,6 +57,10 @@ export class EventUpdateComponent implements OnInit {
         this.router.navigate(['search']);
     }
 
+    returnToProfile() {
+        this.router.navigate(['profile/owner/' + this.ownerId]);
+    }
+
     ngOnInit() {
   }
 

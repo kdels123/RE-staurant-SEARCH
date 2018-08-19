@@ -32,6 +32,12 @@ export class ReviewServiceClient {
         }).then(response => response.json());
     }
 
+    findReviewById(reviewId) {
+        return fetch('http://localhost:8080/api/review/' + reviewId)
+            .then(function (response) { return response.json();
+            });
+    }
+
     findReviewsByCritic(criticId) {
         return fetch('http://localhost:8080/api/critic/' + criticId + '/review')
             .then(function (response) { return response.json();
@@ -49,4 +55,24 @@ export class ReviewServiceClient {
             .then(function (response) { return response.json();
             });
     }
+
+    updateReview(title, description, rating, reviewId) {
+        const review = {
+            title: title,
+            description: description,
+            rating: rating,
+        };
+        return fetch('http://localhost:8080/api/review/' + reviewId,{
+            method: 'put',
+            body: JSON.stringify(review),
+            headers: {
+                'content-type': 'application/json',
+            }
+        }).then(response => response.json());
+    }
+
+    deleteReview(reviewId) {
+        return fetch('http://localhost:8080/api/review/' + reviewId, {
+            method: 'delete'
+        });
 }
