@@ -23,7 +23,7 @@ public class Event {
 	private int id;
 	private String title;
 	private String description;
-	private Date dateTime;
+	private String dateTime;
 //	private String address;
 //	private String city;
 //	private String state;
@@ -84,10 +84,10 @@ public class Event {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Date getDateTime() {
+	public String getDateTime() {
 		return dateTime;
 	}
-	public void setDateTime(Date dateTime) {
+	public void setDateTime(String dateTime) {
 		this.dateTime = dateTime;
 	}
 //	public String getAddress() {

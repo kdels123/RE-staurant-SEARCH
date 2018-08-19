@@ -48,6 +48,15 @@ export class EventUpdateComponent implements OnInit {
             eventPrice, eventAttire, this.eventId);
     }
 
+    goHome() {
+        this.router.navigate(['home']);
+    }
+
+
+    search() {
+        this.router.navigate(['search']);
+    }
+
     ngOnInit() {
   }
 

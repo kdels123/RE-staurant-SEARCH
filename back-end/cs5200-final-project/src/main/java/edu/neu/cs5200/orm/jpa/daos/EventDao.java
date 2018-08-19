@@ -215,7 +215,7 @@ public class EventDao {
 			// currEvent.getCity();
 			// String state = newEvent.getState() != null ? newEvent.getState() :
 			// currEvent.getState();
-			Date dateTime = newEvent.getDateTime() != null ? newEvent.getDateTime() : currEvent.getDateTime();
+			String dateTime = newEvent.getDateTime() != null ? newEvent.getDateTime() : currEvent.getDateTime();
 			String description = newEvent.getDescription() != null ? newEvent.getDescription()
 					: currEvent.getDescription();
 			Double price = newEvent.getPrice() != null ? newEvent.getPrice() : currEvent.getPrice();
