@@ -50,8 +50,8 @@ export class PatronProfilePrivateComponent implements OnInit {
         this.phone = user.phone;
         this.restaurantService.findRestaurantsByPatron(user.id).then(
             restaurants => this.restaurants = restaurants);
-        // this.criticService.findCriticsByPatron(user.id).then(
-        //     critics => this.critics = critics);
+        this.criticService.findCriticsByPatron(user.id).then(
+            critics => this.critics = critics);
         // this.eventService.findEventsByPatron(user.id).then(
         //     events => this.events = events);
         this.dob = this.styleDate(user.dob);

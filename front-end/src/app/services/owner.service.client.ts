@@ -26,6 +26,11 @@ export class OwnerServiceClient {
         }).then(response => response.json());
     }
 
+    findOwnerByEvent(eventId) {
+        return fetch('http://localhost:8080/api/event/' + eventId + '/owner')
+            .then(function (response) { return response.json();
+            });
+    }
 
     createOwner(username, password) {
         const user = {

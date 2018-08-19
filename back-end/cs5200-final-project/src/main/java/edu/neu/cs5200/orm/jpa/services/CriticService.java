@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.neu.cs5200.orm.jpa.daos.CriticDao;
 import edu.neu.cs5200.orm.jpa.entities.Critic;
 import edu.neu.cs5200.orm.jpa.entities.Owner;
+import edu.neu.cs5200.orm.jpa.entities.Patron;
+import edu.neu.cs5200.orm.jpa.entities.Restaurant;
 import edu.neu.cs5200.orm.jpa.entities.User;
 
 @RestController
@@ -43,6 +45,12 @@ public class CriticService {
 	@GetMapping("/api/review/{rid}/critic")
 	public Critic findCriticByReview(@PathVariable("rid") int rid) {
 		return criticDao.findCritcByReviewId(rid);
+	}
+	
+	//GET: Critic instances based on pid
+	@GetMapping("/api/patron/{pid}/critic")
+	public List<Critic> findCriticByPatron(@PathVariable ("pid") int pid) {
+		return criticDao.findCriticsByPatronId(pid);
 	}
 	
 	//GET: Update critic to include patronId for blockedFollower

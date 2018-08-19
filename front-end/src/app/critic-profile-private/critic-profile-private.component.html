@@ -19,8 +19,69 @@
   <div class="form-group">
     <input [(ngModel)]="dob" placeholder="date of birth (YYYY-MM-DD)" class="form-control"/>
   </div>
-  <button (click)="update(firstName, lastName, email, phone, dob)"
-          class="btn btn-block btn-primary">Update Profile</button>
-  <br/>
-  <button (click)="logout()" class="btn btn-block btn-dark">Logout</button>
+
+  <div class="form-group">
+    <button (click)="update(firstName, lastName, email, phone, dob)"
+            class="btn btn-block btn-primary">Update Profile</button>
+  </div>
+  <div class="form-group">
+    <button (click)="logout()" class="btn btn-block btn-primary">Logout</button>
+  </div>
+
+  <h2>Reviews Written</h2>
+
+  <ul class="list-group list-group-flush" *ngFor="let review of reviews">
+    <li class="list-group-item">
+      <div class="float-left">
+        <p>Title: {{review.title}}</p>
+        <p>Description: {{review.description}}</p>
+      </div>
+    </li>
+  </ul>
+
+  <h2>Followers</h2>
+
+  <ul class="list-group list-group-flush" *ngFor="let patron of patrons">
+    <li class="list-group-item">
+      <div class="float-left">
+        <p>Name: {{patron.firstName}} {{patron.lastName}}</p>
+      </div>
+      <button (click)="blockFollower(patron.id)"
+              type="button" class="btn btn-danger btn-sm float-right">Block Follower
+      </button>
+    </li>
+  </ul>
+
+  <h2>Followers Blocked</h2>
+
+  <ul class="list-group list-group-flush" *ngFor="let blockPatron of blockPatrons">
+    <li class="list-group-item">
+      <div class="float-left">
+        <p>Name: {{blockPatron.firstName}} {{blockPatron.lastName}}</p>
+      </div>
+    </li>
+  </ul>
+
+  <h2>Owners Endorsed</h2>
+
+  <ul class="list-group list-group-flush" *ngFor="let owner of owners">
+    <li class="list-group-item">
+      <div class="float-left">
+        <p>Name: {{owner.firstName}} {{owner.lastName}}</p>
+      </div>
+    </li>
+  </ul>
+
+  <h2>Events Attended</h2>
+
+  <ul class="list-group list-group-flush" *ngFor="let event of events">
+    <li class="list-group-item">
+      <div class="float-left">
+        <p>Title: {{event.title}}</p>
+        <p>Description: {{event.description}}</p>
+      </div>
+    </li>
+  </ul>
+
+
 </div>

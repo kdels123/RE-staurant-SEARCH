@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CriticServiceClient} from '../services/critic.service.client';
 import {ReviewServiceClient} from '../services/review.service.client';
+import {PatronServiceClient} from '../services/patron.service.client';
 
 @Component({
   selector: 'app-critic-profile',
@@ -12,6 +13,7 @@ export class CriticProfileComponent implements OnInit {
 
   constructor(private criticService: CriticServiceClient,
               private reviewService: ReviewServiceClient,
+              private patronService: PatronServiceClient,
               private router: Router,
               private route: ActivatedRoute) {
       this.route.params.subscribe(params => this.loadCritic(params['criticId']));
@@ -25,6 +27,8 @@ export class CriticProfileComponent implements OnInit {
   patronUsername;
   patrons;
 
+  ownerUsername;
+
   loadCritic(criticId) {
           this.criticId = criticId;
           this.criticService.findCriticById(criticId)
@@ -35,6 +39,11 @@ export class CriticProfileComponent implements OnInit {
     this.critic = critic;
       this.reviewService.findReviewsByCritic(critic.id).then(
           reviews => this.reviews = reviews);
+  }
+
+  criticToPatron(patronUsername) {
+    this.patronService.findPatronByUsername(patronUsername)
+        .then(patron => this.patronService.criticToPatron(patron.id, this.criticId));
   }
 
   ngOnInit() {

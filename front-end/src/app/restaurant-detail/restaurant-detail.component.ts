@@ -71,7 +71,7 @@ export class RestaurantDetailComponent implements OnInit {
     restaurantToPatron(patronUsername) {
       this.patronService.findPatronByUsername(patronUsername)
           .then(patron => this.patronService.restaurantToPatron(patron.id, this.restaurantId))
-          .then(() => location.reload());;
+          .then(() => location.reload());
     }
 
     findCriticByReview(reviewId) {

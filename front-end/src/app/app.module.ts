@@ -30,6 +30,7 @@ import { CriticAllCriticsComponent } from './critic-all-critics/critic-all-criti
 import { PatronAllPatronsComponent } from './patron-all-patrons/patron-all-patrons.component';
 import { RestaurantAllRestaurantsComponent } from './restaurant-all-restaurants/restaurant-all-restaurants.component';
 import { EventAllEventsComponent } from './event-all-events/event-all-events.component';
+import { OwnerProfileComponent } from './owner-profile/owner-profile.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { EventAllEventsComponent } from './event-all-events/event-all-events.com
     CriticAllCriticsComponent,
     PatronAllPatronsComponent,
     RestaurantAllRestaurantsComponent,
-    EventAllEventsComponent
+    EventAllEventsComponent,
+    OwnerProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -34,6 +34,24 @@ export class PatronServiceClient {
             });
     }
 
+    findPatronsByCritic(criticId) {
+        return fetch('http://localhost:8080/api/critic/' + criticId + '/patron')
+            .then(function (response) { return response.json();
+            });
+    }
+
+    findBlockPatronsByCritic(criticId) {
+        return fetch('http://localhost:8080/api/critic/' + criticId + '/blockpatron')
+            .then(function (response) { return response.json();
+            });
+    }
+
+    findPatronsByOwner(ownerId) {
+        return fetch('http://localhost:8080/api/owner/' + ownerId + '/patron')
+            .then(function (response) { return response.json();
+        });
+    }
+
     createPatron(username, password) {
         const user = {
             username: username,
@@ -68,6 +86,14 @@ export class PatronServiceClient {
 
     restaurantToPatron(patronId, restaurantId) {
         return fetch('http://localhost:8080/api/restaurant/' + restaurantId + '/patron/' + patronId);
+    }
+
+    criticToPatron(patronId, criticId) {
+        return fetch('http://localhost:8080/api/critic/' + criticId + '/patron/' + patronId);
+    }
+
+    addOwnerToPatronEndorsed(ownerId, patronId) {
+        return fetch('http://localhost:8080/api/owner/' + ownerId + '/patron/' + patronId);
     }
 
     deletePatron(patronId) {

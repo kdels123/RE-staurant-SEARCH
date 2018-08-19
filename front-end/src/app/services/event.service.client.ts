@@ -20,6 +20,12 @@ export class EventServiceClient {
             });
     }
 
+    findEventsByOwner(ownerId) {
+        return fetch('http://localhost:8080/api/owner/' + ownerId + '/event')
+            .then(function (response) { return response.json();
+            });
+    }
+
     createEvent(title, description, dateTime, price, attire, ownerId, restaurantId) {
         const event = {
             title: title,

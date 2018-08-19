@@ -210,6 +210,16 @@ public class CriticDao {
 		return criticRepository.findCriticByUsername(username);
 	}
 	
+	// FIND Critics by patronId
+	public List<Critic> findCriticsByPatronId(int pid) {
+		Optional<Patron> data = patronDao.findPatronById(pid);
+		if(data.isPresent()) {
+			Patron patron = data.get();
+			return patron.getCriticsFollow();
+		}
+		return null;
+	}
+	
 	// Find Critic by credentials (username and password)
 	public Critic findCriticByCredentials(String username, String password) {
 		return criticRepository.findCriticByCredentials(username, password);

@@ -17,6 +17,7 @@ import {CriticAllCriticsComponent} from './critic-all-critics/critic-all-critics
 import {PatronAllPatronsComponent} from './patron-all-patrons/patron-all-patrons.component';
 import {RestaurantAllRestaurantsComponent} from './restaurant-all-restaurants/restaurant-all-restaurants.component';
 import {EventAllEventsComponent} from './event-all-events/event-all-events.component';
+import {OwnerProfileComponent} from './owner-profile/owner-profile.component';
 
 const appRoutes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
     {path: 'login', component: UserLoginComponent},
     {path: 'register', component: UserRegisterComponent},
     {path: 'profile/admin/:adminId', component: AdminProfilePrivateComponent},
+    {path: 'owner/:ownerId', component: OwnerProfileComponent},
     {path: 'profile/owner/:ownerId', component: OwnerProfilePrivateComponent},
     {path: 'critic/:criticId', component: CriticProfileComponent},
     {path: 'profile/critic/:criticId', component: CriticProfilePrivateComponent},

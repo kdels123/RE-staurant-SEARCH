@@ -1,0 +1,57 @@
+<div class="container">
+  <h1>{{owner.firstName}} {{owner.lastName}}</h1>
+  <h2>{{owner.username}}</h2>
+  <p>{{owner.email}}</p>
+  <p>{{owner.phone}}</p>
+
+  <div class="input-group mb-3">
+    <input [(ngModel)]="patronUsername" type="text" class="form-control" placeholder="patron username" aria-describedby="button-addon2">
+    <div class="input-group-append">
+      <button (click)="ownerToPatron(patronUsername)"
+              class="btn btn-dark" type="button" >Endorse as Patron</button>
+    </div>
+  </div>
+
+  <div class="input-group mb-3">
+    <input [(ngModel)]="ownerUsername" type="text" class="form-control" placeholder="critic username" aria-describedby="button-addon2">
+    <div class="input-group-append">
+      <button (click)="criticToOwner(ownerUsername)"
+              class="btn btn-dark" type="button" >Endorse as Critic</button>
+    </div>
+  </div>
+
+  <h3>Restaurants:</h3>
+
+  <ul class="list-group list-group-flush" *ngFor="let restaurant of restaurants">
+    <li class="list-group-item">
+      <p>Name: {{restaurant.name}}</p>
+    </li>
+  </ul>
+
+  
+  <h3>Events:</h3>
+
+  <ul class="list-group list-group-flush" *ngFor="let event of events">
+    <li class="list-group-item">
+      <p>Title: {{event.title}}</p>
+      <p>Description: {{event.description}}</p>
+    </li>
+  </ul>
+
+  <h3>Endorsements By Patrons:</h3>
+
+  <ul class="list-group list-group-flush" *ngFor="let patronEndorsement of patronEndorsements">
+    <li class="list-group-item">
+      <p>Name: {{patronEndorsement.firstName}} {{patronEndorsement.lastName}}</p>
+    </li>
+  </ul>
+
+  <h3>Endorsements By Critics:</h3>
+
+  <ul class="list-group list-group-flush" *ngFor="let criticEndorsement of criticEndorsements">
+    <li class="list-group-item">
+      <p>Title: {{event.title}}</p>
+      <p>Description: {{event.description}}</p>
+    </li>
+  </ul>
+</div>
