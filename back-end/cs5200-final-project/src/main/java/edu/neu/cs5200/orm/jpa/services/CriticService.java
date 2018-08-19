@@ -53,6 +53,12 @@ public class CriticService {
 		return criticDao.findCriticsByPatronId(pid);
 	}
 	
+	//GET: Critic instances based on oid
+		@GetMapping("/api/owner/{oid}/critic")
+		public List<Critic> findCriticByOwner(@PathVariable ("oid") int oid) {
+			return criticDao.findCriticsByOwnerId(oid);
+		}
+	
 	//GET: Update critic to include patronId for blockedFollower
 	@GetMapping("/api/patron/{pid}/critic/{cid}")
 	public void addBlockedPatronToCritic(@PathVariable("pid") int pid, @PathVariable("cid") int cid) {
@@ -70,7 +76,6 @@ public class CriticService {
 	public void addOwnerToCriticEndorsed(@PathVariable("oid") int oid, @PathVariable("cid") int cid) {
 		criticDao.addOwnerToCriticEndorsed(oid, cid);
 	}
-	
 	
 	//DELETE: Delete critic instance whose primary key is cid
 	@DeleteMapping("/api/critic/{cid}")

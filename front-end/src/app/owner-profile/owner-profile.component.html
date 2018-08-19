@@ -15,7 +15,7 @@
   <div class="input-group mb-3">
     <input [(ngModel)]="ownerUsername" type="text" class="form-control" placeholder="critic username" aria-describedby="button-addon2">
     <div class="input-group-append">
-      <button (click)="criticToOwner(ownerUsername)"
+      <button (click)="ownerToCritic(ownerUsername)"
               class="btn btn-dark" type="button" >Endorse as Critic</button>
     </div>
   </div>
@@ -28,7 +28,7 @@
     </li>
   </ul>
 
-  
+
   <h3>Events:</h3>
 
   <ul class="list-group list-group-flush" *ngFor="let event of events">
@@ -50,8 +50,7 @@
 
   <ul class="list-group list-group-flush" *ngFor="let criticEndorsement of criticEndorsements">
     <li class="list-group-item">
-      <p>Title: {{event.title}}</p>
-      <p>Description: {{event.description}}</p>
+      <p>Name: {{criticEndorsement.firstName}} {{criticEndorsement.lastName}}</p>
     </li>
   </ul>
 </div>

@@ -21,83 +21,95 @@ import edu.neu.cs5200.orm.jpa.repositories.RestaurantRepository;
 public class RestaurantDao {
 	@Autowired
 	RestaurantRepository restaurantRepository;
-	
+
 	@Autowired
 	OwnerDao ownerDao;
 	@Autowired
 	PatronDao patronDao;
-	
+
 	public void test() {
-//		// Delete all restaurants
-//		deleteAllRestaurants();
-//		
-//		
-//		//Create restaurant
-//		Restaurant r1 = new Restaurant();
-//		r1.setName("Toro");
-//		r1.setAddress("1704 Washington St");
-//		r1.setCity("Boston");
-//		r1.setState("MA");
-//		r1.setPhone("617-536-4300");
-//		r1.setNumberOfVisits(2000);
-//		r1.setPrice("$$$");
-//		Owner owner = new Owner();
-//		owner.setFirstName("Ken");
-//		owner.setLastName("Oringer");
-//		owner.setPhone("617-536-4300");
-//		owner.setUsername("kenO");
-//		
-//		r1.setOwner(owner);
-//		
-//		createRestaurant(r1);
-		
+		// // Delete all restaurants
+		// deleteAllRestaurants();
+		//
+		//
+		// //Create restaurant
+		// Restaurant r1 = new Restaurant();
+		// r1.setName("Toro");
+		// r1.setAddress("1704 Washington St");
+		// r1.setCity("Boston");
+		// r1.setState("MA");
+		// r1.setPhone("617-536-4300");
+		// r1.setNumberOfVisits(2000);
+		// r1.setPrice("$$$");
+		// Owner owner = new Owner();
+		// owner.setFirstName("Ken");
+		// owner.setLastName("Oringer");
+		// owner.setPhone("617-536-4300");
+		// owner.setUsername("kenO");
+		//
+		// r1.setOwner(owner);
+		//
+		// createRestaurant(r1);
+
 	}
-	
+
 	// CREATE Restaurant
 	public Restaurant createRestaurant(Restaurant restaurant) {
-		
-		if(restaurant.getOwner() != null) {
+
+		if (restaurant.getOwner() != null) {
 			ownerDao.createOwner(restaurant.getOwner());
 			restaurant.setOwner(ownerDao.findOwnerByUsername(restaurant.getOwner().getUsername()));
 		}
-		
-		if(!existRestaurant(restaurant)) {
+
+		if (!existRestaurant(restaurant)) {
 			return restaurantRepository.save(restaurant);
 		} else {
 			return null;
 		}
 	}
-		
+
+	// CREATE Restaurant with Owner
+	public Restaurant createRestaurant(int oid, Restaurant restaurant) {
+
+		Optional<Owner> optionalOwner = ownerDao.findOwnerById(oid);
+		if (optionalOwner.isPresent()) {
+			Owner owner = optionalOwner.get();
+			restaurant.setOwner(owner);
+		}
+		return restaurantRepository.save(restaurant);
+
+	}
+
 	// DELETE all Restaurants
 	public void deleteAllRestaurants() {
 		restaurantRepository.deleteAll();
 	}
-		
+
 	// DELETE Restaurant
 	public void deleteRestaurant(Restaurant restaurant) {
 		restaurantRepository.delete(restaurant);
 	}
-		
+
 	// DELETE Restaurant by ID
 	public void deleteRestaurantById(int id) {
 		restaurantRepository.deleteById(id);
 	}
-		
+
 	// FIND ALL Restaurants
 	public List<Restaurant> findAllRestaurants() {
 		return (List<Restaurant>) restaurantRepository.findAll();
 	}
-		
+
 	// FIND Restaurant by ID
 	public Optional<Restaurant> findRestaurantById(int id) {
 		return restaurantRepository.findById(id);
 	}
-	
+
 	// FIND Restaurant by Name
 	public Restaurant findRestaurantByName(String name) {
 		return restaurantRepository.findRestaurantByName(name);
 	}
-	
+
 	// FIND Restaurants by Patron
 	public List<Restaurant> findRestaurantsByPatron(int pid) {
 		Optional<Patron> data = patronDao.findPatronById(pid);
@@ -107,7 +119,7 @@ public class RestaurantDao {
 		}
 		return null;
 	}
-	
+
 	// FIND Restaurant by Owner
 	public List<Restaurant> findRestaurantByOwner(int oid) {
 		Optional<Owner> optional = ownerDao.findOwnerById(oid);
@@ -123,22 +135,29 @@ public class RestaurantDao {
 		Optional<Restaurant> optional = findRestaurantById(id);
 		if (optional.isPresent()) {
 			Restaurant currRestaurant = optional.get();
-			
+
 			String name = newRestaurant.getName() != null ? newRestaurant.getName() : currRestaurant.getName();
-			String address = newRestaurant.getAddress() != null ? newRestaurant.getAddress() : currRestaurant.getAddress();
+			String address = newRestaurant.getAddress() != null ? newRestaurant.getAddress()
+					: currRestaurant.getAddress();
 			String city = newRestaurant.getCity() != null ? newRestaurant.getCity() : currRestaurant.getCity();
 			String state = newRestaurant.getState() != null ? newRestaurant.getState() : currRestaurant.getState();
 			String phone = newRestaurant.getPhone() != null ? newRestaurant.getPhone() : currRestaurant.getPhone();
-			Date dateEst = newRestaurant.getDateEst() != null ? newRestaurant.getDateEst() : currRestaurant.getDateEst();
-			String hoursOfOpp = newRestaurant.getHoursOfOpp() != null ? newRestaurant.getHoursOfOpp() : currRestaurant.getHoursOfOpp();
-			Integer numberOfVisits = newRestaurant.getNumberOfVisits() != null ? newRestaurant.getNumberOfVisits() : currRestaurant.getNumberOfVisits();
+			Date dateEst = newRestaurant.getDateEst() != null ? newRestaurant.getDateEst()
+					: currRestaurant.getDateEst();
+			String hoursOfOpp = newRestaurant.getHoursOfOpp() != null ? newRestaurant.getHoursOfOpp()
+					: currRestaurant.getHoursOfOpp();
+			Integer numberOfVisits = newRestaurant.getNumberOfVisits() != null ? newRestaurant.getNumberOfVisits()
+					: currRestaurant.getNumberOfVisits();
 			String price = newRestaurant.getPrice() != null ? newRestaurant.getPrice() : currRestaurant.getPrice();
 			Vibe vibe = newRestaurant.getVibe() != null ? newRestaurant.getVibe() : currRestaurant.getVibe();
 			Owner owner = newRestaurant.getOwner() != null ? newRestaurant.getOwner() : currRestaurant.getOwner();
-			List<Review> reviews = newRestaurant.getReviews() != null ? newRestaurant.getReviews() : currRestaurant.getReviews();
-			List<Patron> patrons = newRestaurant.getPatrons() != null ? newRestaurant.getPatrons() : currRestaurant.getPatrons();
-			List<Event> events = newRestaurant.getEvents() != null ? newRestaurant.getEvents() : currRestaurant.getEvents();
-			
+			List<Review> reviews = newRestaurant.getReviews() != null ? newRestaurant.getReviews()
+					: currRestaurant.getReviews();
+			List<Patron> patrons = newRestaurant.getPatrons() != null ? newRestaurant.getPatrons()
+					: currRestaurant.getPatrons();
+			List<Event> events = newRestaurant.getEvents() != null ? newRestaurant.getEvents()
+					: currRestaurant.getEvents();
+
 			currRestaurant.setName(name);
 			currRestaurant.setAddress(address);
 			currRestaurant.setCity(city);
@@ -153,11 +172,11 @@ public class RestaurantDao {
 			currRestaurant.setReviews(reviews);
 			currRestaurant.setPatrons(patrons);
 			currRestaurant.setEvents(events);
-			
+
 			restaurantRepository.save(currRestaurant);
 		}
 	}
-		
+
 	// Check if Restaurant already exists
 	public boolean existRestaurant(Restaurant restaurant) {
 		List<Restaurant> restaurants = findAllRestaurants();

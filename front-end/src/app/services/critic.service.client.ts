@@ -17,18 +17,31 @@ export class CriticServiceClient {
 
     findCriticByReview(reviewId) {
         return fetch('http://localhost:8080/api/review/' + reviewId + '/critic')
-            .then(function (response) { return response.json();
+            .then(function (response) {
+                return response.json();
             });
     }
 
     findCriticsByPatron(patronId) {
         return fetch('http://localhost:8080/api/patron/' + patronId + '/critic')
-            .then(function (response) { return response.json();
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
+    findCriticsByOwner(ownerId) {
+        return fetch('http://localhost:8080/api/owner/' + ownerId + '/critic')
+            .then(function (response) {
+                return response.json();
             });
     }
 
     addBlockPatron(patronId, criticId) {
         return fetch('http://localhost:8080/api/patron/' + patronId + '/critic/' + criticId);
+    }
+
+    addOwnerToCriticEndorsed(ownerId, criticId) {
+        return fetch('http://localhost:8080/api/owner/' + ownerId + '/critic/' + criticId);
     }
 
     findCriticByUsername(username) {

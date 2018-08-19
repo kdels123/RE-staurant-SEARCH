@@ -220,6 +220,16 @@ public class CriticDao {
 		return null;
 	}
 	
+	// FIND Critics by ownerId
+		public List<Critic> findCriticsByOwnerId(int oid) {
+			Optional<Owner> data = ownerDao.findOwnerById(oid);
+			if(data.isPresent()) {
+				Owner owner = data.get();
+				return owner.getCriticEndorsements();
+			}
+			return null;
+		}
+	
 	// Find Critic by credentials (username and password)
 	public Critic findCriticByCredentials(String username, String password) {
 		return criticRepository.findCriticByCredentials(username, password);
