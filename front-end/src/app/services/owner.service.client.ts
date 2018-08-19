@@ -2,12 +2,12 @@ export class OwnerServiceClient {
 
 
     findOwnerById(ownerId) {
-        return fetch('http://localhost:8080/api/owner/' + ownerId)
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/owner/' + ownerId)
             .then(response => response.json());
     }
 
     findAllOwners() {
-        return fetch('http://localhost:8080/api/owner/')
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/owner/')
             .then(function (response) {
                 return response.json();
             });
@@ -17,7 +17,7 @@ export class OwnerServiceClient {
         const user = {
             username: username
         };
-        return fetch('http://localhost:8080/api/owner/username', {
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/owner/username', {
             method: 'post',
             body: JSON.stringify(user),
             headers: {
@@ -27,41 +27,41 @@ export class OwnerServiceClient {
     }
 
     findOwnerByEvent(eventId) {
-        return fetch('http://localhost:8080/api/event/' + eventId + '/owner')
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/event/' + eventId + '/owner')
             .then(function (response) { return response.json();
             });
     }
 
     findOwnerInvitesByCritic(criticId) {
-        return fetch('http://localhost:8080/api/critic/' + criticId + '/owner')
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/critic/' + criticId + '/owner')
             .then(function (response) { return response.json();
             });
     }
 
     findOwnerInvitesByPatron(patronId) {
-        return fetch('http://localhost:8080/api/patron/' + patronId + '/owner')
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/patron/' + patronId + '/owner')
             .then(function (response) { return response.json();
             });
     }
 
     findOwnerEndorsementsByPatron(patronId) {
-        return fetch('http://localhost:8080/api/patron/' + patronId + '/ownerEndorsements')
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/patron/' + patronId + '/ownerEndorsements')
             .then(function (response) { return response.json();
             });
     }
 
     findOwnerEndorsementsByCritic(criticId) {
-        return fetch('http://localhost:8080/api/critic/' + criticId + '/ownerEndorsements')
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/critic/' + criticId + '/ownerEndorsements')
             .then(function (response) { return response.json();
             });
     }
 
     addCriticInviteToOwner(ownerId, criticId) {
-        return fetch('http://localhost:8080/api/critic/' + criticId + '/owner/' + ownerId);
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/critic/' + criticId + '/owner/' + ownerId);
     }
 
     addPatronInviteToOwner(ownerId, patronId) {
-        return fetch('http://localhost:8080/api/patron/' + patronId + '/owner/' + ownerId);
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/patron/' + patronId + '/owner/' + ownerId);
     }
 
     createOwner(username, password) {
@@ -69,7 +69,7 @@ export class OwnerServiceClient {
             username: username,
             password: password
         };
-        return fetch('http://localhost:8080/api/owner', {
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/owner', {
             body: JSON.stringify(user),
             method: 'post',
             credentials: 'same-origin',
@@ -89,7 +89,7 @@ export class OwnerServiceClient {
             email: email,
             dob: dob
         };
-        return fetch('http://localhost:8080/api/owner/' + userId, {
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/owner/' + userId, {
             body: JSON.stringify(user),
             method: 'put',
             headers: {
@@ -99,7 +99,7 @@ export class OwnerServiceClient {
     }
 
     deleteOwner(ownerId) {
-        return fetch('http://localhost:8080/api/owner/' + ownerId, {
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/owner/' + ownerId, {
             method: 'delete'
         });
     }
@@ -109,7 +109,7 @@ export class OwnerServiceClient {
             username: username,
             password: password
         };
-        return fetch('http://localhost:8080/api/owner/login', {
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/owner/login', {
             method: 'post',
             credentials: 'same-origin',
             body: JSON.stringify(credentials),

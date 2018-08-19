@@ -6,7 +6,7 @@ export class ReviewServiceClient {
             description: description,
             rating: rating,
         };
-        return fetch('http://localhost:8080/api/critic/' + criticId + '/restaurant/' + restaurantId + '/review', {
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/critic/' + criticId + '/restaurant/' + restaurantId + '/review', {
             method: 'post',
             body: JSON.stringify(review),
             headers: {
@@ -22,7 +22,7 @@ export class ReviewServiceClient {
             description: description,
             rating: rating,
         };
-        return fetch('http://localhost:8080/api/critic/' + criticId + '/event/' + eventId + '/review', {
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/critic/' + criticId + '/event/' + eventId + '/review', {
             method: 'post',
             body: JSON.stringify(review),
             headers: {
@@ -33,28 +33,28 @@ export class ReviewServiceClient {
     }
 
     findReviewById(reviewId) {
-        return fetch('http://localhost:8080/api/review/' + reviewId)
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/review/' + reviewId)
             .then(function (response) {
                 return response.json();
             });
     }
 
     findReviewsByCritic(criticId) {
-        return fetch('http://localhost:8080/api/critic/' + criticId + '/review')
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/critic/' + criticId + '/review')
             .then(function (response) {
                 return response.json();
             });
     }
 
     findReviewsByRestaurant(restaurantId) {
-        return fetch('http://localhost:8080/api/restaurant/' + restaurantId + '/review')
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/restaurant/' + restaurantId + '/review')
             .then(function (response) {
                 return response.json();
             });
     }
 
     findReviewsByEvent(eventId) {
-        return fetch('http://localhost:8080/api/event/' + eventId + '/review')
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/event/' + eventId + '/review')
             .then(function (response) {
                 return response.json();
             });
@@ -66,7 +66,7 @@ export class ReviewServiceClient {
             description: description,
             rating: rating,
         };
-        return fetch('http://localhost:8080/api/review/' + reviewId, {
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/review/' + reviewId, {
             method: 'put',
             body: JSON.stringify(review),
             headers: {
@@ -76,7 +76,7 @@ export class ReviewServiceClient {
     }
 
     deleteReview(reviewId) {
-        return fetch('http://localhost:8080/api/review/' + reviewId, {
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/review/' + reviewId, {
             method: 'delete'
         });
     }

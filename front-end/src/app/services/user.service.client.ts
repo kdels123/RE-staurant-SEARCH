@@ -5,7 +5,7 @@ export class UserServiceClient {
             username: username,
             password: password
         };
-        return fetch('http://localhost:8080/api/admin', {
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/admin', {
             body: JSON.stringify(user),
             credentials: 'include', // include, same-origin, *omit
             method: 'post',

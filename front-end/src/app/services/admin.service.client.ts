@@ -2,7 +2,7 @@ export class AdminServiceClient {
 
 
     findAdminById(adminId) {
-        return fetch('http://localhost:8080/api/admin/' + adminId)
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/admin/' + adminId)
             .then(function (response) {
                 return response.json();
             });
@@ -13,7 +13,7 @@ export class AdminServiceClient {
             username: username,
             password: password
         };
-        return fetch('http://localhost:8080/api/admin', {
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/admin', {
             body: JSON.stringify(user),
             credentials: 'same-origin', // include, same-origin, *omit
             method: 'post',
@@ -31,7 +31,7 @@ export class AdminServiceClient {
             email: email,
             dob: dob
         };
-        return fetch('http://localhost:8080/api/admin/' + userId, {
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/admin/' + userId, {
             body: JSON.stringify(user),
             method: 'put',
             headers: {
@@ -45,7 +45,7 @@ export class AdminServiceClient {
             username: username,
             password: password
         };
-        return fetch('http://localhost:8080/api/admin/login', {
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/admin/login', {
             method: 'post',
             credentials: 'same-origin',
             body: JSON.stringify(credentials),

@@ -2,14 +2,14 @@ export class PatronServiceClient {
 
 
     findPatronById(patronId) {
-        return fetch('http://localhost:8080/api/patron/' + patronId)
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/patron/' + patronId)
             .then(function (response) {
                 return response.json();
             });
     }
 
     findAllPatrons() {
-        return fetch('http://localhost:8080/api/patron/')
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/patron/')
             .then(function (response) {
                 return response.json();
             });
@@ -19,7 +19,7 @@ export class PatronServiceClient {
         const user = {
             username: username
         };
-        return fetch('http://localhost:8080/api/patron/username', {
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/patron/username', {
             method: 'post',
             body: JSON.stringify(user),
             headers: {
@@ -29,42 +29,42 @@ export class PatronServiceClient {
     }
 
     findPatronsByRestaurant(restaurantId) {
-        return fetch('http://localhost:8080/api/restaurant/' + restaurantId + '/patron')
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/restaurant/' + restaurantId + '/patron')
             .then(function (response) {
                 return response.json();
             });
     }
 
     findPatronsByCritic(criticId) {
-        return fetch('http://localhost:8080/api/critic/' + criticId + '/patron')
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/critic/' + criticId + '/patron')
             .then(function (response) {
                 return response.json();
             });
     }
 
     findBlockPatronsByCritic(criticId) {
-        return fetch('http://localhost:8080/api/critic/' + criticId + '/blockpatron')
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/critic/' + criticId + '/blockpatron')
             .then(function (response) {
                 return response.json();
             });
     }
 
     findPatronsByOwner(ownerId) {
-        return fetch('http://localhost:8080/api/owner/' + ownerId + '/patron')
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/owner/' + ownerId + '/patron')
             .then(function (response) {
                 return response.json();
             });
     }
 
     findPatronsByEvent(eventId) {
-        return fetch('http://localhost:8080/api/event/' + eventId + '/patron')
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/event/' + eventId + '/patron')
             .then(function (response) {
                 return response.json();
             });
     }
 
     findPatronInvitesByOwner(ownerId) {
-        return fetch('http://localhost:8080/api/owner/' + ownerId + '/patronInvite')
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/owner/' + ownerId + '/patronInvite')
             .then(function (response) {
                 return response.json();
             });
@@ -72,7 +72,7 @@ export class PatronServiceClient {
 
 
     findFavoriteCritic(patronId) {
-        return fetch('http://localhost:8080/api/favoriteCritic/' + patronId + '/patron')
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/favoriteCritic/' + patronId + '/patron')
             .then(function (response) {
                 return response.json();
             });
@@ -83,7 +83,7 @@ export class PatronServiceClient {
             username: username,
             password: password
         };
-        return fetch('http://localhost:8080/api/patron', {
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/patron', {
             body: JSON.stringify(user),
             credentials: 'same-origin', // include, same-origin, *omit
             method: 'post',
@@ -101,7 +101,7 @@ export class PatronServiceClient {
             email: email,
             dob: dob
         };
-        return fetch('http://localhost:8080/api/patron/' + userId, {
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/patron/' + userId, {
             body: JSON.stringify(user),
             method: 'put',
             headers: {
@@ -111,27 +111,27 @@ export class PatronServiceClient {
     }
 
     restaurantToPatron(patronId, restaurantId) {
-        return fetch('http://localhost:8080/api/restaurant/' + restaurantId + '/patron/' + patronId);
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/restaurant/' + restaurantId + '/patron/' + patronId);
     }
 
     criticToPatron(patronId, criticId) {
-        return fetch('http://localhost:8080/api/critic/' + criticId + '/patron/' + patronId);
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/critic/' + criticId + '/patron/' + patronId);
     }
 
     addOwnerToPatronEndorsed(ownerId, patronId) {
-        return fetch('http://localhost:8080/api/owner/' + ownerId + '/patron/' + patronId);
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/owner/' + ownerId + '/patron/' + patronId);
     }
 
     addEventToPatron(eventId, patronId) {
-        return fetch('http://localhost:8080/api/event/' + eventId + '/patron/' + patronId);
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/event/' + eventId + '/patron/' + patronId);
     }
 
     addFavoriteCritic(criticId, patronId) {
-        return fetch('http://localhost:8080/api/favoriteCritic/' + criticId + '/patron/' + patronId);
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/favoriteCritic/' + criticId + '/patron/' + patronId);
     }
 
     deletePatron(patronId) {
-        return fetch('http://localhost:8080/api/patron/' + patronId, {
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/patron/' + patronId, {
             method: 'delete'
         });
     }
@@ -141,7 +141,7 @@ export class PatronServiceClient {
             username: username,
             password: password
         };
-        return fetch('http://localhost:8080/api/patron/login', {
+        return fetch('http://cs5200-final-project-delsener-lo.us-east-2.elasticbeanstalk.com/api/patron/login', {
             method: 'post',
             credentials: 'same-origin',
             body: JSON.stringify(credentials),
