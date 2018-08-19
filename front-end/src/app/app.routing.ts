@@ -19,6 +19,8 @@ import {RestaurantAllRestaurantsComponent} from './restaurant-all-restaurants/re
 import {EventAllEventsComponent} from './event-all-events/event-all-events.component';
 import {OwnerProfileComponent} from './owner-profile/owner-profile.component';
 import {AdminRegisterComponent} from './admin-register/admin-register.component';
+import {RestaurantUpdateComponent} from './restaurant-update/restaurant-update.component';
+import {EventUpdateComponent} from './event-update/event-update.component';
 
 const appRoutes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -32,6 +34,8 @@ const appRoutes: Routes = [
     {path: 'admin/:adminId/register', component: AdminRegisterComponent},
     {path: 'profile/admin/:adminId', component: AdminProfilePrivateComponent},
     {path: 'owner/:ownerId', component: OwnerProfileComponent},
+    {path: 'owner/:ownerId/restaurant/:restaurantId', component: RestaurantUpdateComponent},
+    {path: 'owner/:ownerId/event/:eventId', component: EventUpdateComponent},
     {path: 'profile/owner/:ownerId', component: OwnerProfilePrivateComponent},
     {path: 'critic/:criticId', component: CriticProfileComponent},
     {path: 'profile/critic/:criticId', component: CriticProfilePrivateComponent},

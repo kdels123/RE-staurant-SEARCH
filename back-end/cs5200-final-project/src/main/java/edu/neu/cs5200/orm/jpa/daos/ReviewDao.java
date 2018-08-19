@@ -64,7 +64,34 @@ public class ReviewDao {
 //		createReview(review);
 	}
 	
-	// CREATE Review
+	// CREATE Review for Event
+		public Review createReviewForEvent(Review review, int criticId, int eventId) {
+			
+			if(review.getCritic() != null) {
+				criticDao.createCritic(review.getCritic());
+				review.setCritic(criticDao.findCriticByUsername(review.getCritic().getUsername()));
+			}
+			
+			if(review.getRestaurant() != null) {
+				restaurantDao.createRestaurant(review.getRestaurant());
+				review.setRestaurant(restaurantDao.findRestaurantByName(review.getRestaurant().getName()));
+			}
+			
+			if(!existReview(review)) {
+				Review newReview = new Review();
+				newReview.setTitle(review.getTitle());
+				newReview.setDescription(review.getDescription());
+				newReview.setRating(review.getRating());
+				newReview.setCritic(criticDao.findCriticById(criticId).get());
+				newReview.setEvent(eventDao.findEventById(eventId).get());
+				
+				return reviewRepository.save(newReview);
+			}
+			
+			return null;
+		}
+	
+	// CREATE Review for Restaurant
 	public Review createReview(Review review, int criticId, int restaurantId) {
 		
 		if(review.getCritic() != null) {

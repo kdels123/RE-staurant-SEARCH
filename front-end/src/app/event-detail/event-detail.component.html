@@ -45,4 +45,58 @@
     </li>
   </ul>
 
-</div>
+  <h3>Write a Review!</h3>
+
+    <div class="form-group">
+      <label>Username</label>
+      <input [(ngModel)]="criticUsername" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="FormControlInput2">Review Title</label>
+      <input class="form-control" id="FormControlInput2" [(ngModel)]="reviewTitle"/>
+    </div>
+    <div class="form-group">
+      <label for="FormControlTextarea1">Review Description</label>
+      <textarea class="form-control" id="FormControlTextarea1" rows="3" [(ngModel)]="reviewDesription">
+
+            </textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Restaurant Rating</label>
+
+      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+          <button (click)="setRating(1)" type="button" class="btn btn-dark">1</button>
+        </div>
+        <div class="btn-group mr-2" role="group" aria-label="Second group">
+          <button (click)="setRating(2)" type="button" class="btn btn-dark">2</button>
+        </div>
+        <div class="btn-group mr-2" role="group" aria-label="Third group">
+          <button (click)="setRating(3)" type="button" class="btn btn-dark">3</button>
+        </div>
+        <div class="btn-group mr-2" role="group" aria-label="Fourth group">
+          <button (click)="setRating(4)" type="button" class="btn btn-dark">4</button>
+        </div>
+        <div class="btn-group mr-2" role="group" aria-label="Fifth group">
+          <button (click)="setRating(5)" type="button" class="btn btn-dark">5</button>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button (click)="addReviewForEvent(reviewTitle, reviewDescription, criticUsername)"
+              class="btn btn-block btn-dark">Add
+        Review
+      </button>
+    </div>
+
+  <h3>Reviews:</h3>
+
+  <ul class="list-group list-group-flush" *ngFor="let review of reviews">
+    <li class="list-group-item">
+      <p>Title: {{review.title}}</p>
+      <p>Description: {{review.description}}</p>
+      <p>Rating: {{review.rating}}</p>
+    </li>
+  </ul>
+  </div>

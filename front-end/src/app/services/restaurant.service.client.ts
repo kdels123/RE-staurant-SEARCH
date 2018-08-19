@@ -21,7 +21,7 @@ export class RestaurantServiceClient {
         const data = {
             name: restaurant.alias
         };
-        return fetch ('http://localhost:8080/api/restaurant/name', {
+        return fetch('http://localhost:8080/api/restaurant/name', {
             method: 'post',
             body: JSON.stringify(data),
             headers: {
@@ -36,13 +36,15 @@ export class RestaurantServiceClient {
 
     findRestaurantsByPatron(patronId) {
         return fetch('http://localhost:8080/api/patron/' + patronId + '/restaurant')
-            .then(function (response) { return response.json();
+            .then(function (response) {
+                return response.json();
             });
     }
 
     findRestaurantsByOwner(ownerId) {
         return fetch('http://localhost:8080/api/owner/' + ownerId + '/restaurant')
-            .then(function (response) { return response.json();
+            .then(function (response) {
+                return response.json();
             });
     }
 
@@ -80,6 +82,25 @@ export class RestaurantServiceClient {
         };
         return fetch('http://localhost:8080/api/restaurant', {
             method: 'post',
+            body: JSON.stringify(data),
+            headers: {
+                'content-type': 'application/json',
+            }
+        }).then(response => response.json());
+    }
+
+    updateRestaurant(restaurantName, restaurantAddress, restaurantCity,
+                     restaurantState, restaurantPhone, restaurantPrice, restaurantId) {
+        const data = {
+            name: restaurantName,
+            address: restaurantAddress,
+            city: restaurantCity,
+            state: restaurantState,
+            phone: restaurantPhone,
+            price: restaurantPrice,
+        };
+        return fetch('http://localhost:8080/api/restaurant/' + restaurantId, {
+            method: 'put',
             body: JSON.stringify(data),
             headers: {
                 'content-type': 'application/json',

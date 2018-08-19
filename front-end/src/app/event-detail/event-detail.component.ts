@@ -4,6 +4,7 @@ import {CriticServiceClient} from '../services/critic.service.client';
 import {PatronServiceClient} from '../services/patron.service.client';
 import {EventServiceClient} from '../services/event.service.client';
 import {OwnerServiceClient} from '../services/owner.service.client';
+import {ReviewServiceClient} from '../services/review.service.client';
 
 @Component({
   selector: 'app-event-detail',
@@ -16,6 +17,7 @@ export class EventDetailComponent implements OnInit {
                 private patronService: PatronServiceClient,
                 private eventService: EventServiceClient,
                 private ownerService: OwnerServiceClient,
+                private reviewService: ReviewServiceClient,
                 private router: Router,
                 private route: ActivatedRoute) {
         this.route.params.subscribe(params => this.loadEvent(params['eventId']));
@@ -26,6 +28,12 @@ export class EventDetailComponent implements OnInit {
 
     patrons;
     patronUsername = null;
+
+    reviews;
+    reviewTitle;
+    reviewDescription;
+    reviewRating;
+
 
     event;
     eventId;
@@ -46,6 +54,20 @@ export class EventDetailComponent implements OnInit {
             patrons => this.patrons = patrons);
         this.criticService.findCriticsByEvent(event.id).then(
             critics => this.critics = critics);
+        this.reviewService.findReviewsByEvent(event.id).then(
+            reviews => this.reviews = reviews);
+    }
+
+    addReviewForEvent(reviewTitle, reviewDescription, criticUsername) {
+        if (this.criticUsername === null) {
+            alert('Please enter a username');
+            return;
+        }
+        this.criticService.findCriticByUsername(criticUsername)
+            .then(critic => this.reviewService
+                .addReviewForEvent(reviewTitle, reviewDescription, this.reviewRating, critic.id, this.eventId))
+            .then(() => location.reload())
+            .catch(() => alert('Must be logged in as Critic'));
     }
 
     addEventToPatron(patronUsername) {
@@ -82,6 +104,11 @@ export class EventDetailComponent implements OnInit {
 
     search() {
         this.router.navigate(['search']);
+    }
+
+
+    setRating(rating) {
+        this.reviewRating = rating;
     }
 
     ngOnInit() {

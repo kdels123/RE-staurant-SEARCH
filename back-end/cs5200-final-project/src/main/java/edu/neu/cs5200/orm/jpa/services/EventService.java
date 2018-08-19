@@ -68,7 +68,7 @@ public class EventService {
 
 	// DELETE Delete event instance whose primary key is eid
 	@DeleteMapping("/api/event/{eid}")
-	public void deleteEventById(@PathVariable("edi") int eid) {
+	public void deleteEventById(@PathVariable("eid") int eid) {
 		eventDao.deleteEventById(eid);
 	}
 

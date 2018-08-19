@@ -1,0 +1,44 @@
+<div>
+  <button (click)="goHome()" class="btn btn-link" style="color: black; float: left">Home</button>
+  <button (click)="search()" class="btn btn-link" style="color: black; float: right">Search</button>
+
+</div>
+<br>
+
+<div class="container">
+  <h3>Update an Event</h3>
+
+  <div>
+    <div class="form-group">
+      <label for="FormControlInput2">Event Title</label>
+      <input class="form-control" id="FormControlInput2" [(ngModel)]="eventTitle"/>
+    </div>
+    <div class="form-group">
+      <label for="FormControlTextarea1">Event Description</label>
+      <textarea class="form-control" id="FormControlTextarea1" rows="3" [(ngModel)]="eventDescription">
+            </textarea>
+    </div>
+    <div class="form-group">
+      <label for="FormControlInput3">Event Date and Time ()</label>
+      <input class="form-control" id="FormControlInput3" [(ngModel)]="eventDateTime"/>
+    </div>
+    <div class="form-group">
+      <label for="FormControlInput4">Event Price</label>
+      <input class="form-control" id="FormControlInput4" [(ngModel)]="eventPrice"/>
+    </div>
+    <div class="form-group">
+      <label for="FormControlInput5">Event Attire</label>
+      <input class="form-control" id="FormControlInput5" [(ngModel)]="eventAttire"/>
+    </div>
+
+    <div class="form-group">
+      <button (click)="updateEvent(eventTitle, eventDescription, eventDateTime, eventPrice, eventAttire, ownerUsername)"
+              class="btn btn-block btn-dark">Update Event
+      </button>
+      <button (click)="returnToProfile()"
+              class="btn btn-block btn-dark">Return to Profile
+      </button>
+
+    </div>
+  </div>
+</div>

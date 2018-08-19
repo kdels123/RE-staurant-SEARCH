@@ -58,6 +58,23 @@ export class EventServiceClient {
         }).then(response => response.json());
     }
 
+    updateEvent(title, description, dateTime, price, attire, eventId) {
+        const event = {
+            title: title,
+            description: description,
+            dateTime: dateTime,
+            price: price,
+            attire: attire
+        };
+        return fetch('http://localhost:8080/api/event/' + eventId, {
+            method: 'put',
+            body: JSON.stringify(event),
+            headers: {
+                'content-type': 'application/json',
+            }
+        }).then(response => response.json());
+    }
+
     deleteEvent(eventId) {
         return fetch('http://localhost:8080/api/event/' + eventId, {
             method: 'delete'

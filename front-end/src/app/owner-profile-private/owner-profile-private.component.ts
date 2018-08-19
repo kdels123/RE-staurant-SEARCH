@@ -87,6 +87,24 @@ export class OwnerProfilePrivateComponent implements OnInit {
             .then(() => location.reload());
     }
 
+    deleteRestaurant(restaurantId) {
+        this.restaurantService.deleteRestaurant(restaurantId)
+            .then(() => location.reload());
+    }
+
+    updateRestaurant(restaurantId) {
+        this.router.navigate(['owner/' + this.ownerId + '/restaurant/' + restaurantId]);
+    }
+
+    deleteEvent(eventId) {
+        this.eventService.deleteEvent(eventId)
+            .then(() => location.reload());
+    }
+
+    updateEvent(eventId) {
+        this.router.navigate(['owner/' + this.ownerId + '/event/' + eventId]);
+    }
+
     logout() {
         this.router.navigate(['home']);
     }

@@ -32,6 +32,8 @@ import { RestaurantAllRestaurantsComponent } from './restaurant-all-restaurants/
 import { EventAllEventsComponent } from './event-all-events/event-all-events.component';
 import { OwnerProfileComponent } from './owner-profile/owner-profile.component';
 import { AdminRegisterComponent } from './admin-register/admin-register.component';
+import { EventUpdateComponent } from './event-update/event-update.component';
+import { RestaurantUpdateComponent } from './restaurant-update/restaurant-update.component';
 
 
 @NgModule({
@@ -56,7 +58,9 @@ import { AdminRegisterComponent } from './admin-register/admin-register.componen
     RestaurantAllRestaurantsComponent,
     EventAllEventsComponent,
     OwnerProfileComponent,
-    AdminRegisterComponent
+    AdminRegisterComponent,
+    EventUpdateComponent,
+    RestaurantUpdateComponent
   ],
   imports: [
     BrowserModule,
