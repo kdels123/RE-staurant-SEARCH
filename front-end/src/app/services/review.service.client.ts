@@ -34,25 +34,29 @@ export class ReviewServiceClient {
 
     findReviewById(reviewId) {
         return fetch('http://localhost:8080/api/review/' + reviewId)
-            .then(function (response) { return response.json();
+            .then(function (response) {
+                return response.json();
             });
     }
 
     findReviewsByCritic(criticId) {
         return fetch('http://localhost:8080/api/critic/' + criticId + '/review')
-            .then(function (response) { return response.json();
+            .then(function (response) {
+                return response.json();
             });
     }
 
     findReviewsByRestaurant(restaurantId) {
         return fetch('http://localhost:8080/api/restaurant/' + restaurantId + '/review')
-            .then(function (response) { return response.json();
+            .then(function (response) {
+                return response.json();
             });
     }
 
     findReviewsByEvent(eventId) {
         return fetch('http://localhost:8080/api/event/' + eventId + '/review')
-            .then(function (response) { return response.json();
+            .then(function (response) {
+                return response.json();
             });
     }
 
@@ -62,7 +66,7 @@ export class ReviewServiceClient {
             description: description,
             rating: rating,
         };
-        return fetch('http://localhost:8080/api/review/' + reviewId,{
+        return fetch('http://localhost:8080/api/review/' + reviewId, {
             method: 'put',
             body: JSON.stringify(review),
             headers: {
@@ -75,4 +79,5 @@ export class ReviewServiceClient {
         return fetch('http://localhost:8080/api/review/' + reviewId, {
             method: 'delete'
         });
+    }
 }

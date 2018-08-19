@@ -27,7 +27,7 @@ export class ReviewUpdateComponent implements OnInit {
     reviewDescription;
     reviewRating;
 
-    loadCriticReview(criticId, reviewId){
+    loadCriticReview(criticId, reviewId) {
         this.criticId = criticId;
         this.reviewId = reviewId;
         this.reviewService.findReviewById(this.reviewId)

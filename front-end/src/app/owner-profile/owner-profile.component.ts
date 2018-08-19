@@ -6,6 +6,7 @@ import {PatronServiceClient} from '../services/patron.service.client';
 import {OwnerServiceClient} from '../services/owner.service.client';
 import {EventServiceClient} from '../services/event.service.client';
 import {cr} from '@angular/core/src/render3';
+import {RestaurantServiceClient} from '../services/restaurant.service.client';
 
 @Component({
   selector: 'app-owner-profile',
@@ -18,6 +19,7 @@ export class OwnerProfileComponent implements OnInit {
                 private eventService: EventServiceClient,
                 private patronService: PatronServiceClient,
                 private criticService: CriticServiceClient,
+                private restaurantService: RestaurantServiceClient,
                 private router: Router,
                 private route: ActivatedRoute) {
         this.route.params.subscribe(params => this.loadOwner(params['ownerId']));
@@ -27,6 +29,7 @@ export class OwnerProfileComponent implements OnInit {
     owner;
 
     events;
+    restaurants;
 
     patronUsername = null;
     patrons;
@@ -52,6 +55,8 @@ export class OwnerProfileComponent implements OnInit {
             patronEndorsements => this.patronEndorsements = patronEndorsements);
         this.criticService.findCriticsByOwner(owner.id).then(
             criticEndorsements => this.criticEndorsements = criticEndorsements);
+        this.restaurantService.findRestaurantsByOwner(owner.id).then(
+            retaurants => this.restaurants = retaurants);
     }
 
     ownerToPatron(patronUsername) {

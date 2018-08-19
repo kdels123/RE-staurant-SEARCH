@@ -24,6 +24,7 @@ export class EventDetailComponent implements OnInit {
     }
 
     critics;
+    criticUsernameI = null;
     criticUsername = null;
 
     patrons;
@@ -81,12 +82,12 @@ export class EventDetailComponent implements OnInit {
             .catch(() => alert('Must be logged in as Patron'));
     }
 
-    addEventToCritic(criticUsername) {
-        if (criticUsername === null) {
+    addEventToCritic(criticUsernameI) {
+        if (criticUsernameI === null) {
             alert('Please enter username');
             return;
         }
-        this.criticService.findCriticByUsername(criticUsername)
+        this.criticService.findCriticByUsername(criticUsernameI)
             .then(critic => this.criticService.addEventToCritic(this.eventId, critic.id))
             .then(() => location.reload())
             .catch(() => alert('Must be logged in as Critic'));
