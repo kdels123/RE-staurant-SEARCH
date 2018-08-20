@@ -38,22 +38,22 @@ export class UserRegisterComponent implements OnInit {
         this.patronService.createPatron(username, passwordI)
             .then(user => (this.userId = user.id))
             .then(() => (this.router.navigate(['profile/patron/' + this.userId])))
-            .catch(() => alert('Useranme already exists, please try again'));
+            .catch(() => alert('Username already exists, please try again'));
     } else if (this.role === 'owner') {
       this.ownerService.createOwner(username, passwordI)
           .then(user => (this.userId = user.id))
           .then(() => (this.router.navigate(['profile/owner/' + this.userId])))
-          .catch(() => alert('Useranme already exists, please try again'));
+          .catch(() => alert('Username already exists, please try again'));
     } else if (this.role === 'critic') {
         this.criticService.createCritic(username, passwordI)
             .then(user => (this.userId = user.id))
             .then(() => (this.router.navigate(['profile/critic/' + this.userId])))
-            .catch(() => alert('Useranme already exists, please try again'));
+            .catch(() => alert('Username already exists, please try again'));
     } else if (this.role === 'admin') {
         this.adminService.createAdmin(username, passwordI)
             .then(user => (this.userId = user.id))
             .then(() => (this.router.navigate(['profile/admin/' + this.userId])))
-            .catch(() => alert('Useranme already exists, please try again'));
+            .catch(() => alert('Username already exists, please try again'));
     }
   }
 
