@@ -11,7 +11,6 @@ export class ReviewServiceClient {
             body: JSON.stringify(review),
             headers: {
                 'content-type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:8080'
             }
         }).then(response => response.json());
     }
@@ -27,7 +26,6 @@ export class ReviewServiceClient {
             body: JSON.stringify(review),
             headers: {
                 'content-type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:8080'
             }
         }).then(response => response.json());
     }
